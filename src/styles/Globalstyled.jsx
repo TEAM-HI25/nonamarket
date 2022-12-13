@@ -43,10 +43,16 @@ const GlobalStyled = createGlobalStyle`
     font-display: swap;
 }
   ${reset}
+  html {
+    font-size: 10px;
+  }
+  
   *{
     font-family: "Spoqa Han Sans Neo", sans-serif;
     font-weight: 400;
+    box-sizing: border-box;
   }
+  
   button{
     background: inherit;
     border:none;
