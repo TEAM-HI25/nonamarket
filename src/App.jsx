@@ -1,7 +1,13 @@
 import Router from './Router/Router';
+import GlobalStyled from './styles/Globalstyled';
 
 const App = () => {
-  return <Router />;
+  return (
+    <>
+      <GlobalStyled />
+      <Router />
+    </>
+  );
 };
 
 export default App;
