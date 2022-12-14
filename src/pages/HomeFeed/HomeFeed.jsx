@@ -1,5 +1,7 @@
+import HomePost from '../../components/common/HomePost/HomePost';
+
 const HomeFeed = () => {
-  return <div>HomeFeed</div>;
+  return <HomePost />;
 };
 
 export default HomeFeed;
