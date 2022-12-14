@@ -1,5 +1,7 @@
+import PostCard from '../../components/common/PostCard/PostCard';
+
 const HomeFeed = () => {
-  return <div>HomeFeed</div>;
+  return <PostCard />;
 };
 
 export default HomeFeed;
