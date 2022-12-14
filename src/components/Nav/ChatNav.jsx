@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import * as S from './StyledNav';
-import MoreImg from '../../assets/images/icon- more-vertical.svg';
+import MoreImg from '../../assets/images/icon-more-vertical.svg';
 import ArrowImg from '../../assets/images/icon-arrow-left.svg';
 
 const Text = styled.span`
