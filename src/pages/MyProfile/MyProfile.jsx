@@ -1,5 +1,11 @@
+import TabMenu from '../../components/common/Profile/TabMenu';
+
 const MyProfile = () => {
-  return <div>MyProfile</div>;
+  return (
+    <div>
+      <TabMenu />
+    </div>
+  );
 };
 
 export default MyProfile;
