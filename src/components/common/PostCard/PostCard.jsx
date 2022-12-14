@@ -1,10 +1,11 @@
-import * as S from './StyledHomePost';
+import * as S from './StyledPostCard';
 import ProfileMiniImg from '../../../assets/images/profile-image-mini.svg';
+import PostSampleImg from '../../../assets/images/post-img-example.png';
 import HeartIcon from '../../../assets/images/icon-heart.svg';
 import MessageCircleIcon from '../../../assets/images/icon-message-circle-mini.svg';
 import verticalMenuIcon from '../../../assets/images/icon-more-vertical.svg';
 
-const HomePostOnlyText = () => {
+const PostCard = () => {
   return (
     <S.ContentsWrapper>
       <S.ProfileImage src={ProfileMiniImg} alt='프로필 이미지' />
@@ -20,6 +21,7 @@ const HomePostOnlyText = () => {
           이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게
           뛰노는 인생의 힘있다.
         </p>
+        <img src={PostSampleImg} alt='감귤농장 이미지' />
       </S.PostContents>
       <S.BtnWrapper>
         <button type='button'>
@@ -34,4 +36,4 @@ const HomePostOnlyText = () => {
   );
 };
 
-export default HomePostOnlyText;
+export default PostCard;

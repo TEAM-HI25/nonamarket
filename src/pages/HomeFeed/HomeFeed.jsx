@@ -1,7 +1,7 @@
-import HomePost from '../../components/common/HomePost/HomePost';
+import PostCard from '../../components/common/PostCard/PostCard';
 
 const HomeFeed = () => {
-  return <HomePost />;
+  return <PostCard />;
 };
 
 export default HomeFeed;
