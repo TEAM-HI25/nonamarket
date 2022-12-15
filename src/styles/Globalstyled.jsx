@@ -27,17 +27,11 @@ ${reset}
     
   }
   .hidden {
-    position: relative;
-    z-index: -1px;
-    display: inline-block;
-    overflow: hidden;
+    position: absolute;
+    clip-path: inset(50%);
     width: 1px;
     height: 1px;
-    border: 0;
-    clip: rect(1px, 1px, 1px, 1px);
-    clip-path: inset(50%);
-    word-break: initial;
-    word-wrap: initial;
+    overflow: hidden;
   }
 `;
 
