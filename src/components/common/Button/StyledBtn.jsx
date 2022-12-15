@@ -4,18 +4,18 @@ const SIZES = {
   s: css`
     --button-width: 56px;
     --button-font-size: 1.2rem;
-    --button-padding: 7px 10px;
+    --button-padding: 7px 0;
     --button-radius: 26px;
     --button-font-lineheight: 1.502rem;
   `,
   ms: css`
     --button-width: 90px;
-    --button-padding: 7px 31px;
+    --button-padding: 7px 0;
     --button-radius: 32px;
   `,
   m: css`
     --button-width: 120px;
-    --button-padding: 8px 39px;
+    --button-padding: 8px 0;
     --button-radius: 30px;
   `,
 };
@@ -31,6 +31,7 @@ const StyledBtn = styled.button`
   font-weight: 500;
   font-size: var(--button-font-size, 1.4rem);
   line-height: var(--button-font-lineheight, 1.753rem);
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
 
   &:active {
     ${(p) =>

@@ -2,54 +2,17 @@ import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
 const GlobalStyled = createGlobalStyle`
-@font-face {
-    font-family: 'Spoqa Han Sans Neo';
-    src: url('../../assets/font/SpoqaHanSansNeo-Light.woff2') format('woff2'),
-        url('../../assets/font/SpoqaHanSansNeo-Light.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Spoqa Han Sans Neo';
-    src: url('../../assets/font/SpoqaHanSansNeo-Medium.woff2') format('woff2'),
-        url('../../assets/font/SpoqaHanSansNeo-Medium.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Spoqa Han Sans Neo';
-    src: url('../../assets/font/SpoqaHanSansNeo-Bold.woff2') format('woff2'),
-        url('../../assets/font/SpoqaHanSansNeo-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Spoqa Han Sans Neo';
-    src: url('../../assets/font/SpoqaHanSansNeo-Regular.woff2') format('woff2'),
-        url('../../assets/font/SpoqaHanSansNeo-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Spoqa Han Sans Neo';
-    src: url('../../assets/font/SpoqaHanSansNeo-Thin.woff2') format('woff2'),
-        url('../../assets/font/SpoqaHanSansNeo-Thin.woff') format('woff');
-    font-weight: 100;
-    font-style: normal;
-    font-display: swap;
-}
-  ${reset}
+${reset}
   html {
     font-size: 10px;
   }
-  
-  *{
+
+  body {
     font-family: "Spoqa Han Sans Neo", sans-serif;
     font-weight: 400;
+  }
+
+  * {
     box-sizing: border-box;
   }
   
