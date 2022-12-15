@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledHomeFeedOn = styled.section`
+  /* width: 390px;
+  height: 712px; */
   padding: 20px 16px 30px;
   display: flex;
   flex-direction: column;
@@ -9,6 +11,8 @@ export const StyledHomeFeedOn = styled.section`
 `;
 
 export const StyledHomeFeedOff = styled.section`
+  /* width: 390px;
+  height: 712px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +20,7 @@ export const StyledHomeFeedOff = styled.section`
   margin: 0 auto;
 
   img {
-    width: 90px;
+    width: 150px;
     margin-bottom: 25px;
   }
   p {
