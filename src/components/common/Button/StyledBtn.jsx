@@ -31,7 +31,7 @@ const StyledBtn = styled.button`
   font-weight: 500;
   font-size: var(--button-font-size, 1.4rem);
   line-height: var(--button-font-lineheight, 1.753rem);
-  font-family: 'Spoqa Han Sans Neo', sans-serif;
+  /* font-family: 'Spoqa Han Sans Neo', sans-serif; */
 
   &:active {
     ${(p) =>
