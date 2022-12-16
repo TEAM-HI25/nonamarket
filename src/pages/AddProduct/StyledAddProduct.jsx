@@ -11,9 +11,10 @@ export const LayOut = styled.section`
   align-items: center;
 `;
 export const ProductAddText = styled.div`
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: #767676;
+  line-height: 1.2rem;
   margin-bottom: 18px;
 `;
 export const FormWrapp = styled.form`
