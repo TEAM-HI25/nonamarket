@@ -1,5 +1,7 @@
+import UserFollow from '../../components/common/UserFollow/UserFollow';
+
 const FollowerList = () => {
-  return <div>FollowerList</div>;
+  return <UserFollow />;
 };
 
 export default FollowerList;
