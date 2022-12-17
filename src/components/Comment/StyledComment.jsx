@@ -32,7 +32,8 @@ export const UserInfo = styled.div`
 
 export const CommentContent = styled.p`
   padding: 4px 0 0 48px;
+  margin-bottom: 16px;
   font-size: 1.4rem;
-  line-height: 1.753rem;
+  line-height: 1.75rem;
   color: #333333;
 `;
