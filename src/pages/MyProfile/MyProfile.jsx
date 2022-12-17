@@ -1,5 +1,5 @@
 import Product from '../../components/common/Product/Product';
-import TabMenu from '../../components/common/Profile/TabMenu';
+import TabMenu from '../../components/common/TabMenu/TabMenu';
 
 const MyProfile = () => {
   return (

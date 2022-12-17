@@ -2,7 +2,7 @@ import Button from '../../components/common/Button/Button';
 import PostCard from '../../components/common/PostCard/PostCard';
 import * as S from './StyledHomeFeed';
 import symbolLogoMini from '../../assets/images/symbol-logo-mini.svg';
-import TabMenu from '../../components/common/Profile/TabMenu';
+import TabMenu from '../../components/common/TabMenu/TabMenu';
 import Nav from '../../components/Nav/Nav';
 
 const HomeFeed = () => {
