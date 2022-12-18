@@ -9,12 +9,13 @@ export const LayOut = styled.section`
   flex-direction: column;
   align-items: center;
 `;
-export const ProductAddText = styled.div`
+export const ProductAddText = styled.span`
   font-size: 1.2rem;
   font-weight: 400;
-  color: #767676;
   line-height: 1.2rem;
+  color: #767676;
   margin-bottom: 18px;
+  margin-right: auto;
 `;
 export const FormWrapp = styled.form`
   display: flex;
@@ -36,15 +37,17 @@ export const ProductLoadWrapp = styled.div`
   border-radius: 10px;
   margin-bottom: 30px;
   border: 0.5px solid #bdbdbd;
-  label {
-    position: absolute;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    bottom: 12px;
-    right: 12px;
-    z-index: 20;
-    cursor: pointer;
-    background: no-repeat center/32px url(${uploadBtnImg});
-  }
 `;
+
+export const ProductLabel = styled.label`
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  bottom: 12px;
+  right: 12px;
+  z-index: 20;
+  cursor: pointer;
+  background: no-repeat center/32px url(${uploadBtnImg});
+`;
+export const ProductInput = styled.input``;

@@ -10,7 +10,7 @@ const AddProduct = () => {
       <S.FormWrapp>
         <S.ProductAddText>이미지 등록</S.ProductAddText>
         <S.ProductLoadWrapp>
-          <label htmlFor='이미지업로드' />
+          <S.ProductLabel htmlFor='이미지업로드' />
           <input className='hidden' type='file' id='이미지업로드' />
         </S.ProductLoadWrapp>
         <LabelInput
