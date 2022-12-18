@@ -5,7 +5,7 @@ const AddProduct = () => {
   return (
     <S.LayOut>
       <h1 className='hidden'>상품등록 페이지</h1>
-      <Nav type='upload' />
+      <Nav type='upload' btnName='저장' />
       <S.FormWrapp>
         <S.ProductAddText>이미지 등록</S.ProductAddText>
         <S.ProductLoadWrapp>
