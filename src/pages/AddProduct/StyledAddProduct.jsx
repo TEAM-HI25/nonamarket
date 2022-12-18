@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import uploadBtnImg from '../../assets/images/img-button.svg';
-
 // 4~11 line 공용컴포넌트제작 필요성을 느낌
 export const LayOut = styled.section`
   margin: 0 auto;
@@ -18,7 +17,10 @@ export const ProductAddText = styled.div`
   margin-bottom: 18px;
 `;
 export const FormWrapp = styled.form`
+  display: flex;
   flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
   margin-top: 30px;
 `;
 
@@ -41,22 +43,4 @@ export const ProductLoadWrapp = styled.div`
     cursor: pointer;
     background: no-repeat center/32px url(${uploadBtnImg});
   }
-`;
-
-// 공통 컴포넌트로 label,input 생성하여 교체해야함. (46~57 line)
-export const LabelInputWrapp = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #bdbdbd;
-  input {
-    border: none;
-    padding: 0;
-  }
-`;
-
-export const Label = styled.label`
-  /* width: 322px; //삭제 예정 */
 `;

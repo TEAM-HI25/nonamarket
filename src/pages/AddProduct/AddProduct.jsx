@@ -1,5 +1,6 @@
 import Nav from '../../components/Nav/Nav';
 import * as S from './StyledAddProduct';
+import LabelInput from '../../components/common/LabelInput/LabelInput';
 
 const AddProduct = () => {
   return (
@@ -12,29 +13,24 @@ const AddProduct = () => {
           <label htmlFor='이미지업로드' />
           <input className='hidden' type='file' id='이미지업로드' />
         </S.ProductLoadWrapp>
-        {/*  */}
-        <S.LabelInputWrapp>
-          <S.Label htmlFor='상품명'>상품명</S.Label>
-          <input
-            type='text'
-            id='상품명'
-            placeholder='2~10자 이내여야 합니다.'
-          />
-        </S.LabelInputWrapp>
-        {/*  */}
-        <S.LabelInputWrapp>
-          <S.Label htmlFor='가격'>가격</S.Label>
-          <input
-            type='number'
-            id='가격'
-            placeholder='숫자만 입력 가능합니다.'
-          />
-        </S.LabelInputWrapp>
-        {/*  */}
-        <S.LabelInputWrapp>
-          <S.Label htmlFor='판매 링크'>판매 링크</S.Label>
-          <input type='text' id='판매 링크' placeholder='URL을 입력해 주세요' />
-        </S.LabelInputWrapp>
+        <LabelInput
+          type='text'
+          label='상품명'
+          forid='productName'
+          placeholder='2~15자 이내여야 합니다.'
+        />
+        <LabelInput
+          type='number'
+          label='가격'
+          forid='productprice'
+          placeholder='숫자만 입력 가능합니다.'
+        />
+        <LabelInput
+          type='text'
+          label='판매 링크'
+          forid='slaelink'
+          placeholder='URL을 입력해 주세요'
+        />
       </S.FormWrapp>
     </S.LayOut>
   );
