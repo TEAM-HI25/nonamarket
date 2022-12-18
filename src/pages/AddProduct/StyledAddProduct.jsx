@@ -22,6 +22,10 @@ export const FormWrapp = styled.form`
   flex-direction: column;
   align-items: center;
   margin-top: 30px;
+  div:nth-child(n + 2) {
+    width: 322px;
+  }
+  /* Labelinput 컴포넌트 css 논의 필요 */
 `;
 
 export const ProductLoadWrapp = styled.div`
