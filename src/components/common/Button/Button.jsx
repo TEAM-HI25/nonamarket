@@ -4,7 +4,7 @@ const Button = ({ name, size, disabled, className }) => {
   const sizeStyle = SIZES[size];
   return (
     <StyledBtn
-      type='button'
+      type='submit' // 수정
       className={className}
       sizeStyle={sizeStyle}
       disabled={disabled}
