@@ -2,12 +2,12 @@ import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
 const GlobalStyled = createGlobalStyle`
-${reset}
+  ${reset}
   :root {
-    --main-color:#f5c045
-    --main-disabled-color:#c8beab
-    --main-text-color:#ffffff
-    --sub-text-color:#767676
+    --main-color:#f5c045;
+    --main-disabled-color:#c8beab;
+    --main-text-color:#ffffff;
+    --sub-text-color:#767676;
   }
   html {
     font-size: 10px;
