@@ -16,6 +16,10 @@ export const FormWrapp = styled.form`
   flex-direction: column;
   align-items: center;
   margin-top: 30px;
+  div:nth-child(n + 2) {
+    width: 322px;
+  }
+  /* Labelinput 컴포넌트 css 논의 필요 */
 `;
 
 export const ProfileImgWrapp = styled.div`
@@ -34,21 +38,4 @@ export const ProfileImgWrapp = styled.div`
     cursor: pointer;
     background: no-repeat center/32px url(${modifyProfileImg});
   }
-`;
-
-// 공통 컴포넌트로 label,input 생성하여 교체해야함. (36~50line)
-export const LabelInputWrapp = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #bdbdbd;
-  input {
-    border: none;
-  }
-`;
-
-export const Label = styled.label`
-  width: 322px;
 `;
