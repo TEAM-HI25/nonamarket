@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const UserFollowContainer = styled.li`
-  width: 358px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 12px;
+  margin-bottom: 16px;
+  width: 358px;
   img {
     width: 50px;
     height: 50px;
