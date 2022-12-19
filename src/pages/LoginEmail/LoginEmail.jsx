@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
 import FetchApi from '../../api';
+import { AuthContext } from '../../context/context';
 import * as S from './StyledLoginEmail';
 
 const LoginEmail = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { dispatch } = useContext(AuthContext);
 
   const handleData = (event) => {
     if (event.target.type === 'email') {
@@ -19,6 +21,7 @@ const LoginEmail = () => {
     event.preventDefault(); // 새로고침 방지
     const data = await FetchApi.getLogin(email, password);
     console.log(data);
+    dispatch({ type: 'login', payload: data.user });
   };
 
   return (
