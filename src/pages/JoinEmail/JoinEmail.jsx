@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
 import {
   JoinEmailWrapper,
   JoinEmailTitle,
   JoinEmailBtn,
 } from './StyledJoinEmail';
+import FetchApi from '../../api';
 
 const JoinEmail = () => {
   const [email, setEmail] = useState('');
@@ -13,6 +15,7 @@ const JoinEmail = () => {
   const [pwMsg, setPwMsg] = useState('');
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
+  const navigate = useNavigate();
 
   const EMAIL_CHECK =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,6}$/i;
@@ -59,10 +62,30 @@ const JoinEmail = () => {
     }
   };
 
+  const MoveNextPage = () => {
+    navigate('/joinprofileedit', {
+      state: {
+        email,
+        password,
+      },
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = await FetchApi.checkEmailValid(email);
+    console.log(data);
+    if (data.message === '이미 가입된 이메일 주소 입니다.') {
+      setEmailMsg('*이미 가입된 이메일 주소 입니다.');
+    } else if (data.message === '사용 가능한 이메일 입니다.') {
+      MoveNextPage();
+    }
+  };
+
   return (
     <JoinEmailWrapper>
       <JoinEmailTitle>이메일로 회원가입</JoinEmailTitle>
-      <form>
+      <form onSubmit={handleSubmit}>
         <LabelInput
           label='이메일'
           forid='email'
