@@ -3,7 +3,7 @@ import UploadImgIcon from '../../../assets/images/upload-file.svg';
 import ImageInputWrap from './StyledImageInput';
 
 const ImageInput = (props) => {
-  const { className } = props;
+  const { className, onChange } = props;
 
   return (
     <ImageInputWrap className={className}>
@@ -11,7 +11,12 @@ const ImageInput = (props) => {
       <label htmlFor='profileImg'>
         <img src={UploadImgIcon} alt='프로필 이미지 선택 아이콘' />
       </label>
-      <input type='file' id='profileImg' className='hidden' />
+      <input
+        type='file'
+        id='profileImg'
+        className='hidden'
+        onChange={onChange}
+      />
     </ImageInputWrap>
   );
 };
