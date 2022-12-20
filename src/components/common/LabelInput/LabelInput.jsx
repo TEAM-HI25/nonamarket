@@ -1,7 +1,16 @@
 import { Label, Input, LabelInputWrap } from './StyledLabelInput';
 
 const LabelInput = (props) => {
-  const { label, forid, type, placeholder, className, state, onChange } = props;
+  const {
+    label,
+    forid,
+    type,
+    placeholder,
+    className,
+    state,
+    onChange,
+    onKeyUp,
+  } = props;
 
   return (
     <LabelInputWrap className={className}>
@@ -12,6 +21,7 @@ const LabelInput = (props) => {
         placeholder={placeholder}
         value={state}
         onChange={onChange}
+        onKeyUp={onKeyUp}
       />
     </LabelInputWrap>
   );
