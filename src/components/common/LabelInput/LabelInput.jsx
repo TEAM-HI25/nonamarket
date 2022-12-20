@@ -10,6 +10,7 @@ const LabelInput = (props) => {
     state,
     onChange,
     onKeyUp,
+    onBlur,
   } = props;
 
   return (
@@ -22,6 +23,7 @@ const LabelInput = (props) => {
         value={state}
         onChange={onChange}
         onKeyUp={onKeyUp}
+        onBlur={onBlur}
       />
     </LabelInputWrap>
   );
