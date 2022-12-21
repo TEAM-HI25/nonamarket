@@ -4,7 +4,7 @@ export const MenuWrapper = styled.ul`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 390px;
+  width: 100%;
   height: 60px;
   background: #ffffff;
   border-top: 0.5px solid #dbdbdb;

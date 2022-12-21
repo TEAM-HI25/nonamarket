@@ -40,7 +40,14 @@ const LoginEmail = () => {
       // console.log(data);
       // const token = data.user.token;
       localStorage.setItem('token', data.user.token);
-      dispatch({ type: 'login', payload: data.user });
+      localStorage.setItem('accountname', data.user.accountname);
+
+      const loginData = {
+        token: data.user.token,
+        accountname: data.user.accountname,
+      };
+
+      dispatch({ type: 'login', payload: loginData });
       navigate('/homefeed');
     }
   };

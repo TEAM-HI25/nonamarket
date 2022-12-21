@@ -80,6 +80,23 @@ const FetchApi = {
     const data = await response.json();
     return data;
   },
+
+  async checkAccountValid(accountname) {
+    const response = await fetch(`${BASE_URL}/user/accountnamevalid`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          accountname,
+        },
+      }),
+    });
+
+    const data = await response.json();
+    return data;
+  },
 };
 
 export default FetchApi;

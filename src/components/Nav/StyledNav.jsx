@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 // 시멘틱태그를 최대한 활용하려다보니 이게 맞는지 모르겄네 아니면 <Header> 태그 사용이 맞을지..?
 const NavWrapp = styled.nav`
-  width: 390px;
+  width: 100%;
   height: 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px 16px 8px 12px;
   background-color: #fff;
+  border-bottom: 0.5px solid #dbdbdb;
 `;
 
 // 임시 컴포넌트: 속성, 컴포넌트 네임 수정필요

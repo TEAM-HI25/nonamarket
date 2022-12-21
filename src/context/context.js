@@ -13,7 +13,12 @@ const authReducer = (state, action) => {
 };
 
 const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, { user: null });
+  const [state, dispatch] = useReducer(authReducer, {
+    user: {
+      token: localStorage.getItem('token'),
+      accountname: localStorage.getItem('accountname'),
+    },
+  });
   console.log(state);
   const value = useMemo(
     () => ({

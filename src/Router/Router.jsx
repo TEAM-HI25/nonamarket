@@ -1,4 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../context/context';
 import Login from '../pages/Login/Login';
 import Splash from '../pages/Splash/Splash';
 import LoginEmail from '../pages/LoginEmail/LoginEmail';
@@ -19,12 +21,24 @@ import ChatRoom from '../pages/ChatRoom/ChatRoom';
 import NotFound from '../pages/NotFound/NotFound';
 
 const Router = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/splash' element={<Splash />} />
-        <Route path='/loginemail' element={<LoginEmail />} />
+        <Route
+          path='/loginemail'
+          element={
+            user.token && user.accountname ? (
+              <Navigate to='/homefeed' />
+            ) : (
+              <LoginEmail />
+            )
+          }
+        />
+
         <Route path='/joinemail' element={<JoinEmail />} />
         <Route path='/joinprofileedit' element={<JoinProfileEdit />} />
         <Route path='/homefeed' element={<HomeFeed />} />
