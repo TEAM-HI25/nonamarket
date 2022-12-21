@@ -8,6 +8,7 @@ const GlobalStyled = createGlobalStyle`
     --main-disabled-color:#c8beab;
     --main-text-color:#ffffff;
     --sub-text-color:#767676;
+    --border-color:#bdbdbd;
   }
   html {
     font-size: 10px;

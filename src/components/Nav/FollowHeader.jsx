@@ -1,16 +1,16 @@
 import * as S from './StyledNav';
 import ArrowImg from '../../assets/images/icon-arrow-left.svg';
 
-const SearchNav = () => {
+const FollowersHeader = () => {
   return (
     <>
-      {/* <h2 className='hidden'>검색입력</h2> */}
+      {/* <h2 className='hidden'>팔로워 목록 페이지</h2> */}
       <button type='button'>
         <S.BackIcon src={ArrowImg} alt='뒤로가기버튼' />
       </button>
-      <S.StyledInput type='text' id='search' placeholder='계정 검색' />
+      <S.HeaderTitle>Followers</S.HeaderTitle>
     </>
   );
 };
 
-export default SearchNav;
+export default FollowersHeader;

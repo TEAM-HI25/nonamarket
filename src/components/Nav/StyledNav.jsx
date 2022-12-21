@@ -1,32 +1,29 @@
 import styled from 'styled-components';
 
 // 시멘틱태그를 최대한 활용하려다보니 이게 맞는지 모르겄네 아니면 <Header> 태그 사용이 맞을지..?
-const NavWrapp = styled.nav`
+const HeaderWrapp = styled.header`
   width: 100%;
+  position: sticky;
+  top: 0;
   height: 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 16px 8px 12px;
-  background-color: #fff;
-  border-bottom: 0.5px solid #dbdbdb;
+  padding: 8px 16px;
+  background-color: var(--main-text-color);
+  border-bottom: 0.5px solid var(--border-color);
 `;
 
-// 임시 컴포넌트: 속성, 컴포넌트 네임 수정필요
-const Text = styled.span`
-  font-size: 18px;
+const HeaderTitle = styled.span`
+  flex-grow: 2;
+  font-size: 1.8rem;
   font-weight: 500;
-  line-height: 22px;
-`;
-
-// button -> Link 기능으로 수정하는게 맞나?
-const BtnWrapp = styled.button`
-  /* padding-left: 삭제예정*/
+  margin-left: 10px;
 `;
 
 // input styled
 const StyledInput = styled.input`
-  width: 316px;
+  width: 322px;
   height: 32px;
   background-color: #f2f2f2;
   border-radius: 32px;
@@ -49,11 +46,10 @@ const SearchIcon = styled.img`
 `;
 
 export {
-  NavWrapp,
-  BtnWrapp,
+  HeaderWrapp,
   BackIcon,
   MoreIcon,
   SearchIcon,
   StyledInput,
-  Text,
+  HeaderTitle,
 };

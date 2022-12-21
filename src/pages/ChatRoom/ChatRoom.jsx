@@ -1,5 +1,11 @@
+import Nav from '../../components/Nav/Nav';
+
 const ChatRoom = () => {
-  return <div>ChatRoom</div>;
+  return (
+    <>
+      <Nav type='follow' />;
+    </>
+  );
 };
 
 export default ChatRoom;
