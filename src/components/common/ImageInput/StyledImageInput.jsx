@@ -7,6 +7,9 @@ const ImageInputWrap = styled.div`
 
   & > img {
     width: 100%;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
   }
 
   label > img {
