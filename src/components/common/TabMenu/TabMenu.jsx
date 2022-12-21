@@ -18,23 +18,23 @@ const TabMenu = () => {
   return (
     <S.MenuWrapper>
       {/* 홈으로 이동 */}
-      <S.MenuNavLink
-        to='/homefeed'
-        className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-      >
-        <S.MenuList>
+      <S.MenuList>
+        <S.MenuNavLink
+          to='/homefeed'
+          className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+        >
           <S.MenuImg
             src={location.pathname === '/homefeed' ? activeIconHome : iconHome}
             alt='홈탭'
           />
           <p>홈</p>
-        </S.MenuList>
-      </S.MenuNavLink>
+        </S.MenuNavLink>
+      </S.MenuList>
 
       {/* 채팅으로 이동 */}
 
-      <S.MenuNavLink to='/chatroom'>
-        <S.MenuList>
+      <S.MenuList>
+        <S.MenuNavLink to='/chatroom'>
           <S.MenuImg
             src={
               location.pathname === '/chatroom'
@@ -44,22 +44,22 @@ const TabMenu = () => {
             alt='채팅탭'
           />
           <p>채팅</p>
-        </S.MenuList>
-      </S.MenuNavLink>
+        </S.MenuNavLink>
+      </S.MenuList>
 
       {/* 게시물 작성페이지로 이동 */}
 
-      <S.MenuNavLink to='/uploadpost'>
-        <S.MenuList>
+      <S.MenuList>
+        <S.MenuNavLink to='/uploadpost'>
           <S.MenuImg src={iconEdit} alt='게시물작성탭' />
           <p>게시물 작성</p>
-        </S.MenuList>
-      </S.MenuNavLink>
+        </S.MenuNavLink>
+      </S.MenuList>
 
       {/* 로그인한 유저의 프로필 페이지로 이동 */}
       {/* <S.MenuNavLink to={`/myprofile/${user.accountname}`}> */}
-      <S.MenuNavLink to='/myprofile'>
-        <S.MenuList>
+      <S.MenuList>
+        <S.MenuNavLink to='/myprofile'>
           <S.MenuImg
             src={location.pathname === `/myprofile` ? activeIconUser : iconUser}
             alt='프로필탭'
@@ -73,8 +73,8 @@ const TabMenu = () => {
             alt='프로필탭'
           /> */}
           <p>프로필</p>
-        </S.MenuList>
-      </S.MenuNavLink>
+        </S.MenuNavLink>
+      </S.MenuList>
     </S.MenuWrapper>
   );
 };
