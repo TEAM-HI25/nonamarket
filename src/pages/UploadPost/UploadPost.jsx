@@ -5,6 +5,11 @@ import ProfileImg from '../../components/common/ProfileImg/ProfileImg';
 import * as S from './StyledUploadPost';
 
 const UploadPost = () => {
+  // 프로필 이미지
+  // 사진
+  // 사진올리기버튼
+  // 업로드하는버튼
+
   return (
     <>
       <Nav type='upload' />
