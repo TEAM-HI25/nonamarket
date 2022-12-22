@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../../components/common/Button/Button';
+import { AllWrappCss, MainWrappCss } from '../../styles/Globalstyled';
 
 export const LoginWrapper = styled.section`
+  ${AllWrappCss};
+`;
+export const MainWrapper = styled.section`
+  ${MainWrappCss};
   display: flex;
   flex-direction: column;
   align-items: center;

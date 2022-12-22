@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const MenuWrapper = styled.ul`
+  position: sticky;
+  bottom: 0;
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
   width: 100%;
   height: 60px;

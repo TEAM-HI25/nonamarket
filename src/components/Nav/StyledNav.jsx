@@ -12,6 +12,7 @@ const HeaderWrapp = styled.header`
   padding: 8px 16px;
   background-color: var(--main-text-color);
   border-bottom: 0.5px solid var(--border-color);
+  z-index: 10;
 `;
 
 const HeaderTitle = styled.span`

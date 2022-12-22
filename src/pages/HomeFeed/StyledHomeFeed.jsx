@@ -1,24 +1,25 @@
 import styled from 'styled-components';
+import { AllWrappCss, MainWrappCss } from '../../styles/Globalstyled';
 
 export const StyledHomeFeedOn = styled.section`
-  /* width: 390px;
-  height: 712px; */
+  ${MainWrappCss};
   padding: 20px 16px 30px;
   display: flex;
   flex-direction: column;
   gap: 24px;
   margin: 0 auto;
+  background-color: var(--main-text-color);
 `;
 
 export const StyledHomeFeedOff = styled.section`
-  /* width: 390px;
-  height: 712px; */
+  ${MainWrappCss};
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 390px;
   margin: 0 auto;
-
+  background-color: var(--main-text-color);
+  //body backgroundcolor 구분하려고 넣었습니다.
   img {
     width: 150px;
     margin-bottom: 25px;
@@ -30,4 +31,13 @@ export const StyledHomeFeedOff = styled.section`
     color: #767676;
     margin-bottom: 20px;
   }
+`;
+
+// 추가해야할 스타일 컴포넌트
+export const AllWrapp = styled.section`
+  ${AllWrappCss};
+`;
+
+export const MainContWrapp = styled.section`
+  ${MainWrappCss};
 `;
