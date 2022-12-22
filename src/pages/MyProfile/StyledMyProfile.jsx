@@ -75,4 +75,3 @@ export const BtnWrapper = styled.div`
   gap: 10px;
   margin: 0 0 26px 0;
 `;
-
