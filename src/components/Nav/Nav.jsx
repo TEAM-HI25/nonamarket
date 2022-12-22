@@ -5,12 +5,12 @@ import UploadNav from './UploadNav';
 import ChatNav from './ChatNav';
 import { NavWrapp } from './StyledNav';
 
-const Nav = ({ type, btnName }) => {
+const Nav = ({ type, btnName, disabled }) => {
   const NAV = {
     home: <HomeNav />,
     search: <SearchNav />,
     main: <MainNav />,
-    upload: <UploadNav btnName={btnName} />,
+    upload: <UploadNav btnName={btnName} disabled={disabled} />,
     chat: <ChatNav />,
   };
 
