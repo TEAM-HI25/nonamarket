@@ -5,6 +5,7 @@ import ArrowImg from '../../assets/images/icon-arrow-left.svg';
 const SearchNav = ({ state, handle }) => {
   return (
     <>
+      {/* <h2 className='hidden'>검색입력</h2> */}
       <S.BtnWrapp>
         <Link to='/homefeed'>
           <S.BackIcon src={ArrowImg} alt='뒤로가기버튼' />

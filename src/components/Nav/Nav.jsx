@@ -3,7 +3,8 @@ import SearchNav from './SearchNav';
 import MainNav from './MainNav';
 import UploadNav from './UploadNav';
 import ChatNav from './ChatNav';
-import { NavWrapp } from './StyledNav';
+import FollowHeader from './FollowHeader';
+import { HeaderWrapp } from './StyledNav';
 
 const Nav = ({ type, btnName, state, handle }) => {
   const NAV = {
@@ -12,9 +13,10 @@ const Nav = ({ type, btnName, state, handle }) => {
     main: <MainNav />,
     upload: <UploadNav btnName={btnName} />,
     chat: <ChatNav />,
+    follow: <FollowHeader />,
   };
 
-  return <NavWrapp>{NAV[type]}</NavWrapp>;
+  return <HeaderWrapp>{NAV[type]}</HeaderWrapp>;
 };
 
 export default Nav;

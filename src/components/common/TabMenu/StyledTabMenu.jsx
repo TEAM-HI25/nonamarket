@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const MenuWrapper = styled.ul`
+  position: sticky;
+  bottom: 0;
   display: flex;
   justify-content: space-around;
   position: fixed;
