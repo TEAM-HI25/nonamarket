@@ -24,8 +24,7 @@ export const ProductAddText = styled.span`
   font-weight: 400;
   line-height: 1.2rem;
   color: #767676;
-  margin-bottom: 18px;
-  margin-right: auto;
+  margin: 0 auto 18px 0;
   padding: 0 34px;
 `;
 
