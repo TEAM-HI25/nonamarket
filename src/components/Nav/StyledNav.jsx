@@ -26,8 +26,9 @@ const BtnWrapp = styled.button`
 
 // input styled
 const StyledInput = styled.input`
-  width: 316px;
+  width: 100%;
   height: 32px;
+  margin-left: 20px;
   background-color: #f2f2f2;
   border-radius: 32px;
   border-style: none;
