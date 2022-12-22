@@ -24,8 +24,9 @@ const HeaderTitle = styled.span`
 
 // input styled
 const StyledInput = styled.input`
-  width: 322px;
+  width: 100%;
   height: 32px;
+  margin-left: 20px;
   background-color: #f2f2f2;
   border-radius: 32px;
   border-style: none;

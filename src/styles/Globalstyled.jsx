@@ -36,6 +36,11 @@ const GlobalStyled = createGlobalStyle`
     font: inherit;
     
   }
+  a {
+    color: #fff; 
+    text-decoration: none; 
+    outline: none
+  }
   .hidden {
     position: absolute;
     clip-path: inset(50%);
