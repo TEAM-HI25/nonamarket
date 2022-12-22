@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 // 시멘틱태그를 최대한 활용하려다보니 이게 맞는지 모르겄네 아니면 <Header> 태그 사용이 맞을지..?
 const HeaderWrapp = styled.header`
-  width: 100%;
+  display: flex;
   position: sticky;
   top: 0;
+  width: 100%;
   height: 48px;
-  display: flex;
+  padding: 8px 16px;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 16px;
   background-color: var(--main-text-color);
   border-bottom: 0.5px solid var(--border-color);
   z-index: 10;
