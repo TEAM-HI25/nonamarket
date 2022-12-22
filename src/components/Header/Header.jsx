@@ -1,10 +1,10 @@
-import HomeNav from './HomeNav';
-import SearchNav from './SearchNav';
-import MainNav from './MainNav';
-import UploadNav from './UploadNav';
-import ChatNav from './ChatNav';
+import HomeNav from './HomeHeader';
+import SearchNav from './SearchHeader';
+import MainNav from './MainHeader';
+import UploadNav from './UploadHeader';
+import ChatNav from './ChatHeader';
 import FollowHeader from './FollowHeader';
-import { HeaderWrapp } from './StyledNav';
+import { HeaderWrapp } from './StyledHeader';
 
 const Nav = ({ type, btnName }) => {
   const NAV = {

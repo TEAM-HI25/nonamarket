@@ -47,6 +47,7 @@ const GlobalStyled = createGlobalStyle`
 
 // 전체를 감싸는 컨테이너 박스에 들어가야 하는 공통 css
 export const AllWrappCss = css`
+  min-width: 100vw;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

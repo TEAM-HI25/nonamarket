@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import * as S from './StyledNav';
+import * as S from './StyledHeader';
 import SearchImg from '../../assets/images/icon-search.svg';
 
 const Title = styled.span`

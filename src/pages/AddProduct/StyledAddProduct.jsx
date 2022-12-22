@@ -6,9 +6,11 @@ import { AllWrappCss, MainWrappCss } from '../../styles/Globalstyled';
 export const AllWrapp = styled.section`
   ${AllWrappCss};
 `;
+
 export const MainWrapp = styled.section`
   ${MainWrappCss};
 `;
+
 export const FormWrapp = styled.form`
   display: flex;
   flex-direction: column;

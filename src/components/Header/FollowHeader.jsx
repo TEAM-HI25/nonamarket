@@ -1,4 +1,4 @@
-import * as S from './StyledNav';
+import * as S from './StyledHeader';
 import ArrowImg from '../../assets/images/icon-arrow-left.svg';
 
 const FollowersHeader = () => {

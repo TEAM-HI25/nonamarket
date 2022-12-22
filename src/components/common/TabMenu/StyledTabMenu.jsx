@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const MenuWrapper = styled.ul`
   position: sticky;
+  /* position: fixed; */
   bottom: 0;
   display: flex;
   justify-content: space-around;
