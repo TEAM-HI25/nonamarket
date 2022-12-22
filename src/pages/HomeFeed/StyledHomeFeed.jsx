@@ -3,10 +3,10 @@ import { AllWrappCss, MainWrappCss } from '../../styles/Globalstyled';
 
 export const StyledHomeFeedOn = styled.section`
   ${MainWrappCss};
-  padding: 20px 16px 30px;
   display: flex;
   flex-direction: column;
   gap: 24px;
+  padding: 20px 16px 30px;
   margin: 0 auto;
   background-color: var(--main-text-color);
 `;
