@@ -7,7 +7,7 @@ export const MainWrap = styled.main`
 export const ProductsSection = styled.section`
   padding: 20px 0 20px 16px;
   border: 0.5px solid #dbdbdb;
-  overflow: hidden;
+  overflow-x: scroll;
   h2 {
     margin-bottom: 16px;
     font-size: 1.6rem;
