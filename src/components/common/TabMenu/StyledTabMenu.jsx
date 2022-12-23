@@ -1,9 +1,13 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const MenuWrapper = styled.ul`
+  position: sticky;
+  bottom: 0;
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
+  position: fixed;
+  bottom: 0;
   width: 100%;
   height: 60px;
   background: #ffffff;
@@ -11,14 +15,22 @@ export const MenuWrapper = styled.ul`
 `;
 
 export const MenuList = styled.li`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 84px;
+  text-align: center;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 400;
   line-height: 14px;
+`;
+
+export const MenuNavLink = styled(NavLink)`
+  color: var(-----sub-text-color);
+  font-size: 1rem;
+  line-height: 1.4rem;
+
+  &.active {
+    color: var(--main-color);
+  }
 `;
 
 export const MenuImg = styled.img`

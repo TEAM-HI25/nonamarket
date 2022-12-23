@@ -1,32 +1,31 @@
 import styled from 'styled-components';
 import uploadBtnImg from '../../assets/images/img-button.svg';
+import { AllWrappCss, MainWrappCss } from '../../styles/Globalstyled';
+
 // 4~11 line 공용컴포넌트제작 필요성을 느낌
-export const LayOut = styled.section`
-  margin: 0 auto;
-  width: 390px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+export const AllWrapp = styled.section`
+  ${AllWrappCss};
 `;
-export const ProductAddText = styled.span`
-  font-size: 1.2rem;
-  font-weight: 400;
-  line-height: 1.2rem;
-  color: #767676;
-  margin-bottom: 18px;
-  margin-right: auto;
+export const MainWrapp = styled.section`
+  ${MainWrappCss};
 `;
 export const FormWrapp = styled.form`
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
   align-items: center;
   margin-top: 30px;
   div:nth-child(n + 2) {
     width: 322px;
   }
-  /* Labelinput 컴포넌트 css 논의 필요 */
+`;
+
+export const ProductAddText = styled.span`
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.2rem;
+  color: #767676;
+  margin: 0 auto 18px 0;
+  padding: 0 34px;
 `;
 
 export const ProductLoadWrapp = styled.div`

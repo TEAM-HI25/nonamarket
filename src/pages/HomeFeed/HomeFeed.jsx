@@ -10,7 +10,7 @@ const HomeFeed = () => {
   // 로직추가시 삼항연산자를 사용하여 메인1을 보여주거나, 메인2를 보여주기
   // 로직추가 후 스타일 일부 수정 필요
   return (
-    <>
+    <S.AllWrapp>
       <Nav type='main' />
       {/* // 메인1 */}
 
@@ -32,7 +32,7 @@ const HomeFeed = () => {
       </S.StyledHomeFeedOff>
 
       <TabMenu />
-    </>
+    </S.AllWrapp>
   );
 };
 

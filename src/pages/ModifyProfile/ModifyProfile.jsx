@@ -5,7 +5,7 @@ import LabelInput from '../../components/common/LabelInput/LabelInput';
 
 const ModifyProfile = () => {
   return (
-    <S.LayOut>
+    <S.AllWrapp>
       <h1 className='hidden'>프로필 수정 페이지</h1>
       <Nav type='upload' btnName='저장' />
       <S.FormWrapp>
@@ -33,7 +33,7 @@ const ModifyProfile = () => {
           placeholder='자신과 판매할 상품에 대해 소개해주세요.'
         />
       </S.FormWrapp>
-    </S.LayOut>
+    </S.AllWrapp>
   );
 };
 

@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import Button from '../../components/common/Button/Button';
+import { AllWrappCss } from '../../styles/Globalstyled';
 
 export const JoinEmailWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${AllWrappCss};
+  background-color: #fff;
+  /* 임시 */
 `;
 
 export const JoinEmailTitle = styled.h1`

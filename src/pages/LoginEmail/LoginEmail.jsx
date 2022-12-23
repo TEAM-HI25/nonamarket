@@ -54,30 +54,32 @@ const LoginEmail = () => {
 
   return (
     <S.LoginWrapper>
-      <S.LoginTitle>로그인</S.LoginTitle>
-      <form onSubmit={handleSubmit}>
-        <LabelInput
-          label='이메일'
-          forid='email'
-          type='email'
-          state={email}
-          onChange={handleData}
-          onKeyUp={handleCheckValid}
-        />
-        <LabelInput
-          label='비밀번호'
-          forid='password'
-          type='password'
-          state={password}
-          onChange={handleData}
-          onKeyUp={handleCheckValid}
-        />
-        <div>{message}</div>
-        <S.LoginBtn name='로그인' disabled={!isValid} />
-        {/* disabled 가 true 일때 버튼이 비활성화 , false 일때 활성화  defalut는 false */}
-        {/* 유효성 검사에서 true를 반환, disalbed에서 (!유효성검사결과) 활성화 === false */}
-      </form>
-      <S.LoginLink to='/joinemail'>이메일로 회원가입</S.LoginLink>
+      <S.MainWrapper>
+        <S.LoginTitle>로그인</S.LoginTitle>
+        <form onSubmit={handleSubmit}>
+          <LabelInput
+            label='이메일'
+            forid='email'
+            type='email'
+            state={email}
+            onChange={handleData}
+            onKeyUp={handleCheckValid}
+          />
+          <LabelInput
+            label='비밀번호'
+            forid='password'
+            type='password'
+            state={password}
+            onChange={handleData}
+            onKeyUp={handleCheckValid}
+          />
+          <div>{message}</div>
+          <S.LoginBtn name='로그인' disabled={!isValid} />
+          {/* disabled 가 true 일때 버튼이 비활성화 , false 일때 활성화  defalut는 false */}
+          {/* 유효성 검사에서 true를 반환, disalbed에서 (!유효성검사결과) 활성화 === false */}
+        </form>
+        <S.LoginLink to='/joinemail'>이메일로 회원가입</S.LoginLink>
+      </S.MainWrapper>
     </S.LoginWrapper>
   );
 };

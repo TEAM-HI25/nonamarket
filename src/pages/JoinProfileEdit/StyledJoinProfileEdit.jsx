@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import Button from '../../components/common/Button/Button';
+import { AllWrappCss } from '../../styles/Globalstyled';
 
 export const JoinPfWrap = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${AllWrappCss};
+  background-color: #fff; /* 임시적용 삭제예정 */
 `;
 
 export const JoinPfTitle = styled.h1`

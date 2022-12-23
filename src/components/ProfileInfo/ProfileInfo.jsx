@@ -1,10 +1,36 @@
-import * as S from './StyledProfileInfo';
+import { useLocation } from 'react-router-dom';
 import Button from '../common/Button/Button';
 import profileImg from '../../assets/images/profile-image.svg';
 import iconMessageCircle from '../../assets/images/icon-message-circle.svg';
 import iconShare from '../../assets/images/icon-share.svg';
+import * as S from './StyledProfileInfo';
+
+const YourProfileBtnWrap = () => {
+  return (
+    <S.BtnWrapper>
+      <S.Btn>
+        <img src={iconMessageCircle} alt='메세지아이콘' />
+      </S.Btn>
+      <Button name='팔로우' type='button' size='m' />
+      <S.Btn>
+        <img src={iconShare} alt='공유아이콘' />
+      </S.Btn>
+    </S.BtnWrapper>
+  );
+};
+
+const MyProfileBtnWrap = () => {
+  return (
+    <S.BtnWrapper>
+      <Button name='프로필 수정' type='button' size='m' />
+      <Button name='상품 등록' type='button' size='m' />
+    </S.BtnWrapper>
+  );
+};
 
 const ProfileInfo = () => {
+  const location = useLocation();
+  console.log(location);
   return (
     <S.Container>
       <S.ProfileInfoWrapper>
@@ -26,15 +52,11 @@ const ProfileInfo = () => {
           감귤 전국 배송, 귤따기 체험, 감귤 농장
         </S.UserDescription>
       </S.UserWrapper>
-      <S.BtnWrapper>
-        <S.Btn>
-          <img src={iconMessageCircle} alt='메세지아이콘' />
-        </S.Btn>
-        <Button name='팔로우' type='button' size='m' />
-        <S.Btn>
-          <img src={iconShare} alt='공유아이콘' />
-        </S.Btn>
-      </S.BtnWrapper>
+      {location.pathname === '/yourprofile' ? (
+        <YourProfileBtnWrap />
+      ) : (
+        <MyProfileBtnWrap />
+      )}
     </S.Container>
   );
 };
