@@ -1,14 +1,22 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MainLogoWrapper, LogoImg } from './StyledSplash';
 import mainLogo from '../../assets/images/main-logo.svg';
+import { AuthContext } from '../../context/context';
 
 const Splash = () => {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  console.log(user.token);
+  console.log(user.token && user.accountname);
   useEffect(() => {
     setTimeout(() => {
-      navigate('/login');
-    }, 3000);
+      if (user.token == null) {
+        navigate('/login');
+      } else if (user.token !== null) {
+        navigate('/homefeed');
+      }
+    }, 2500);
   }, []);
 
   return (
