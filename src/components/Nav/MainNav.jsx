@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import * as S from './StyledNav';
 import SearchImg from '../../assets/images/icon-search.svg';
@@ -12,9 +13,9 @@ const MainNav = () => {
     <>
       {/* <h2 className='hidden'>노나먹자 이용자검색</h2> */}
       <Title>노나먹자 피드</Title>
-      <button type='button'>
-        <S.SearchIcon src={SearchImg} alt='뒤로가기버튼' />
-      </button>
+      <Link to='/searchuser'>
+        <S.SearchIcon src={SearchImg} alt='돋보기버튼-이용자검색 페이지이동' />
+      </Link>
     </>
   );
 };
