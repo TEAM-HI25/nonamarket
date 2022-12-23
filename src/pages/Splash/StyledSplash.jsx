@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const MainLogoWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin: 212px 0 410px;
+  margin-top: 188px;
 `;
 
 const LogoImg = styled.img`
