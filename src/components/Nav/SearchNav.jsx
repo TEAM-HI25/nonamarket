@@ -6,11 +6,11 @@ const SearchNav = ({ state, handle }) => {
   return (
     <>
       {/* <h2 className='hidden'>검색입력</h2> */}
-      <S.BtnWrapp>
+      <button type='button'>
         <Link to='/homefeed'>
           <S.BackIcon src={ArrowImg} alt='뒤로가기버튼' />
         </Link>
-      </S.BtnWrapp>
+      </button>
       <S.StyledInput
         type='text'
         value={state}
