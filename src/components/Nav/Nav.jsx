@@ -7,7 +7,7 @@ import ChatNav from './ChatNav';
 import FollowHeader from './FollowHeader';
 import { HeaderWrapp } from './StyledNav';
 
-const Nav = ({ type, btnName, state, handle }) => {
+const Nav = ({ type, btnName, state, handle, disabled }) => {
   const navigate = useNavigate();
   const handleReturn = () => {
     navigate(-1);
@@ -16,7 +16,7 @@ const Nav = ({ type, btnName, state, handle }) => {
     home: <HomeNav handleReturn={handleReturn} />,
     search: <SearchNav state={state} handle={handle} />,
     main: <MainNav />,
-    upload: <UploadNav btnName={btnName} handleReturn={handleReturn} />,
+    upload: <UploadNav btnName={btnName} disabled={disabled} handleReturn={handleReturn} />,
     chat: <ChatNav handleReturn={handleReturn} />,
     follow: <FollowHeader handleReturn={handleReturn} />,
   };
