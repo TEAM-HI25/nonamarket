@@ -33,6 +33,7 @@ const ProfileInfo = () => {
   console.log(location);
   return (
     <S.Container>
+      {/* 1 */}
       <S.ProfileInfoWrapper>
         <h2 className='hidden'>프로필 정보</h2>
         <S.NumberWrapper>
@@ -45,13 +46,13 @@ const ProfileInfo = () => {
           <span>followings</span>
         </S.NumberWrapper>
       </S.ProfileInfoWrapper>
+
       <S.UserWrapper>
         <S.UserName>애월읍 위니브 감귤농장</S.UserName>
         <S.UserId>@weniv_Mandarin</S.UserId>
-        <S.UserDescription>
-          감귤 전국 배송, 귤따기 체험, 감귤 농장
-        </S.UserDescription>
+        <S.UserIntro>감귤 전국 배송, 귤따기 체험, 감귤 농장</S.UserIntro>
       </S.UserWrapper>
+      {/* 3 */}
       {location.pathname === '/yourprofile' ? (
         <YourProfileBtnWrap />
       ) : (
