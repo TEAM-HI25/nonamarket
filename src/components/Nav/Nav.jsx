@@ -16,7 +16,13 @@ const Nav = ({ type, btnName, state, handle, disabled }) => {
     home: <HomeNav handleReturn={handleReturn} />,
     search: <SearchNav state={state} handle={handle} />,
     main: <MainNav />,
-    upload: <UploadNav btnName={btnName} disabled={disabled} handleReturn={handleReturn} />,
+    upload: (
+      <UploadNav
+        btnName={btnName}
+        disabled={disabled}
+        handleReturn={handleReturn}
+      />
+    ),
     chat: <ChatNav handleReturn={handleReturn} />,
     follow: <FollowHeader handleReturn={handleReturn} />,
   };
