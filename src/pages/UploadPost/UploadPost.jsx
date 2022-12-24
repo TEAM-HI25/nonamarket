@@ -7,13 +7,10 @@ import { AuthContext } from '../../context/context';
 const UploadPost = () => {
   const [profileImg, setProfileImg] = useState('');
   const [imgSrc, setImgSrc] = useState('');
+  const [contentText, setContentText] = useState('');
+  const [disabledBtn, setDisabledBtn] = useState('');
   const formData = new FormData();
   const BASE_URL = 'https://mandarin.api.weniv.co.kr';
-  // const previewImgUrl = [];
-  // 업로드할이미지 url 담는 전역변수
-  // const fileUrls = [];
-  // eslint-disable-next-line no-unused-vars
-  // const [postImgUrl, setPostImgUrl] = useState([]);
   const { user } = useContext(AuthContext);
 
   // 유저 프로필 이미지 받아오기
@@ -63,26 +60,6 @@ const UploadPost = () => {
   uploadImg();
 
   // 이미지 미리보기
-  // const handleImgInput = (e) => {
-  //   const fileArr = [...e.target.files];
-  //   fileArr.forEach((file) => fileUrls.push(file));
-  //   console.log(fileUrls);
-
-  //   if (fileUrls.length > 3) {
-  //     // eslint-disable-next-line no-alert
-  //     alert('이미지는 3개까지 업로드할 수 있습니다.');
-  //     fileUrls.pop();
-  //   }
-
-  //   for (let i = 0; i < fileArr.length; i += 1) {
-  //     const reader = new FileReader();
-  //     reader.onload = () => {
-  //       previewImgUrl.push(reader.result);
-  //       setPostImgUrl([...previewImgUrl]);
-  //     };
-  //   }
-  // };
-
   const handleUploadImg = (file) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -94,12 +71,46 @@ const UploadPost = () => {
     });
   };
 
+  // 완성된 게시글 업로드
+  // const uploadPost = async () => {
+  //   const reqData = {
+  //     post: {
+  //       content: String,
+  //       image: String, //"imageurl1, imageurl2" 형식으로
+  //     },
+  //   };
+  //   try {
+  //     const response = await fetch(`${BASE_URL}/post`, {
+  //       method: 'POST',
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         'Content-type': 'application/json',
+  //       },
+  //       body: JSON.stringify(reqData),
+  //     });
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  const textTest = (e) => {
+    setContentText(e.target.value);
+    console.log(contentText);
+    if (contentText.length > 0) {
+      setDisabledBtn('true');
+    }
+  };
+
+  // refact
+  // textarea 자동 높이 조절 기능추가
+  // 이미지 3장 업로드 기능 추가
+
   return (
     <>
-      <Nav type='upload' btnName='업로드' />
+      <Nav type='upload' btnName='업로드' disabled={disabledBtn} />
       <S.ContentWrapper>
         <ProfileImg size='42px' src={profileImg} alt='프로필이미지' />
-        <S.ContentInput id='comment' />
+        <S.ContentInput id='comment' value={contentText} onChange={textTest} />
       </S.ContentWrapper>
       <S.ImgUploadBtn htmlFor='imguploadinput' />
       <S.uploadImgInput

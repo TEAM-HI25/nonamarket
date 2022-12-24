@@ -10,7 +10,7 @@ export const ContentWrapper = styled.form.attrs({
 `;
 
 export const ContentInput = styled.textarea.attrs({
-  rows: '10',
+  rows: '8',
   placeholder: '게시글 입력하기',
 })`
   width: 100%;
@@ -56,7 +56,7 @@ export const ImgUploadBtn = styled.label`
 export const UploadImageList = styled.div`
   display: flex;
   height: 171px;
-  margin: 0 16px 0 70px;
+  margin: 0 16px 0 71px;
   overflow-x: scroll;
   gap: 8px;
 `;
