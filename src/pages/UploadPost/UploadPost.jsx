@@ -8,7 +8,7 @@ const UploadPost = () => {
   const [profileImg, setProfileImg] = useState('');
   const [imgSrc, setImgSrc] = useState('');
   const [contentText, setContentText] = useState('');
-  const [disabledBtn, setDisabledBtn] = useState('');
+  // const [disabledBtn, setDisabledBtn] = useState('');
   const formData = new FormData();
   const BASE_URL = 'https://mandarin.api.weniv.co.kr';
   const { user } = useContext(AuthContext);
@@ -93,24 +93,24 @@ const UploadPost = () => {
   //   }
   // };
 
-  const textTest = (e) => {
+  const handleContentText = (e) => {
     setContentText(e.target.value);
-    console.log(contentText);
-    if (contentText.length > 0) {
-      setDisabledBtn('true');
-    }
   };
 
-  // refact
-  // textarea 자동 높이 조절 기능추가
-  // 이미지 3장 업로드 기능 추가
+  // ** refactoring List
+  // 1. textarea 자동 높이 조절 기능추가
+  // 2. 이미지 3장 업로드 기능 추가
 
   return (
     <>
-      <Nav type='upload' btnName='업로드' disabled={disabledBtn} />
+      <Nav type='upload' btnName='업로드' disabled={!contentText && !imgSrc} />
       <S.ContentWrapper>
         <ProfileImg size='42px' src={profileImg} alt='프로필이미지' />
-        <S.ContentInput id='comment' value={contentText} onChange={textTest} />
+        <S.ContentInput
+          id='comment'
+          value={contentText}
+          onChange={handleContentText}
+        />
       </S.ContentWrapper>
       <S.ImgUploadBtn htmlFor='imguploadinput' />
       <S.uploadImgInput
