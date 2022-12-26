@@ -8,7 +8,7 @@ const AddProduct = () => {
   // input 상태관리
   const [productImg, setproductImg] = useState('');
   const [productName, setProductName] = useState('');
-  const [productPrice, setProductPridce] = useState('');
+  const [productPrice, setProductPrice] = useState('');
   const [saleLink, setSaleLink] = useState('');
 
   // 모든 값 valid check, 서버 전송 가능 상태시 버튼 true
@@ -26,12 +26,26 @@ const AddProduct = () => {
     isValid.productPrice &&
     isValid.saleLink;
 
+  // 숫자 1000단위 콤마 함수
+
+  const priceFormat = (str) => {
+    const comma = (num) => {
+      const value = String(num);
+      return value.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+    };
+    const uncomma = (num) => {
+      const value = String(num);
+      return value.replace(/[^\d]+/g, '');
+    };
+    return comma(uncomma(str));
+  };
+
   // 1. input창에 보이기
   const handleData = (event) => {
     if (event.target.id === 'productname') {
       setProductName(event.target.value);
     } else if (event.target.id === 'productprice') {
-      setProductPridce(event.target.value);
+      setProductPrice(priceFormat(event.target.value));
     } else if (event.target.id === 'salelink') {
       setSaleLink(event.target.value);
     }
@@ -41,7 +55,6 @@ const AddProduct = () => {
   const handleGetImg = async (event) => {
     const data = await FetchApi.uploadImg(event);
     setproductImg(data);
-    console.log(productImg);
     setIsValid({ ...isValid, productImg: true });
   };
 
@@ -106,7 +119,7 @@ const AddProduct = () => {
             onBlur={handleCheckName}
           />
           <LabelInput
-            type='number'
+            type='text'
             label='가격'
             forid='productprice'
             state={productPrice}
