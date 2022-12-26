@@ -32,6 +32,7 @@ export const UserInfo = styled.div`
   img {
     position: absolute;
     width: 18px;
+    top: 0;
     right: 0;
   }
 `;

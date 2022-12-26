@@ -42,6 +42,7 @@ const HomeFeed = () => {
               content={item.content}
               image={item.image}
               date={item.createdAt}
+              postId={item.id}
             />
           ))}
         </S.StyledHomeFeedOn>
