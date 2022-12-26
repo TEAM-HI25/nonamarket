@@ -4,7 +4,7 @@ import {
   PostModalBtn,
 } from './StyledPostModal';
 
-const PostModal = ({ CloseModal, ShowInnerModal }) => {
+const OthersPostModal = ({ CloseModal, ShowInnerModal }) => {
   return (
     <PostModalWrap onClick={CloseModal}>
       <h2 className='hidden'>게시글 모달</h2>
@@ -17,4 +17,4 @@ const PostModal = ({ CloseModal, ShowInnerModal }) => {
   );
 };
 
-export default PostModal;
+export default OthersPostModal;
