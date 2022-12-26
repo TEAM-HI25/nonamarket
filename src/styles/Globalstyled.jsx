@@ -56,14 +56,13 @@ export const AllWrappCss = css`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: #bdbdbd; */
 `;
 
 // main contents에 들어가야 하는 공통 css
 export const MainWrappCss = css`
   width: 390px;
   flex-grow: 1;
-  /* background-color: #fff; // 삭제될 수 있음. */
+  background-color: #fff; // 삭제될 수 있음.
 `;
 
 export default GlobalStyled;

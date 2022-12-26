@@ -12,8 +12,7 @@ export const MainWrap = styled.main`
   align-items: center;
   gap: 6px;
   overflow: hidden;
-  /* border: 1px solid #000; */
-  /* background-color: #fff; */
+  background-color: transparent;
 `;
 
 export const ProductsSection = styled.section`

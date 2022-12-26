@@ -9,7 +9,7 @@ import * as S from './StyledYourProfile';
 
 const YourProfile = () => {
   return (
-    <>
+    <S.Container>
       <Nav type='home' />
       <S.MainWrap>
         <ProfileInfo />
@@ -41,7 +41,7 @@ const YourProfile = () => {
         </S.PostCardWrap>
       </S.MainWrap>
       <TabMenu />
-    </>
+    </S.Container>
   );
 };
 
