@@ -22,7 +22,7 @@ export const StyledHomeFeedOff = styled.section`
   //body backgroundcolor 구분하려고 넣었습니다.
   img {
     width: 150px;
-    margin-bottom: 25px;
+    margin: 260px 0 25px 0;
   }
   p {
     font-size: 1.4rem;

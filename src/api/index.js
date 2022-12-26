@@ -112,6 +112,18 @@ const FetchApi = {
     const data = await response.json();
     return data;
   },
+
+  async loadFeed(token) {
+    const response = await fetch(`${BASE_URL}/post/feed`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    return data;
+  },
 };
 
 export default FetchApi;
