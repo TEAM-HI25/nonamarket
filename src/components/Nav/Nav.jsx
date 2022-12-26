@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import HomeNav from './HomeNav';
 import SearchNav from './SearchNav';
 import MainNav from './MainNav';
@@ -7,15 +8,26 @@ import FollowHeader from './FollowHeader';
 import { HeaderWrapp } from './StyledNav';
 
 const Nav = ({ type, btnName, state, handle, disabled, onClick }) => {
+  const navigate = useNavigate();
+  const handleReturn = () => {
+    navigate(-1);
+  };
+
   const NAV = {
-    home: <HomeNav />,
+    home: <HomeNav handleReturn={handleReturn} />,
     search: <SearchNav state={state} handle={handle} />,
     main: <MainNav />,
     upload: (
-      <UploadNav btnName={btnName} disabled={disabled} onClick={onClick} />
+
+      <UploadNav
+        btnName={btnName}
+        disabled={disabled}
+        handleReturn={handleReturn}
+        onClick={onClick}
+      />
     ),
-    chat: <ChatNav />,
-    follow: <FollowHeader />,
+    chat: <ChatNav handleReturn={handleReturn} />,
+    follow: <FollowHeader handleReturn={handleReturn} />,
   };
 
   return <HeaderWrapp>{NAV[type]}</HeaderWrapp>;
