@@ -36,6 +36,15 @@ export const ProductLoadWrapp = styled.div`
   border-radius: 10px;
   margin-bottom: 30px;
   border: 0.5px solid #bdbdbd;
+
+  & > img {
+    width: 322px;
+    height: 204px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border: 0.5px solid #bdbdbd;
+    object-fit: cover;
+  }
 `;
 
 export const ProductLabel = styled.label`

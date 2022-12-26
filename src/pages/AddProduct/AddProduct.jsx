@@ -1,36 +1,127 @@
+import { useState } from 'react';
 import Nav from '../../components/Nav/Nav';
-import * as S from './StyledAddProduct';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
+import FetchApi from '../../api';
+import * as S from './StyledAddProduct';
 
 const AddProduct = () => {
+  // input 상태관리
+  const [productImg, setproductImg] = useState('');
+  const [productName, setProductName] = useState('');
+  const [productPrice, setProductPridce] = useState('');
+  const [saleLink, setSaleLink] = useState('');
+
+  // 모든 값 valid check, 서버 전송 가능 상태시 버튼 true
+  const [isValid, setIsValid] = useState({
+    productImg: false,
+    productName: false,
+    productPrice: false,
+    saleLink: false,
+  });
+
+  // pass가 true로 바뀌면 버튼 활성화
+  const pass =
+    isValid.productImg &&
+    isValid.productName &&
+    isValid.productPrice &&
+    isValid.saleLink;
+
+  // 1. input창에 보이기
+  const handleData = (event) => {
+    if (event.target.id === 'productname') {
+      setProductName(event.target.value);
+    } else if (event.target.id === 'productprice') {
+      setProductPridce(event.target.value);
+    } else if (event.target.id === 'salelink') {
+      setSaleLink(event.target.value);
+    }
+  };
+
+  // 이미지 주소 받아오기
+  const handleGetImg = async (event) => {
+    const data = await FetchApi.uploadImg(event);
+    setproductImg(data);
+    console.log(productImg);
+    setIsValid({ ...isValid, productImg: true });
+  };
+
+  // 2-1) 상품명 유효성 검사
+
+  const PRODUCT_NAME_CHECK = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|0-9]{2,15}$/;
+  const handleCheckName = () => {
+    if (PRODUCT_NAME_CHECK.test(productName)) {
+      setIsValid({ ...isValid, productName: true });
+    } else {
+      setIsValid({ ...isValid, productName: false });
+    }
+  };
+
+  // 2-2) 가격 유효성 검사
+
+  const PRODUCT_PRICE_CHECK = /^[0-9\\,]*$/;
+  const handleCheckPrice = () => {
+    if (PRODUCT_PRICE_CHECK.test(productPrice)) {
+      setIsValid({ ...isValid, productPrice: true });
+    } else {
+      setIsValid({ ...isValid, productPrice: false });
+    }
+  };
+
+  // 2-3) url 유효성 검사
+  const SALE_LINK_CHECK =
+    /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!]))?/;
+
+  const handleCheckSaleLink = () => {
+    if (SALE_LINK_CHECK.test(saleLink)) {
+      setIsValid({ ...isValid, saleLink: true });
+    } else {
+      setIsValid({ ...isValid, saleLink: false });
+    }
+  };
+
   return (
     <S.AllWrapp>
-      <Nav type='upload' btnName='저장' />
+      <Nav type='upload' btnName='저장' disabled={!pass} />
       <S.MainWrapp>
         <h1 className='hidden'>상품등록 페이지</h1>
         <S.FormWrapp>
           <S.ProductAddText>이미지 등록</S.ProductAddText>
           <S.ProductLoadWrapp>
             <S.ProductLabel htmlFor='이미지업로드' />
-            <input className='hidden' type='file' id='이미지업로드' />
+            {productImg && <img src={productImg} alt='상품 등록 이미지' />}
+            <input
+              onChange={handleGetImg}
+              className='hidden'
+              type='file'
+              id='이미지업로드'
+            />
           </S.ProductLoadWrapp>
           <LabelInput
             type='text'
             label='상품명'
-            forid='productName'
+            forid='productname'
+            state={productName}
             placeholder='2~15자 이내여야 합니다.'
+            onChange={handleData}
+            onBlur={handleCheckName}
           />
           <LabelInput
             type='number'
             label='가격'
             forid='productprice'
+            state={productPrice}
             placeholder='숫자만 입력 가능합니다.'
+            onChange={handleData}
+            onBlur={handleCheckPrice}
           />
           <LabelInput
             type='text'
             label='판매 링크'
-            forid='slaelink'
+            forid='salelink'
+            state={saleLink}
             placeholder='URL을 입력해 주세요'
+            onChange={handleData}
+            onBlur={handleCheckSaleLink}
           />
         </S.FormWrapp>
       </S.MainWrapp>
