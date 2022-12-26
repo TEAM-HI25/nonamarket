@@ -6,12 +6,14 @@ import ChatNav from './ChatNav';
 import FollowHeader from './FollowHeader';
 import { HeaderWrapp } from './StyledNav';
 
-const Nav = ({ type, btnName, state, handle, disabled }) => {
+const Nav = ({ type, btnName, state, handle, disabled, onClick }) => {
   const NAV = {
     home: <HomeNav />,
     search: <SearchNav state={state} handle={handle} />,
     main: <MainNav />,
-    upload: <UploadNav btnName={btnName} disabled={disabled} />,
+    upload: (
+      <UploadNav btnName={btnName} disabled={disabled} onClick={onClick} />
+    ),
     chat: <ChatNav />,
     follow: <FollowHeader />,
   };

@@ -1,23 +1,23 @@
 import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Nav from '../../components/Nav/Nav';
 import ProfileImg from '../../components/common/ProfileImg/ProfileImg';
 import * as S from './StyledUploadPost';
 import { AuthContext } from '../../context/context';
+import FetchApi from '../../api';
 
 const UploadPost = () => {
   const [profileImg, setProfileImg] = useState('');
   const [imgSrc, setImgSrc] = useState('');
   const [contentText, setContentText] = useState('');
-  // const [disabledBtn, setDisabledBtn] = useState('');
-  const formData = new FormData();
-  const BASE_URL = 'https://mandarin.api.weniv.co.kr';
+  const [imgUrl, setImgUrl] = useState('');
   const { user } = useContext(AuthContext);
+  const BASE_URL = 'https://mandarin.api.weniv.co.kr';
+  const navigate = useNavigate();
 
   // 유저 프로필 이미지 받아오기
   useEffect(() => {
     const getUserProfile = async () => {
-      // const token = localStorage.getItem('token');
-      // const accountname = localStorage.getItem('accountname');
       const url = `${BASE_URL}/profile/${user.accountname}`;
 
       try {
@@ -29,7 +29,6 @@ const UploadPost = () => {
           },
         });
         const data = await response.json();
-        // console.log(data);
         setProfileImg(data.profile.image);
       } catch (error) {
         console.error(error);
@@ -39,30 +38,16 @@ const UploadPost = () => {
   });
 
   // 이미지 서버로 보내기
-  // eslint-disable-next-line consistent-return
-  const uploadImg = async (file) => {
-    formData.append('image', file);
-    console.log(formData);
-
-    try {
-      const response = await fetch(`${BASE_URL}/image/uploadfiles`, {
-        method: 'POST',
-        body: formData,
-      });
-      const data = await response.json();
-      console.log(data);
-      const postImgName = data.filename;
-      return postImgName;
-    } catch (error) {
-      console.error(error);
-    }
+  const handleGetImg = async (e) => {
+    const data = await FetchApi.uploadImg(e);
+    console.log(data);
+    setImgUrl(data);
   };
-  uploadImg();
 
   // 이미지 미리보기
-  const handleUploadImg = (file) => {
+  const handleUploadImg = (e) => {
     const reader = new FileReader();
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(e);
     return new Promise((resolve) => {
       reader.onload = () => {
         setImgSrc(reader.result);
@@ -71,39 +56,52 @@ const UploadPost = () => {
     });
   };
 
-  // 완성된 게시글 업로드
-  // const uploadPost = async () => {
-  //   const reqData = {
-  //     post: {
-  //       content: String,
-  //       image: String, //"imageurl1, imageurl2" 형식으로
-  //     },
-  //   };
-  //   try {
-  //     const response = await fetch(`${BASE_URL}/post`, {
-  //       method: 'POST',
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         'Content-type': 'application/json',
-  //       },
-  //       body: JSON.stringify(reqData),
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   const handleContentText = (e) => {
     setContentText(e.target.value);
+    console.log(typeof contentText);
   };
+
+  // 업로드 클릭시 포스트글 서버에 보내기 (텍스트 + 이미지)
+  const handleUpload = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/post`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          post: {
+            content: contentText,
+            image: imgUrl,
+          },
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      navigate('/myprofile');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // 이미지 삭제버튼
+  // const handleDeleteImg = (e) => {
+  //   console.log(e.target);
+  // };
 
   // ** refactoring List
   // 1. textarea 자동 높이 조절 기능추가
-  // 2. 이미지 3장 업로드 기능 추가
+  // 2. 이미지 3장 업로드 기능 추가 + 이미지 삭제 구현하기
 
   return (
     <>
-      <Nav type='upload' btnName='업로드' disabled={!contentText && !imgSrc} />
+      <Nav
+        type='upload'
+        btnName='업로드'
+        disabled={!contentText && !imgSrc}
+        onClick={handleUpload}
+      />
       <S.ContentWrapper>
         <ProfileImg size='42px' src={profileImg} alt='프로필이미지' />
         <S.ContentInput
@@ -117,10 +115,12 @@ const UploadPost = () => {
         id='imguploadinput'
         onChange={(e) => {
           handleUploadImg(e.target.files[0]);
+          handleGetImg(e);
         }}
       />
       <S.UploadImageList>
         {imgSrc && <img src={imgSrc} alt='프리뷰이미지' />}
+        <button type='button' aria-label='Save' />
       </S.UploadImageList>
     </>
   );
