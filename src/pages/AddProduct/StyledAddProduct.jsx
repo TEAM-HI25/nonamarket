@@ -3,13 +3,13 @@ import uploadBtnImg from '../../assets/images/img-button.svg';
 import { AllWrappCss, MainWrappCss } from '../../styles/Globalstyled';
 
 // 4~11 line 공용컴포넌트제작 필요성을 느낌
-export const AllWrapp = styled.section`
+export const AllWrapp = styled.form`
   ${AllWrappCss};
 `;
 export const MainWrapp = styled.section`
   ${MainWrappCss};
 `;
-export const FormWrapp = styled.form`
+export const InputWrapp = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

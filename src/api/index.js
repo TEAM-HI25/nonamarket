@@ -124,6 +124,19 @@ const FetchApi = {
     const data = await response.json();
     return data;
   },
+  async registerProduct(reqData, token) {
+    const response = await fetch(`${BASE_URL}/product`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(reqData),
+    });
+    const data = await response.json();
+    console.log(data);
+    return data;
+  },
 };
 
 export default FetchApi;
