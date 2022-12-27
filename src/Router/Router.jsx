@@ -7,8 +7,8 @@ import LoginEmail from '../pages/LoginEmail/LoginEmail';
 import JoinEmail from '../pages/JoinEmail/JoinEmail';
 import HomeFeed from '../pages/HomeFeed/HomeFeed';
 import SearchUser from '../pages/SearchUser/SearchUser';
-import YourProfile from '../pages/YourProfile/YourProfile';
-import MyProfile from '../pages/MyProfile/MyProfile';
+import YourProfile from '../pages/Profile/YourProfile/YourProfile';
+import MyProfile from '../pages/Profile/MyProfile/MyProfile';
 import FollowerList from '../pages/FollowerList/FollowerList';
 import FollowingList from '../pages/FollowingList/FollowingList';
 import ModifyProfile from '../pages/ModifyProfile/ModifyProfile';
@@ -33,7 +33,12 @@ const Router = () => {
             <Route path='/joinemail' element={<JoinEmail />} />
             <Route path='/homefeed' element={<HomeFeed />} />
             <Route path='/searchuser' element={<SearchUser />} />
-            <Route path='/yourprofile' element={<YourProfile />} />
+            <Route path='/yourprofile' element={<YourProfile />}>
+              <Route
+                path='/yourprofile/:accountName'
+                element={<YourProfile />}
+              />
+            </Route>
             <Route path='/myprofile' element={<MyProfile />} />
             <Route path='/followerlist' element={<FollowerList />} />
             <Route path='/followinglist' element={<FollowingList />} />

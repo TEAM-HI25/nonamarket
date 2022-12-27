@@ -85,7 +85,7 @@ const JoinProfileEdit = ({ email, password }) => {
     console.log(Signdata);
     // 토큰 받아오기 위해 로그인 로직 다시 씀,로그인 로직 실행안하면 토큰 없는 상태로 홈피드로 들어가게됨
     const data = await FetchApi.getLogin(email, password);
-    // console.log(data);
+    console.log(data);
     localStorage.setItem('token', data.user.token);
     localStorage.setItem('accountname', data.user.accountname);
 
