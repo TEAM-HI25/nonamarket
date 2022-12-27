@@ -2,12 +2,17 @@ import styled from 'styled-components';
 
 export const wrapper = styled.figure`
   width: 140px;
+  & > button {
+    cursor: pointer;
+    text-align: left;
+  }
 `;
 
 export const ProductImg = styled.img`
-  /* width: 140px; */
+  width: 140px;
   height: 90px;
   border-radius: 8px;
+  object-fit: cover;
 `;
 
 export const ProductName = styled.figcaption`
