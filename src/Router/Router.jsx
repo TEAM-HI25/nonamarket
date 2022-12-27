@@ -33,7 +33,12 @@ const Router = () => {
             <Route path='/joinemail' element={<JoinEmail />} />
             <Route path='/homefeed' element={<HomeFeed />} />
             <Route path='/searchuser' element={<SearchUser />} />
-            <Route path='/yourprofile' element={<YourProfile />} />
+            <Route path='/yourprofile' element={<YourProfile />}>
+              <Route
+                path='/yourprofile/:accountName'
+                element={<YourProfile />}
+              />
+            </Route>
             <Route path='/myprofile' element={<MyProfile />} />
             <Route path='/followerlist' element={<FollowerList />} />
             <Route path='/followinglist' element={<FollowingList />} />
