@@ -1,6 +1,6 @@
 import { StyledBtn, SIZES } from './StyledBtn';
 
-const Button = ({ name, size, disabled, className }) => {
+const Button = ({ name, size, disabled, className, onClick }) => {
   const sizeStyle = SIZES[size];
   return (
     <StyledBtn
@@ -8,6 +8,7 @@ const Button = ({ name, size, disabled, className }) => {
       className={className}
       sizeStyle={sizeStyle}
       disabled={disabled}
+      onClick={onClick}
     >
       {name}
     </StyledBtn>

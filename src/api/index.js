@@ -113,7 +113,35 @@ const FetchApi = {
     return data;
   },
 
-  async getMyinfo(token) {
+
+  async loadFeed(token) {
+    const response = await fetch(`${BASE_URL}/post/feed`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    return data;
+  },
+
+  async registerProduct(reqData, token) {
+    const response = await fetch(`${BASE_URL}/product`, {
+      method: 'POST',
+
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(reqData),
+    });
+    const data = await response.json();
+    console.log(data);
+    return data;
+  },
+  
+    async getMyinfo(token) {
     const response = await fetch(`${BASE_URL}/user/myinfo`, {
       method: 'GET',
       headers: {

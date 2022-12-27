@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import uploadFile from '../../assets/images/upload-file.svg';
+import deleteBtn from '../../assets/images/x.svg';
 
 export const ContentWrapper = styled.form.attrs({
   method: 'post',
@@ -10,7 +11,7 @@ export const ContentWrapper = styled.form.attrs({
 `;
 
 export const ContentInput = styled.textarea.attrs({
-  rows: '10',
+  rows: '8',
   placeholder: '게시글 입력하기',
 })`
   width: 100%;
@@ -38,9 +39,9 @@ export const uploadImgInput = styled.input.attrs({
   position: absolute;
   width: 0;
   height: 0;
-  padding: 0;
+  /* padding: 0;
   overflow: hidden;
-  border: 0;
+  border: 0; */
 `;
 
 export const ImgUploadBtn = styled.label`
@@ -54,9 +55,28 @@ export const ImgUploadBtn = styled.label`
 `;
 
 export const UploadImageList = styled.div`
+  position: relative;
   display: flex;
-  height: 171px;
-  margin: 0 16px 0 70px;
+  width: 304px;
+  height: 228px;
+  margin: 0 16px 0 71px;
   overflow-x: scroll;
   gap: 8px;
+
+  img {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  button {
+    background: url(${deleteBtn}) no-repeat;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-size: 100%;
+  }
 `;

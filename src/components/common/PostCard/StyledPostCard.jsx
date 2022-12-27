@@ -32,6 +32,7 @@ export const UserInfo = styled.div`
   img {
     position: absolute;
     width: 18px;
+    top: 0;
     right: 0;
   }
 `;
@@ -53,8 +54,10 @@ export const PostContents = styled.div`
   line-height: 1.8rem;
   /* gap: 16px; */
 
-  p {
-    margin-bottom: 16px;
+  img {
+    width: 304px;
+    margin-top: 16px;
+    border-radius: 10px;
   }
 `;
 

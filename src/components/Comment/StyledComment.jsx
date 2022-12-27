@@ -24,7 +24,7 @@ export const UserInfo = styled.div`
 
   img {
     position: absolute;
-    right: 0;
+    right: 2px;
     top: 2px;
     width: 20px;
   }
