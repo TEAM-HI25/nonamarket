@@ -25,9 +25,14 @@ export const CommentInput = styled.input.attrs({
 `;
 
 export const CommentUploadBtn = styled.button`
-  color: #c4c4c4;
+  color: #f26e22;
   font-size: 1.4rem;
   line-height: 1.753rem;
   font-weight: 500;
   white-space: nowrap;
+
+  &.disabled {
+    pointer-events: none;
+    color: #c4c4c4;
+  }
 `;
