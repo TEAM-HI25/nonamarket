@@ -113,7 +113,6 @@ const FetchApi = {
     return data;
   },
 
-
   async loadFeed(token) {
     const response = await fetch(`${BASE_URL}/post/feed`, {
       method: 'GET',
@@ -140,8 +139,8 @@ const FetchApi = {
     console.log(data);
     return data;
   },
-  
-    async getMyinfo(token) {
+
+  async getMyinfo(token) {
     const response = await fetch(`${BASE_URL}/user/myinfo`, {
       method: 'GET',
       headers: {
