@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/context';
 import Nav from '../../components/Nav/Nav';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
 import FetchApi from '../../api';
@@ -10,6 +12,9 @@ const AddProduct = () => {
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [saleLink, setSaleLink] = useState('');
+
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   // 모든 값 valid check, 서버 전송 가능 상태시 버튼 true
   const [isValid, setIsValid] = useState({
@@ -55,6 +60,7 @@ const AddProduct = () => {
   const handleGetImg = async (event) => {
     const data = await FetchApi.uploadImg(event);
     setproductImg(data);
+    console.log(productImg);
     setIsValid({ ...isValid, productImg: true });
   };
 
@@ -92,12 +98,27 @@ const AddProduct = () => {
     }
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // submit 제출 막기(새로고침막기)
+    const reqData = {
+      product: {
+        itemName: `${productName}`,
+        price: parseInt(productPrice.replace(',', ''), 10), // 서버 전송 가능 형태로 가공
+        link: `${saleLink}`,
+        itemImage: `${productImg}`,
+      },
+    };
+    const productData = await FetchApi.registerProduct(reqData, user.token);
+    console.log(productData);
+    navigate('/myprofile');
+  };
+
   return (
-    <S.AllWrapp>
+    <S.AllWrapp onSubmit={handleSubmit}>
       <Nav type='upload' btnName='저장' disabled={!pass} />
       <S.MainWrapp>
         <h1 className='hidden'>상품등록 페이지</h1>
-        <S.FormWrapp>
+        <S.InputWrapp>
           <S.ProductAddText>이미지 등록</S.ProductAddText>
           <S.ProductLoadWrapp>
             <S.ProductLabel htmlFor='이미지업로드' />
@@ -136,7 +157,7 @@ const AddProduct = () => {
             onChange={handleData}
             onBlur={handleCheckSaleLink}
           />
-        </S.FormWrapp>
+        </S.InputWrapp>
       </S.MainWrapp>
     </S.AllWrapp>
   );
