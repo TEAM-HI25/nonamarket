@@ -18,7 +18,6 @@ const Nav = ({ type, btnName, state, handle, disabled, onClick }) => {
     search: <SearchNav state={state} handle={handle} />,
     main: <MainNav />,
     upload: (
-
       <UploadNav
         btnName={btnName}
         disabled={disabled}
