@@ -30,38 +30,35 @@ const MyProfileBtnWrap = () => {
   );
 };
 
-const ProfileInfo = ({
-  userImg,
-  userName,
-  userAccountName,
-  userIntro,
-  followerCount,
-  followingCount,
-}) => {
+const ProfileInfo = ({ userProfile, authAccountName }) => {
   const location = useLocation();
+  const pageAccount = location.pathname.split('/')[2];
+
   return (
     <S.Container>
       <S.ProfileInfoWrapper>
         <h2 className='hidden'>프로필 정보</h2>
         <S.NumberWrapper>
-          <S.NumberOfFollowers>{followerCount}</S.NumberOfFollowers>
+          <S.NumberOfFollowers>{userProfile.followerCount}</S.NumberOfFollowers>
           <span>followers</span>
         </S.NumberWrapper>
-        <S.ProfileImg src={userImg} alt='프로필 이미지' />
+        <S.ProfileImg src={userProfile.image} alt='프로필 이미지' />
         <S.NumberWrapper>
-          <S.NumberOfFollowings>{followingCount}</S.NumberOfFollowings>
+          <S.NumberOfFollowings>
+            {userProfile.followingCount}
+          </S.NumberOfFollowings>
           <span>followings</span>
         </S.NumberWrapper>
       </S.ProfileInfoWrapper>
       <S.UserWrapper>
-        <S.UserName>{userName}</S.UserName>
-        <S.UserId>{userAccountName}</S.UserId>
-        <S.UserIntro>{userIntro}</S.UserIntro>
+        <S.UserName>{userProfile.username}</S.UserName>
+        <S.UserId>{userProfile.accountname}</S.UserId>
+        <S.UserIntro>{userProfile.userintro}</S.UserIntro>
       </S.UserWrapper>
-      {location.pathname === '/yourprofile' ? (
-        <YourProfileBtnWrap />
-      ) : (
+      {pageAccount === authAccountName ? (
         <MyProfileBtnWrap />
+      ) : (
+        <YourProfileBtnWrap />
       )}
     </S.Container>
   );

@@ -162,6 +162,7 @@ const FetchApi = {
     const data = await response.json();
     return data;
   },
+
   async loadProductFeed(token, accountname) {
     const response = await fetch(`${BASE_URL}/product/${accountname}`, {
       method: 'GET',
