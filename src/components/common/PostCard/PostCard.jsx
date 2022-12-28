@@ -8,7 +8,15 @@ import OthersPostModal from '../Modal/OthersPostModal';
 import PostInnerModal from '../Modal/PostInnerModal';
 import * as S from './StyledPostCard';
 
-const PostCard = ({ userdata, content, image, date, postId }) => {
+const PostCard = ({
+  userdata,
+  content,
+  image,
+  date,
+  postId,
+  heartCount,
+  commentCount,
+}) => {
   const { user } = useContext(AuthContext);
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowInnerModal, setIsShowInnerModal] = useState(false);
@@ -30,6 +38,9 @@ const PostCard = ({ userdata, content, image, date, postId }) => {
     setIsShowModal(false);
   };
 
+  // Link 기능 추가하기
+  // UserProfileImage or Id 클릭시 Profile 페이지로 넘어가는 것!
+
   return (
     <>
       <S.ContentsWrapper>
@@ -49,10 +60,10 @@ const PostCard = ({ userdata, content, image, date, postId }) => {
 
         <S.BtnWrapper>
           <button type='button'>
-            <img src={HeartIcon} alt='좋아요 버튼' /> <span>58</span>
+            <img src={HeartIcon} alt='좋아요 버튼' /> <span>{heartCount}</span>
           </button>
           <button type='button'>
-            <img src={MessageCircleIcon} alt='' /> <span>12</span>
+            <img src={MessageCircleIcon} alt='' /> <span>{commentCount}</span>
           </button>
         </S.BtnWrapper>
         <S.PostDate>

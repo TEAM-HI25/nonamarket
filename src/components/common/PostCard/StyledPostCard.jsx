@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ContentsWrapper = styled.section`
   position: relative;
   padding: 4px 0 4px 54px;
-  width: 358px;
+  /* width: 358px; */
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -33,7 +33,7 @@ export const UserInfo = styled.div`
     position: absolute;
     width: 18px;
     top: 0;
-    right: 0;
+    right: 2px;
   }
 `;
 
