@@ -1,6 +1,6 @@
-// import { useContext } from 'react';
+import { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
-// import { AuthContext } from '../../../context/context';
+import { AuthContext } from '../../../context/context';
 import iconHome from '../../../assets/images/icon-home.svg';
 import activeIconHome from '../../../assets/images/icon-home-fill.svg';
 import iconMessageCircle from '../../../assets/images/icon-message-circle.svg';
@@ -13,7 +13,8 @@ import * as S from './StyledTabMenu';
 const TabMenu = () => {
   const location = useLocation();
 
-  // const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const authAccountName = user.accountname;
 
   return (
     <S.MenuWrapper>
@@ -59,9 +60,13 @@ const TabMenu = () => {
       {/* 로그인한 유저의 프로필 페이지로 이동 */}
       {/* <S.MenuNavLink to={`/myprofile/${user.accountname}`}> */}
       <S.MenuList>
-        <S.MenuNavLink to='/myprofile'>
+        <S.MenuNavLink to={`/profile/${authAccountName}`}>
           <S.MenuImg
-            src={location.pathname === `/myprofile` ? activeIconUser : iconUser}
+            src={
+              location.pathname === `/profile/${authAccountName}`
+                ? activeIconUser
+                : iconUser
+            }
             alt='프로필탭'
           />
           {/* <S.MenuImg

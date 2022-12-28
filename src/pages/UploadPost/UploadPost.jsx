@@ -79,7 +79,7 @@ const UploadPost = () => {
       });
       const data = await response.json();
       console.log(data);
-      navigate('/myprofile');
+      navigate(`/profile/${user.accountname}`);
     } catch (error) {
       console.error(error);
     }
