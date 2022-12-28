@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/context';
 import HeartIcon from '../../../assets/images/icon-heart.svg';
 import MessageCircleIcon from '../../../assets/images/icon-message-circle-mini.svg';
@@ -8,10 +9,22 @@ import OthersPostModal from '../Modal/OthersPostModal';
 import PostInnerModal from '../Modal/PostInnerModal';
 import * as S from './StyledPostCard';
 
-const PostCard = ({ userdata, content, image, date, postId }) => {
+const PostCard = ({ data }) => {
+  const {
+    author,
+    content,
+    image,
+    createdAt,
+    id,
+    heartCount,
+    hearted,
+    commentCount,
+  } = data;
   const { user } = useContext(AuthContext);
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowInnerModal, setIsShowInnerModal] = useState(false);
+  const navigate = useNavigate();
+  console.log(hearted);
 
   const handleShowModal = () => {
     setIsShowModal(true);
@@ -30,37 +43,58 @@ const PostCard = ({ userdata, content, image, date, postId }) => {
     setIsShowModal(false);
   };
 
+  const handleGoUserPage = () => {
+    navigate(`/yourprofile/${author.accountname}`);
+  };
+
+  const handleGoDetailPage = () => {
+    navigate(`/postdetail/${id}`);
+  };
+
   return (
     <>
       <S.ContentsWrapper>
-        <S.ProfileImage src={userdata.image} alt='프로필 이미지' />
+        <S.ProfileImage
+          src={author.image}
+          alt='프로필 이미지'
+          onClick={handleGoUserPage}
+        />
+
         <S.UserInfo>
-          <S.UserName>{userdata.username}</S.UserName>
-          <S.UserAccount>@ {userdata.accountname}</S.UserAccount>
+          <Link to={`/yourprofile/${author.accountname}`}>
+            <S.UserName>{author.username}</S.UserName>
+            <S.UserAccount>@ {author.accountname}</S.UserAccount>
+          </Link>
           <button type='button' onClick={handleShowModal}>
             <img src={verticalMenuIcon} alt='더보기 메뉴' />
           </button>
         </S.UserInfo>
 
-        <S.PostContents>
+        <S.PostContents onClick={handleGoDetailPage}>
           <p>{content}</p>
-          {image && <img src={image} alt='감귤농장 이미지' />}
+          {image && <img src={image} alt='컨텐츠 관련 이미지' />}
         </S.PostContents>
 
         <S.BtnWrapper>
           <button type='button'>
-            <img src={HeartIcon} alt='좋아요 버튼' /> <span>58</span>
+            <img src={HeartIcon} alt='좋아요 버튼' />
+            <span>{heartCount}</span>
           </button>
-          <button type='button'>
-            <img src={MessageCircleIcon} alt='' /> <span>12</span>
+          <button type='button' onClick={handleGoDetailPage}>
+            <img src={MessageCircleIcon} alt='댓글 버튼' />
+            <span>{commentCount}</span>
           </button>
         </S.BtnWrapper>
         <S.PostDate>
-          {`${date.slice(0, 10).replace('-', '년 ').replace('-', '월 ')}일`}
+          {`${createdAt
+            .slice(0, 10)
+            .replace('-', '년 ')
+            .replace('-', '월 ')}일`}
         </S.PostDate>
       </S.ContentsWrapper>
+
       {/* eslint-disable-next-line no-nested-ternary */}
-      {!isShowModal ? null : userdata.accountname === user.accountname ? (
+      {!isShowModal ? null : author.accountname === user.accountname ? (
         <MyPostModal
           CloseModal={handleCloseModal}
           ShowInnerModal={hanldeShowInnerModal}
@@ -72,17 +106,17 @@ const PostCard = ({ userdata, content, image, date, postId }) => {
         />
       )}
       {/* eslint-disable-next-line no-nested-ternary */}
-      {!isShowInnerModal ? null : userdata.accountname === user.accountname ? (
+      {!isShowInnerModal ? null : author.accountname === user.accountname ? (
         <PostInnerModal
           name='삭제'
           CloseInnerModal={handlCloseInnerModal}
-          postId={postId}
+          postId={id}
         />
       ) : (
         <PostInnerModal
           name='신고'
           CloseInnerModal={handlCloseInnerModal}
-          postId={postId}
+          postId={id}
         />
       )}
     </>

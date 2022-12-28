@@ -36,14 +36,7 @@ const HomeFeed = () => {
         <S.StyledHomeFeedOn>
           <h2 className='hidden'>피드 리스트</h2>
           {feed.map((item) => (
-            <PostCard
-              key={item.id}
-              userdata={item.author}
-              content={item.content}
-              image={item.image}
-              date={item.createdAt}
-              postId={item.id}
-            />
+            <PostCard key={item.id} data={item} />
           ))}
         </S.StyledHomeFeedOn>
       ) : (
