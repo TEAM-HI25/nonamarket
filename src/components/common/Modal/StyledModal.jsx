@@ -3,10 +3,14 @@ import styled from 'styled-components';
 export const ModalWrapper = styled.div`
   position: absolute;
   top: 0;
+  bottom: 0;
   left: 0;
+  right: 0;
+  z-index: 20;
+  margin: 0 auto;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
 `;
 
 export const ModalContainer = styled.div`
@@ -33,4 +37,11 @@ export const ModalList = styled.li`
   padding: 14px 26px;
   font-size: 1.4rem;
   line-height: 1.8rem;
+
+  & > button {
+    cursor: pointer;
+    display: block;
+    text-align: left;
+    width: 100%;
+  }
 `;

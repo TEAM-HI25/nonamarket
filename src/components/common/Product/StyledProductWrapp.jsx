@@ -13,7 +13,7 @@ const ProductSection = styled.section`
     line-height: 2rem;
     font-weight: 700;
   }
-  div {
+  li {
     display: flex;
     gap: 10px;
   }

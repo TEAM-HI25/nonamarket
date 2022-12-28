@@ -6,13 +6,11 @@ const Product = ({ product }) => {
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   return (
-    <S.wrapper>
-      <button type='button'>
-        <S.ProductImg src={product.itemImage} alt='업로드된상품이미지' />
-        <S.ProductName>{product.itemName}</S.ProductName>
-        <S.ProductPrice>{replacePrice}원</S.ProductPrice>
-      </button>
-    </S.wrapper>
+    <>
+      <S.ProductImg src={product.itemImage} alt='업로드된상품이미지' />
+      <S.ProductName>{product.itemName}</S.ProductName>
+      <S.ProductPrice>{replacePrice}원</S.ProductPrice>
+    </>
   );
 };
 
