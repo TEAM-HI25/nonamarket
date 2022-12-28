@@ -11,7 +11,7 @@ const Comment = ({ commentsData }) => {
   const commentTime = (time) => {
     const uploadTime = Date.parse(time);
     const now = Date.now();
-    const gap = (now - uploadTime) / 1000;
+    const gap = (now - uploadTime) / 1000 - 120;
 
     if (gap < 60) {
       return '방금 전';
@@ -43,7 +43,7 @@ const Comment = ({ commentsData }) => {
                   />
                   <S.UserInfo>
                     <strong>{comment.author.username}</strong>
-                    <p>· {commentTime(comment.createAt)}</p>
+                    <p>· {commentTime(comment.createdAt)}</p>
                     <img src={verticalIcon} alt='댓글 수정 메뉴 버튼' />
                   </S.UserInfo>
                 </S.CommentUserInfo>

@@ -3,7 +3,7 @@ import { AuthContext } from '../../context/context';
 import ProfileImg from '../common/ProfileImg/ProfileImg';
 import * as S from './StyledCommentInput';
 
-const CommentInput = (postid, handleGetComment) => {
+const CommentInput = ({ postid, handleGetComment, setCommentsData }) => {
   const { user } = useContext(AuthContext);
   const [text, setText] = useState('');
   const [profileImg, setProfileImg] = useState('');
@@ -23,7 +23,7 @@ const CommentInput = (postid, handleGetComment) => {
   // API - 댓글 POST
   // 리팩토링시 api폴더로 옮기기
   const handleComment = async (e) => {
-    e.preventdefault();
+    e.preventDefault();
 
     try {
       const response = await fetch(`${BASE_URL}/post/${postid}/comments`, {
@@ -34,14 +34,14 @@ const CommentInput = (postid, handleGetComment) => {
         },
         body: JSON.stringify({
           comment: {
-            content: text,
+            content: `${text}`,
           },
         }),
       });
       const data = await response.json();
-      console.log(data);
+      setCommentsData((prev) => [{ ...data.comment }, ...prev]);
       setText('');
-      handleGetComment(data);
+      handleGetComment();
     } catch (error) {
       console.log(error.message);
     }

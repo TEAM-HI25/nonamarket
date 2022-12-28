@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Comment from '../../components/Comment/Comment';
 import CommentInput from '../../components/CommentInput/CommentInput';
@@ -15,7 +15,7 @@ const PostDetail = () => {
   const BASE_URL = 'https://mandarin.api.weniv.co.kr';
 
   // 댓글 업데이트
-  const handleGetComment = useCallback(async () => {
+  const handleGetComment = async () => {
     try {
       const response = await fetch(`${BASE_URL}/post/${postid}/comments`, {
         method: 'GET',
@@ -32,7 +32,7 @@ const PostDetail = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [commentsData]);
+  };
 
   // 게시글 정보 가져오기
   useEffect(() => {
@@ -85,7 +85,11 @@ const PostDetail = () => {
       <S.CommentWrapper>
         <Comment commentsData={commentsData} />
       </S.CommentWrapper>
-      <CommentInput postid={postid} handleGetComment={handleGetComment} />
+      <CommentInput
+        postid={postid}
+        // handleGetComment={handleGetComment}
+        setCommentsData={setCommentsData}
+      />
     </>
   );
 };
