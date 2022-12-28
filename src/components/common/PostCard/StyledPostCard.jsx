@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ContentsWrapper = styled.section`
   position: relative;
   padding: 4px 0 4px 54px;
-  /* width: 358px; */
+  width: 358px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -16,6 +16,7 @@ export const ProfileImage = styled.img`
   position: absolute;
   top: 0;
   left: 0;
+  cursor: pointer;
 `;
 
 export const ProfileWrapper = styled.div`
@@ -26,21 +27,23 @@ export const ProfileWrapper = styled.div`
 export const UserInfo = styled.div`
   position: relative;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-
-  img {
+  justify-content: space-between;
+  /* button {
     position: absolute;
     width: 18px;
     top: 0;
-    right: 2px;
-  }
+    right: 0;
+    img {
+      width: 100%;
+    }
+  } */
 `;
 
 export const UserName = styled.h2`
   font-weight: 500;
   font-size: 1.4rem;
   line-height: 18px;
+  color: #000;
 `;
 
 export const UserAccount = styled.p`
@@ -53,6 +56,11 @@ export const PostContents = styled.div`
   font-size: 1.4rem;
   line-height: 1.8rem;
   /* gap: 16px; */
+  cursor: pointer;
+
+  p {
+    color: #000000;
+  }
 
   img {
     width: 304px;

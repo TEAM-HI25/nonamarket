@@ -57,39 +57,21 @@ const PostDetail = () => {
 
   console.log(postData);
 
-  // userdata={'postData'.author}
-  // image={postData.image}
-  // content={postData.content}
-  // date={postData.createdAt}
-  // postId={postData.id}
-  // heartCount={postData.heartCount}
-  // commentCount={postData.commentCount}
-
   return (
     <>
       <Nav type='home' />
       <h2 className='hidden'>포스트</h2>
       <S.PostCardWrapper>
-        {postData && (
-          <PostCard
-            userdata={postData.author}
-            image={postData.image}
-            content={postData.content}
-            date={postData.createdAt}
-            postId={postData.id}
-            heartCount={postData.heartCount}
-            commentCount={postData.commentCount}
-          />
-        )}
+        {postData && <PostCard data={postData} />}
       </S.PostCardWrapper>
       <S.CommentWrapper>
-        <Comment commentsData={commentsData} />
+        <Comment
+          commentsData={commentsData}
+          postid={postid}
+          handleDelete={handleGetComment}
+        />
       </S.CommentWrapper>
-      <CommentInput
-        postid={postid}
-        // handleGetComment={handleGetComment}
-        setCommentsData={setCommentsData}
-      />
+      <CommentInput postid={postid} setCommentsData={setCommentsData} />
     </>
   );
 };
