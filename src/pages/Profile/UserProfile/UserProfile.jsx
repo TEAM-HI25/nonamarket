@@ -6,7 +6,7 @@ import Nav from '../../../components/Nav/Nav';
 import TabMenu from '../../../components/common/TabMenu/TabMenu';
 import ProfileInfo from '../../../components/ProfileInfo/ProfileInfo';
 import MenuBar from '../../../components/MenuBar/MenuBar';
-// import PostCard from '../../../components/common/PostCard/PostCard';
+import PostCard from '../../../components/common/PostCard/PostCard';
 import * as S from './StyledUserProfile';
 import FetchApi from '../../../api';
 
@@ -15,20 +15,41 @@ const UserProfile = () => {
   // 로그인한 사용자의 accountname
   const authAccountName = user.accountname;
   const [userProfile, setUserProfile] = useState(null);
+  const [userPostArr, setUserPostArr] = useState([]);
   const location = useLocation();
   const pageAccount = location.pathname.split('/')[2];
+  const BASE_URL = 'https://mandarin.api.weniv.co.kr';
 
   useEffect(() => {
     if (!userProfile) {
       const getUserProfileInfo = async () => {
         const data = await FetchApi.getUserInfo(user.token, pageAccount);
-        console.log(data.profile);
         setUserProfile(data.profile);
+        console.log(userProfile);
       };
       getUserProfileInfo();
     }
   }, [userProfile]);
 
+  useEffect(() => {
+    if (!userPostArr.length) {
+      const getMyPost = async () => {
+        const url = `${BASE_URL}/post/${user.accountname}/userpost`;
+        const reponse = await fetch(url, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            'Content-type': 'application/json',
+          },
+        });
+        const data = await reponse.json();
+        console.log(data.post);
+        setUserPostArr(data.post);
+      };
+      getMyPost();
+    }
+  }, []);
+  console.log(userPostArr);
   return (
     <S.Container>
       <Nav type='home' />
@@ -41,20 +62,23 @@ const UserProfile = () => {
         ) : (
           <p>로딩중입니다...</p>
         )}
-
         <S.ProductsSection>
           <h2>판매 중인 상품</h2>
           <div>
-            {/* <Product />
-            <Product />
-            <Product /> */}
+            {/* <Product /> */}
+            {/* <Product /> */}
+            {/* <Product /> */}
           </div>
         </S.ProductsSection>
         <S.PostCardWrap>
           <MenuBar />
-          {/* <PostCard />
-          <PostCard />
-          <PostCard /> */}
+          {userPostArr.length ? (
+            userPostArr.map((item) => (
+              <PostCard key={item.id} userPost={item} />
+            ))
+          ) : (
+            <>아마도 싫어합니다.</>
+          )}
         </S.PostCardWrap>
         <S.PostCardWrap>
           {/* <h2 className='hidden'>SNS 이미지 리스트</h2>
