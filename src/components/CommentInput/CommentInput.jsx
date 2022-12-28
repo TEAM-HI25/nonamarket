@@ -2,14 +2,12 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/context';
 import ProfileImg from '../common/ProfileImg/ProfileImg';
 import * as S from './StyledCommentInput';
-// import { useParams } from 'react-router-dom';
 
-const CommentInput = () => {
+const CommentInput = ({ postid, handleGetComment, setCommentsData }) => {
   const { user } = useContext(AuthContext);
   const [text, setText] = useState('');
   const [profileImg, setProfileImg] = useState('');
   const [isActive, setIsActive] = useState(false);
-  // const { post_id } = useParams();
   const BASE_URL = 'https://mandarin.api.weniv.co.kr';
 
   // 댓글 input value 받아오기
@@ -22,13 +20,13 @@ const CommentInput = () => {
     setIsActive(text.length > 0);
   };
 
-  // API - 댓글 POST 요청
+  // API - 댓글 POST
   // 리팩토링시 api폴더로 옮기기
   const handleComment = async (e) => {
-    e.preventdefault();
+    e.preventDefault();
 
     try {
-      const response = await fetch(`${BASE_URL}/post/:post_id/comments`, {
+      const response = await fetch(`${BASE_URL}/post/${postid}/comments`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -36,13 +34,14 @@ const CommentInput = () => {
         },
         body: JSON.stringify({
           comment: {
-            content: text,
+            content: `${text}`,
           },
         }),
       });
       const data = await response.json();
-      console.log(data);
+      setCommentsData((prev) => [{ ...data.comment }, ...prev]);
       setText('');
+      handleGetComment();
     } catch (error) {
       console.log(error.message);
     }
@@ -69,7 +68,7 @@ const CommentInput = () => {
       }
     };
     getUserProfile();
-  });
+  }, []);
 
   return (
     <S.CommentWrapper onSubmit={handleComment}>

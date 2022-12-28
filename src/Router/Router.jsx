@@ -45,7 +45,7 @@ const Router = () => {
             <Route path='/followinglist' element={<FollowingList />} />
             <Route path='/modifyprofile' element={<ModifyProfile />} />
             <Route path='/addproduct' element={<AddProduct />} />
-            <Route path='/postdetail' element={<PostDetail />} />
+            <Route path='/postdetail/:postid' element={<PostDetail />} />
             <Route path='/uploadpost' element={<UploadPost />} />
             <Route path='/chatlist' element={<ChatList />} />
             <Route path='/chatroom' element={<ChatRoom />} />
