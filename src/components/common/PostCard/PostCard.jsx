@@ -1,13 +1,13 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/context';
-import HeartIcon from '../../../assets/images/icon-heart.svg';
 import MessageCircleIcon from '../../../assets/images/icon-message-circle-mini.svg';
 import verticalMenuIcon from '../../../assets/images/icon-more-vertical.svg';
 import MyPostModal from '../Modal/MyPostModal';
 import OthersPostModal from '../Modal/OthersPostModal';
 import PostInnerModal from '../Modal/PostInnerModal';
 import * as S from './StyledPostCard';
+import LikeButton from '../Button/LikeButton';
 
 const PostCard = ({ data }) => {
   const {
@@ -24,7 +24,6 @@ const PostCard = ({ data }) => {
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowInnerModal, setIsShowInnerModal] = useState(false);
   const navigate = useNavigate();
-  console.log(hearted);
 
   const handleShowModal = () => {
     setIsShowModal(true);
@@ -76,10 +75,7 @@ const PostCard = ({ data }) => {
         </S.PostContents>
 
         <S.BtnWrapper>
-          <button type='button'>
-            <img src={HeartIcon} alt='좋아요 버튼' />
-            <span>{heartCount}</span>
-          </button>
+          <LikeButton heartCount={heartCount} hearted={hearted} postId={id} />
           <button type='button' onClick={handleGoDetailPage}>
             <img src={MessageCircleIcon} alt='댓글 버튼' />
             <span>{commentCount}</span>
