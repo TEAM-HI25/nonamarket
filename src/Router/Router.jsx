@@ -7,8 +7,8 @@ import LoginEmail from '../pages/LoginEmail/LoginEmail';
 import JoinEmail from '../pages/JoinEmail/JoinEmail';
 import HomeFeed from '../pages/HomeFeed/HomeFeed';
 import SearchUser from '../pages/SearchUser/SearchUser';
-import YourProfile from '../pages/YourProfile/YourProfile';
-import MyProfile from '../pages/MyProfile/MyProfile';
+// import YourProfile from '../pages/Profile/YourProfile/YourProfile';
+import UserProfile from '../pages/Profile/UserProfile/UserProfile';
 import FollowerList from '../pages/FollowerList/FollowerList';
 import FollowingList from '../pages/FollowingList/FollowingList';
 import ModifyProfile from '../pages/ModifyProfile/ModifyProfile';
@@ -26,15 +26,21 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         {user.token && user.accountname ? (
-          <>
+          <Route>
             <Route path='/' element={<Splash />} />
             <Route path='/login' element={<Login />} />
             <Route path='/loginemail' element={<LoginEmail />} />
             <Route path='/joinemail' element={<JoinEmail />} />
             <Route path='/homefeed' element={<HomeFeed />} />
             <Route path='/searchuser' element={<SearchUser />} />
-            <Route path='/yourprofile' element={<YourProfile />} />
-            <Route path='/myprofile' element={<MyProfile />} />
+            <Route path='/profile/:accountName' element={<UserProfile />} />
+            {/* <Route path='/yourprofile' element={<YourProfile />}>
+              <Route
+                path='/yourprofile/:accountName'
+                element={<YourProfile />}
+              />
+            </Route>
+            <Route path='/myprofile' element={<MyProfile />} /> */}
             <Route path='/followerlist' element={<FollowerList />} />
             <Route path='/followinglist' element={<FollowingList />} />
             <Route path='/modifyprofile' element={<ModifyProfile />} />
@@ -44,7 +50,7 @@ const Router = () => {
             <Route path='/chatlist' element={<ChatList />} />
             <Route path='/chatroom' element={<ChatRoom />} />
             <Route path='/*' element={<NotFound />} />
-          </>
+          </Route>
         ) : (
           <>
             <Route path='/' element={<Splash />} />

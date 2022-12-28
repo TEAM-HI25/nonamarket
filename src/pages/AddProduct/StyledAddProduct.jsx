@@ -54,7 +54,7 @@ export const ProductLabel = styled.label`
   border-radius: 50%;
   bottom: 12px;
   right: 12px;
-  z-index: 20;
+  z-index: 10;
   cursor: pointer;
   background: no-repeat center/32px url(${uploadBtnImg});
 `;
