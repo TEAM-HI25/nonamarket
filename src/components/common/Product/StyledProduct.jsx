@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 
-// export const wrapper = styled.figure`
-//   width: 140px;
-//   & > button {
-//     cursor: pointer;
-//     text-align: left;
-//   }
-// `;
+export const ProductBtn = styled.button`
+  cursor: pointer;
+  text-align: left;
+`;
 
 export const ProductImg = styled.img`
   width: 140px;
