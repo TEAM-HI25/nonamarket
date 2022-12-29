@@ -73,9 +73,7 @@ const UserProfile = () => {
         <S.PostCardWrap>
           <MenuBar />
           {userPostArr.length ? (
-            userPostArr.map((item) => (
-              <PostCard key={item.id} userPost={item} />
-            ))
+            userPostArr.map((item) => <PostCard key={item.id} data={item} />)
           ) : (
             <>아마도 싫어합니다.</>
           )}
