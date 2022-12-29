@@ -42,9 +42,8 @@ const StyledBtn = styled.button`
       outline: 1px solid #dbdbdb;
       `}
   }
-
   &:disabled {
-    cursor: default;
+    cursor: pointer;
     background: var(--button-bg-color, #c8beab);
   }
 `;
