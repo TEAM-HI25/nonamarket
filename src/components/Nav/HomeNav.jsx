@@ -12,8 +12,8 @@ const HomeNav = ({ handleReturn }) => {
     isShowInnerModal,
     handleShowModal,
     handleCloseModal,
-    hanldeShowInnerModal,
-    handlCloseInnerModal,
+    handleShowInnerModal,
+    handleCloseInnerModal,
   ] = useModal();
 
   return (
@@ -29,12 +29,12 @@ const HomeNav = ({ handleReturn }) => {
       {!isShowModal ? null : (
         <Modal CloseModal={handleCloseModal}>
           <ModalBtn name='설정 및 개인정보' />
-          <ModalBtn name='로그아웃' onClick={hanldeShowInnerModal} />
+          <ModalBtn name='로그아웃' onClick={handleShowInnerModal} />
         </Modal>
       )}
 
       {!isShowInnerModal ? null : (
-        <InnerModal name='로그아웃' CloseInnerModal={handlCloseInnerModal} />
+        <InnerModal name='로그아웃' CloseInnerModal={handleCloseInnerModal} />
       )}
     </>
   );
