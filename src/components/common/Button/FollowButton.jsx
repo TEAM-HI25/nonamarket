@@ -12,6 +12,7 @@ const FollowButton = ({ userProfile, setFolloingCount, setFollowerCount }) => {
   const pageAccount = location.pathname.split('/')[2];
   const { user } = useContext(AuthContext);
   const BASE_URL = 'https://mandarin.api.weniv.co.kr';
+
   const handelIsFollow = () => {
     if (isFollow === false) {
       const followingPost = async () => {

@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Button from '../common/Button/Button';
 import * as S from './StyledProfileInfo';
 import YourProfileBtnWrap from '../common/Button/FollowButton';
@@ -24,25 +24,21 @@ const MyProfileBtnWrap = () => {
 const ProfileInfo = ({ userProfile, authAccountName }) => {
   const location = useLocation();
   const pageAccount = location.pathname.split('/')[2];
-  const [followerCount, setFollowerCnt] = useState(userProfile.followerCount);
-  const [followingCount, setFolloingCnt] = useState(userProfile.followingCount);
-
-  useEffect(() => {
-    setFollowerCnt(userProfile.followerCount);
-    setFolloingCnt(userProfile.followingCount);
-  }, [userProfile.isfollow]);
-  // console.log(userProfile.followingCount);
+  const [followerCnt, setFollowerCnt] = useState(userProfile.followerCount);
+  const [followingCnt, setFolloingCnt] = useState(userProfile.followingCount);
+  console.log(userProfile.followerCount);
+  console.log(followerCnt);
   return (
     <S.Container>
       <S.ProfileInfoWrapper>
         <h2 className='hidden'>프로필 정보</h2>
         <S.NumberWrapper>
-          <S.NumberOfFollowers>{followerCount}</S.NumberOfFollowers>
+          <S.NumberOfFollowers>{followerCnt}</S.NumberOfFollowers>
           <span>followers</span>
         </S.NumberWrapper>
         <S.ProfileImg src={userProfile.image} alt='프로필 이미지' />
         <S.NumberWrapper>
-          <S.NumberOfFollowings>{followingCount}</S.NumberOfFollowings>
+          <S.NumberOfFollowings>{followingCnt}</S.NumberOfFollowings>
           <span>followings</span>
         </S.NumberWrapper>
       </S.ProfileInfoWrapper>

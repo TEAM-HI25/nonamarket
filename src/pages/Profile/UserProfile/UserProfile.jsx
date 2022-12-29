@@ -47,6 +47,7 @@ const UserProfile = () => {
       getMyPost();
     }
   }, []);
+
   return (
     <S.Container>
       <Nav type='home' />
