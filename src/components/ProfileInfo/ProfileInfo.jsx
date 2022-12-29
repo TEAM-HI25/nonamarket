@@ -1,10 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-// import { AuthContext } from '../../context/context';
 import Button from '../common/Button/Button';
-// import FollowButton from '../common/Button/FollowButton';
-// import iconMessageCircle from '../../assets/images/icon-message-circle.svg';
-// import iconShare from '../../assets/images/icon-share.svg';
 import * as S from './StyledProfileInfo';
 import YourProfileBtnWrap from '../common/Button/FollowButton';
 
@@ -25,44 +21,31 @@ const MyProfileBtnWrap = () => {
   );
 };
 
-const ProfileInfo = ({ userProfile, authAccountName, isFollow }) => {
+const ProfileInfo = ({ userProfile, authAccountName }) => {
   const location = useLocation();
   const pageAccount = location.pathname.split('/')[2];
-  const [followBtnValid, setFollowBtnValid] = useState(Boolean);
-  const [followBtnName, setFollowBtnName] = useState('');
+  const [followerCount, setFollowerCnt] = useState(userProfile.followerCount);
+  const [followingCount, setFolloingCnt] = useState(userProfile.followingCount);
 
   useEffect(() => {
-    if (!isFollow) {
-      setFollowBtnValid(false);
-      setFollowBtnName('팔로우');
-    } else if (isFollow) {
-      setFollowBtnValid(true);
-      setFollowBtnName('언팔로우');
-    }
-  }, [isFollow]);
-
+    setFollowerCnt(userProfile.followerCount);
+    setFolloingCnt(userProfile.followingCount);
+  }, [userProfile.isfollow]);
+  // console.log(userProfile.followingCount);
   return (
     <S.Container>
-      {isFollow ? (
-        <S.ProfileInfoWrapper>
-          <h2 className='hidden'>프로필 정보</h2>
-          <S.NumberWrapper>
-            <S.NumberOfFollowers>
-              {userProfile.followerCount}
-            </S.NumberOfFollowers>
-            <span>followers</span>
-          </S.NumberWrapper>
-          <S.ProfileImg src={userProfile.image} alt='프로필 이미지' />
-          <S.NumberWrapper>
-            <S.NumberOfFollowings>
-              {userProfile.followingCount}
-            </S.NumberOfFollowings>
-            <span>followings</span>
-          </S.NumberWrapper>
-        </S.ProfileInfoWrapper>
-      ) : (
-        <p>로딩중..</p>
-      )}
+      <S.ProfileInfoWrapper>
+        <h2 className='hidden'>프로필 정보</h2>
+        <S.NumberWrapper>
+          <S.NumberOfFollowers>{followerCount}</S.NumberOfFollowers>
+          <span>followers</span>
+        </S.NumberWrapper>
+        <S.ProfileImg src={userProfile.image} alt='프로필 이미지' />
+        <S.NumberWrapper>
+          <S.NumberOfFollowings>{followingCount}</S.NumberOfFollowings>
+          <span>followings</span>
+        </S.NumberWrapper>
+      </S.ProfileInfoWrapper>
       <S.UserWrapper>
         <S.UserName>{userProfile.username}</S.UserName>
         <S.UserId>{userProfile.accountname}</S.UserId>
@@ -72,8 +55,9 @@ const ProfileInfo = ({ userProfile, authAccountName, isFollow }) => {
         <MyProfileBtnWrap />
       ) : (
         <YourProfileBtnWrap
-          followBtnValid={followBtnValid}
-          followBtnName={followBtnName}
+          userProfile={userProfile}
+          setFollowerCount={setFollowerCnt}
+          setFolloingCount={setFolloingCnt}
         />
       )}
     </S.Container>

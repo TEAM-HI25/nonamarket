@@ -6,11 +6,9 @@ import * as S from './StyledProfileInfo';
 import iconMessageCircle from '../../../assets/images/icon-message-circle.svg';
 import iconShare from '../../../assets/images/icon-share.svg';
 
-const FollowButton = ({ followBtnName }) => {
+const FollowButton = ({ userProfile, setFolloingCount, setFollowerCount }) => {
   const location = useLocation();
-  const [isFollow, setIsFollow] = useState(Boolean);
-  //   const [followBtnValid, setFollowBtnValid] = useState(Boolean);
-  //   const [followBtnName, setFollowBtnName] = useState('');
+  const [isFollow, setIsFollow] = useState(userProfile.isfollow);
   const pageAccount = location.pathname.split('/')[2];
   const { user } = useContext(AuthContext);
   const BASE_URL = 'https://mandarin.api.weniv.co.kr';
@@ -27,6 +25,8 @@ const FollowButton = ({ followBtnName }) => {
         });
         const data = await response.json();
         setIsFollow(data.profile.isfollow);
+        setFolloingCount(data.profile.followingCount);
+        setFollowerCount(data.profile.followerCount);
         console.log(data.profile.isfollow);
       };
       console.log(pageAccount);
@@ -43,6 +43,8 @@ const FollowButton = ({ followBtnName }) => {
         });
         const data = await response.json();
         setIsFollow(data.profile.isfollow);
+        setFolloingCount(data.profile.followingCount);
+        setFollowerCount(data.profile.followerCount);
         console.log(data.profile.isfollow);
       };
       unfollowingPost();
@@ -54,7 +56,7 @@ const FollowButton = ({ followBtnName }) => {
         <img src={iconMessageCircle} alt='메세지아이콘' />
       </S.Btn>
       <Button
-        name={followBtnName}
+        name='임시 팔로우'
         type='button'
         size='m'
         onClick={handelIsFollow}

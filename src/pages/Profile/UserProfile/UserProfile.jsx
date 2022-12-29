@@ -16,7 +16,6 @@ const UserProfile = () => {
   const authAccountName = user.accountname;
   const [userProfile, setUserProfile] = useState(null);
   const [userPostArr, setUserPostArr] = useState([]);
-  const [isFollow, setIsFollow] = useState(Boolean);
   const location = useLocation();
   const pageAccount = location.pathname.split('/')[2];
   const BASE_URL = 'https://mandarin.api.weniv.co.kr';
@@ -26,7 +25,6 @@ const UserProfile = () => {
       const getUserProfileInfo = async () => {
         const data = await FetchApi.getUserInfo(user.token, pageAccount);
         setUserProfile(data.profile);
-        setIsFollow(data.profile.isfollow);
       };
       getUserProfileInfo();
     }
@@ -57,7 +55,6 @@ const UserProfile = () => {
           <ProfileInfo
             userProfile={userProfile}
             authAccountName={authAccountName}
-            isFollow={isFollow}
           />
         ) : (
           <p>로딩중입니다...</p>
