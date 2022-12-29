@@ -1,6 +1,6 @@
-import * as S from './StyledModal';
+import * as S from './StyledProductModal';
 
-const Modal = ({ handleCloseModal, handleShowInnerModal }) => {
+const ProductModal = ({ handleCloseModal, handleShowInnerModal }) => {
   return (
     <S.ModalWrapper onClick={handleCloseModal}>
       <S.ModalContainer>
@@ -23,4 +23,4 @@ const Modal = ({ handleCloseModal, handleShowInnerModal }) => {
   );
 };
 
-export default Modal;
+export default ProductModal;
