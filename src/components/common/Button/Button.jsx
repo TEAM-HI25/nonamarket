@@ -1,14 +1,24 @@
-import { StyledBtn, SIZES } from './StyledBtn';
+import { StyledBtn, SIZES, COLOR } from './StyledBtn';
 
-const Button = ({ name, size, disabled, className, onClick }) => {
+const Button = ({
+  type,
+  name,
+  size,
+  disabled,
+  className,
+  onClick,
+  btncolor,
+}) => {
   const sizeStyle = SIZES[size];
+  const btnColor = COLOR[btncolor];
   return (
     <StyledBtn
-      type='submit' // 수정
+      type={type}
       className={className}
       sizeStyle={sizeStyle}
       disabled={disabled}
       onClick={onClick}
+      btncolor={btnColor}
     >
       {name}
     </StyledBtn>

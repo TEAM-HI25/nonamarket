@@ -25,7 +25,6 @@ const UserProfile = () => {
       const getUserProfileInfo = async () => {
         const data = await FetchApi.getUserInfo(user.token, pageAccount);
         setUserProfile(data.profile);
-        console.log(userProfile);
       };
       getUserProfileInfo();
     }
@@ -34,22 +33,21 @@ const UserProfile = () => {
   useEffect(() => {
     if (!userPostArr.length) {
       const getMyPost = async () => {
-        const url = `${BASE_URL}/post/${user.accountname}/userpost`;
-        const reponse = await fetch(url, {
+        const url = `${BASE_URL}/post/${pageAccount}/userpost`;
+        const response = await fetch(url, {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${user.token}`,
             'Content-type': 'application/json',
           },
         });
-        const data = await reponse.json();
-        console.log(data.post);
+        const data = await response.json();
         setUserPostArr(data.post);
       };
       getMyPost();
     }
   }, []);
-  console.log(userPostArr);
+
   return (
     <S.Container>
       <Nav type='home' />

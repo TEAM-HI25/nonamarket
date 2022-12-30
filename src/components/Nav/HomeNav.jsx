@@ -15,7 +15,6 @@ const HomeNav = ({ handleReturn }) => {
     handleShowInnerModal,
     handleCloseInnerModal,
   ] = useModal();
-
   return (
     <>
       {/* <h2 className='hidden'>뒤로가기,더보기 메뉴</h2> */}
