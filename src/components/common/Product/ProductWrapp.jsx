@@ -8,6 +8,7 @@ const ProductWrapp = () => {
   const [productList, setProductList] = useState([]);
   const { user } = useContext(AuthContext);
 
+  // 판매중인 상품페이지에 상품 불러오기
   // 화면에 첫 렌더링될때만 서버통신 실행
   useEffect(() => {
     const setProductFeed = async () => {

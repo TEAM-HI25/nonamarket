@@ -12,11 +12,11 @@ const useModal = () => {
     setIsShowModal(false);
   };
 
-  const hanldeShowInnerModal = () => {
+  const handleShowInnerModal = () => {
     setIsShowInnerModal(true);
   };
 
-  const handlCloseInnerModal = () => {
+  const handleCloseInnerModal = () => {
     setIsShowInnerModal(false);
     setIsShowModal(false);
   };
@@ -26,8 +26,8 @@ const useModal = () => {
     isShowInnerModal,
     handleShowModal,
     handleCloseModal,
-    hanldeShowInnerModal,
-    handlCloseInnerModal,
+    handleShowInnerModal,
+    handleCloseInnerModal,
   ];
 };
 

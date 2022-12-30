@@ -6,7 +6,7 @@ import {
   InnerModalBtnWrap,
 } from './StyledInnerModal';
 
-const InnerModal = ({ name, CloseInnerModal, postId }) => {
+const InnerModal = ({ name, CloseInnerModal, postId, productId }) => {
   const { user } = useContext(AuthContext);
 
   const ment = {
@@ -60,7 +60,26 @@ const InnerModal = ({ name, CloseInnerModal, postId }) => {
       };
       reportPost();
     } else if (name === '상품삭제') {
-      console.log('게시글 삭제');
+      const handleDeleteProduct = async () => {
+        const response = await fetch(
+          `https://mandarin.api.weniv.co.kr/product/${productId}`,
+          {
+            method: 'DELETE',
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+              'Content-type': 'application/json',
+            },
+          },
+        );
+        const data = await response.json();
+        console.log(data);
+        if (parseInt(data.status, 10) === 200) {
+          CloseInnerModal();
+          // 페이지 새로고침돼서 삭제된 상품목록 페이지 보여주기
+          window.location.reload();
+        }
+      };
+      handleDeleteProduct();
     }
   };
 

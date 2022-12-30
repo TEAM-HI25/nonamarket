@@ -27,8 +27,8 @@ const PostCard = ({ data }) => {
     isShowInnerModal,
     handleShowModal,
     handleCloseModal,
-    hanldeShowInnerModal,
-    handlCloseInnerModal,
+    handleShowInnerModal,
+    handleCloseInnerModal,
   ] = useModal();
 
   const { user } = useContext(AuthContext);
@@ -88,25 +88,25 @@ const PostCard = ({ data }) => {
       {/* eslint-disable-next-line no-nested-ternary */}
       {!isShowModal ? null : author.accountname === user.accountname ? (
         <Modal CloseModal={handleCloseModal}>
-          <ModalBtn name='삭제' onClick={hanldeShowInnerModal} />
+          <ModalBtn name='삭제' onClick={handleShowInnerModal} />
           <ModalBtn name='수정' onClick={handleGoPostEdit} />
         </Modal>
       ) : (
         <Modal CloseModal={handleCloseModal}>
-          <ModalBtn name='신고하기' onClick={hanldeShowInnerModal} />
+          <ModalBtn name='신고하기' onClick={handleShowInnerModal} />
         </Modal>
       )}
       {/* eslint-disable-next-line no-nested-ternary */}
       {!isShowInnerModal ? null : author.accountname === user.accountname ? (
         <InnerModal
           name='게시글삭제'
-          CloseInnerModal={handlCloseInnerModal}
+          CloseInnerModal={handleCloseInnerModal}
           postId={id}
         />
       ) : (
         <InnerModal
           name='게시글신고'
-          CloseInnerModal={handlCloseInnerModal}
+          CloseInnerModal={handleCloseInnerModal}
           postId={id}
         />
       )}

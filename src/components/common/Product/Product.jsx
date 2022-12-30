@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import Modal from '../Modal/ProductModal';
-import ProductInnerModal from '../Modal/ProductInnerModal';
+import useModal from '../../../hooks/useModal';
+import Modal from '../Modals/Modal';
+import ModalBtn from '../Modals/ModalBtn';
+import InnerModal from '../Modals/InnerModal';
 import * as S from './StyledProduct';
 
 const Product = ({ product }) => {
@@ -8,32 +9,15 @@ const Product = ({ product }) => {
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-  // 모달 열기
-  const [openModal, setOpenModal] = useState(false);
-  const [openInnerModal, setOpenInnerModal] = useState(false);
-
-  // 메인 모달 열기 함수
-  const handleShowModal = () => {
-    setOpenModal(true);
-  };
-
-  // 메인 모달 닫기 함수
-  const handleCloseModal = (event) => {
-    // 부모요소인 S.ModalWrapper 를 클릭했을때만 이벤트가 실행되게 하기
-    if (event.target === event.currentTarget) {
-      setOpenModal(false);
-    }
-  };
-
-  // 이너 모달 열기 함수
-  const handleShowInnerModal = () => {
-    setOpenInnerModal(true);
-  };
-  // 이너 모달 닫기 함수
-  const handleCloseInnerModal = () => {
-    setOpenModal(false);
-    setOpenInnerModal(false);
-  };
+  // 모달 관리 커스텀훅
+  const [
+    isShowModal,
+    isShowInnerModal,
+    handleShowModal,
+    handleCloseModal,
+    handleShowInnerModal,
+    handleCloseInnerModal,
+  ] = useModal();
 
   return (
     <div>
@@ -42,15 +26,17 @@ const Product = ({ product }) => {
         <S.ProductName>{product.itemName}</S.ProductName>
         <S.ProductPrice>{replacePrice}원</S.ProductPrice>
       </S.ProductBtn>
-      {openModal && (
-        <Modal
-          handleCloseModal={handleCloseModal}
-          handleShowInnerModal={handleShowInnerModal}
-        />
+      {isShowModal && (
+        <Modal CloseModal={handleCloseModal}>
+          <ModalBtn name='삭제' onClick={handleShowInnerModal} />
+          <ModalBtn name='수정' />
+          <ModalBtn name='웹사이트에서 상품 보기 ' />
+        </Modal>
       )}
-      {openInnerModal && (
-        <ProductInnerModal
-          handleCloseInnerModal={handleCloseInnerModal}
+      {isShowInnerModal && (
+        <InnerModal
+          name='상품삭제'
+          CloseInnerModal={handleCloseInnerModal}
           productId={product.id}
         />
       )}
