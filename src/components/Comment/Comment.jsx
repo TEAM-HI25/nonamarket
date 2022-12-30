@@ -1,16 +1,24 @@
-import { useContext } from 'react';
-import { AuthContext } from '../../context/context';
+import { useState } from 'react';
 import ProfileImg from '../common/ProfileImg/ProfileImg';
 import * as S from './StyledComment';
 import verticalIcon from '../../assets/images/icon-more-vertical.svg';
+import CommentModal from '../common/Modal/CommentModal';
 
-const Comment = ({ comment }) => {
-  const { user } = useContext(AuthContext);
+const Comment = ({ commentsData, postid, handleDelete }) => {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const handleModalOn = () => {
+    setIsOpenModal(!isOpenModal);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpenModal(false);
+  };
 
   const commentTime = (time) => {
     const uploadTime = Date.parse(time);
     const now = Date.now();
-    const gap = (now - uploadTime) / 1000;
+    const gap = (now - uploadTime) / 1000 - 120;
 
     if (gap < 60) {
       return '방금 전';
@@ -28,20 +36,43 @@ const Comment = ({ comment }) => {
   };
 
   return (
-    <>
-      <S.CommentUserInfo>
-        <ProfileImg size='36px' src={user.accountname} alt='프로필이미지' />
-        <S.UserInfo>
-          <strong>서귀포시 무슨 농장</strong>
-          <p>· {commentTime(comment.createdAt)}</p>
-          <img src={verticalIcon} alt='댓글 수정 메뉴 버튼' />
-        </S.UserInfo>
-      </S.CommentUserInfo>
-      <S.CommentContent>
-        안녕하세요. 사진이 너무 멋있어요. 한라봉 언제먹을 수 있나요? 기다리기
-        지쳤어요 땡뻘땡뻘..
-      </S.CommentContent>
-    </>
+    <div>
+      {commentsData &&
+        commentsData.map((comment) => {
+          return (
+            <S.CommentListWrapper>
+              <S.CommentListContainer>
+                <li key={comment.id}>
+                  <S.CommentUserInfo>
+                    <ProfileImg
+                      size='36px'
+                      src={comment.author.image}
+                      alt='프로필이미지'
+                    />
+                    <S.UserInfo>
+                      <strong>{comment.author.username}</strong>
+                      <p>· {commentTime(comment.createdAt)}</p>
+                      <button type='button' onClick={handleModalOn}>
+                        <img src={verticalIcon} alt='댓글 수정 메뉴 버튼' />
+                      </button>
+                    </S.UserInfo>
+                  </S.CommentUserInfo>
+                  <S.CommentContent>{comment.content}</S.CommentContent>
+                </li>
+              </S.CommentListContainer>
+              {isOpenModal && (
+                <CommentModal
+                  onClick={handleCloseModal}
+                  setIsOpenModal={setIsOpenModal}
+                  comment={comment}
+                  postid={postid}
+                  handleDelete={handleDelete}
+                />
+              )}
+            </S.CommentListWrapper>
+          );
+        })}
+    </div>
   );
 };
 

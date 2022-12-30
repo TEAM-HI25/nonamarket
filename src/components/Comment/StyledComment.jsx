@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+export const CommentListWrapper = styled.section``;
+export const CommentListContainer = styled.ul``;
+
 export const CommentUserInfo = styled.div`
   display: flex;
   gap: 12px;

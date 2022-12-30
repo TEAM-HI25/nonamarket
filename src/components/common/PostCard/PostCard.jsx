@@ -1,13 +1,14 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/context';
 import MessageCircleIcon from '../../../assets/images/icon-message-circle-mini.svg';
 import verticalMenuIcon from '../../../assets/images/icon-more-vertical.svg';
-import MyPostModal from '../Modal/MyPostModal';
-import OthersPostModal from '../Modal/OthersPostModal';
-import PostInnerModal from '../Modal/PostInnerModal';
-import * as S from './StyledPostCard';
 import LikeButton from '../Button/LikeButton';
+import useModal from '../../../hooks/useModal';
+import Modal from '../Modals/Modal';
+import ModalBtn from '../Modals/ModalBtn';
+import InnerModal from '../Modals/InnerModal';
+import * as S from './StyledPostCard';
 
 const PostCard = ({ data }) => {
   const {
@@ -20,26 +21,21 @@ const PostCard = ({ data }) => {
     hearted,
     commentCount,
   } = data;
+
+  const [
+    isShowModal,
+    isShowInnerModal,
+    handleShowModal,
+    handleCloseModal,
+    handleShowInnerModal,
+    handleCloseInnerModal,
+  ] = useModal();
+
   const { user } = useContext(AuthContext);
-  const [isShowModal, setIsShowModal] = useState(false);
-  const [isShowInnerModal, setIsShowInnerModal] = useState(false);
   const navigate = useNavigate();
 
-  const handleShowModal = () => {
-    setIsShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsShowModal(false);
-  };
-
-  const hanldeShowInnerModal = () => {
-    setIsShowInnerModal(true);
-  };
-
-  const handlCloseInnerModal = () => {
-    setIsShowInnerModal(false);
-    setIsShowModal(false);
+  const handleGoPostEdit = () => {
+    navigate('/addproduct');
   };
 
   const handleGoUserPage = () => {
@@ -91,27 +87,26 @@ const PostCard = ({ data }) => {
 
       {/* eslint-disable-next-line no-nested-ternary */}
       {!isShowModal ? null : author.accountname === user.accountname ? (
-        <MyPostModal
-          CloseModal={handleCloseModal}
-          ShowInnerModal={hanldeShowInnerModal}
-        />
+        <Modal CloseModal={handleCloseModal}>
+          <ModalBtn name='삭제' onClick={handleShowInnerModal} />
+          <ModalBtn name='수정' onClick={handleGoPostEdit} />
+        </Modal>
       ) : (
-        <OthersPostModal
-          CloseModal={handleCloseModal}
-          ShowInnerModal={hanldeShowInnerModal}
-        />
+        <Modal CloseModal={handleCloseModal}>
+          <ModalBtn name='신고하기' onClick={handleShowInnerModal} />
+        </Modal>
       )}
       {/* eslint-disable-next-line no-nested-ternary */}
       {!isShowInnerModal ? null : author.accountname === user.accountname ? (
-        <PostInnerModal
-          name='삭제'
-          CloseInnerModal={handlCloseInnerModal}
+        <InnerModal
+          name='게시글삭제'
+          CloseInnerModal={handleCloseInnerModal}
           postId={id}
         />
       ) : (
-        <PostInnerModal
-          name='신고'
-          CloseInnerModal={handlCloseInnerModal}
+        <InnerModal
+          name='게시글신고'
+          CloseInnerModal={handleCloseInnerModal}
           postId={id}
         />
       )}
