@@ -1,6 +1,18 @@
-import * as S from './StyledPostAlbum';
-
-const PostAlbum = () => {
-  return <S.ProfilePostAlbumWrap>PostAlbum</S.ProfilePostAlbumWrap>;
+const PostAlbum = ({ data }) => {
+  const {
+    // author,
+    // content,
+    image,
+    // createdAt,
+    // id,
+    // heartCount,
+    // hearted,
+    // commentCount,
+  } = data;
+  return (
+    <li>
+      <img src={image} alt='사진입니다.' />
+    </li>
+  );
 };
 export default PostAlbum;

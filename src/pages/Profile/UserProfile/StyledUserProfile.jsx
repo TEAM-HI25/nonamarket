@@ -26,9 +26,18 @@ export const PostCardWrap = styled.div`
 `;
 
 export const ProfilePostAlbumWrap = styled.ul`
+  max-width: 390px;
+  padding: 16px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 8px;
+  background-color: #fff;
   li {
+    width: 114px;
+    height: 114px;
+    img {
+      width: 114px;
+      height: 114px;
+    }
   }
 `;

@@ -7,8 +7,10 @@ import TabMenu from '../../../components/common/TabMenu/TabMenu';
 import ProfileInfo from '../../../components/ProfileInfo/ProfileInfo';
 import MenuBar from '../../../components/MenuBar/MenuBar';
 import PostCard from '../../../components/common/PostCard/PostCard';
+import PostAlbum from '../../../components/common/PostAlbum/PostAlbum';
 import * as S from './StyledUserProfile';
 import FetchApi from '../../../api';
+// import PostAlbum from '../../../components/common/PostAlbum/PostAlbum';
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
@@ -66,12 +68,21 @@ const UserProfile = () => {
         )}
         <ProductWrapp pageAccount={pageAccount} />
         <MenuBar list={list} onListToggle={onListToggle} />
+        {/* eslint-disable-next-line no-nested-ternary */}
         {userPostArr.length ? (
-          <S.PostCardWrap>
-            {userPostArr.map((item) => (
-              <PostCard key={item.id} data={item} />
-            ))}
-          </S.PostCardWrap>
+          list ? (
+            <S.PostCardWrap>
+              {userPostArr.map((item) => (
+                <PostCard key={item.id} data={item} />
+              ))}
+            </S.PostCardWrap>
+          ) : (
+            <S.ProfilePostAlbumWrap>
+              {userPostArr.map((item, index) => (
+                <PostAlbum key={item.id} data={item} index={index} />
+              ))}
+            </S.ProfilePostAlbumWrap>
+          )
         ) : (
           <>로딩중입니다...</>
         )}
