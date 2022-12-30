@@ -65,22 +65,16 @@ const UserProfile = () => {
           <p>로딩중입니다...</p>
         )}
         <ProductWrapp pageAccount={pageAccount} />
-        <S.PostCardWrap>
-          <MenuBar list={list} onListToggle={onListToggle} />
-          {userPostArr.length ? (
-            userPostArr.map((item) => <PostCard key={item.id} data={item} />)
-          ) : (
-            <>로딩중입니다...</>
-          )}
-        </S.PostCardWrap>
-        <S.PostCardWrap>
-          <h2 className='hidden'>SNS 이미지 리스트</h2>
-          <S.ProfilePostAlbumWrap>
-            {/* {userPostArr.length ? (
-              userPostArr.map(() => )
-            ):()} */}
-          </S.ProfilePostAlbumWrap>
-        </S.PostCardWrap>
+        <MenuBar list={list} onListToggle={onListToggle} />
+        {userPostArr.length ? (
+          <S.PostCardWrap>
+            {userPostArr.map((item) => (
+              <PostCard key={item.id} data={item} />
+            ))}
+          </S.PostCardWrap>
+        ) : (
+          <>로딩중입니다...</>
+        )}
       </S.MainWrap>
       <TabMenu />
     </S.Container>

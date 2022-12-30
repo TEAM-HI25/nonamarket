@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 const ProductSection = styled.section`
   width: 390px;
-  /* height: 208px; */
   padding: 20px 0 20px 16px;
-  /* border: 0.5px solid var(--border-color); */
   background-color: #fff;
+  margin: 6px 0;
   /* overflow-x: scroll;
   overflow-y: hidden; */
   h2 {

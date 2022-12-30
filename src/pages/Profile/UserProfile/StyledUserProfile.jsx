@@ -10,7 +10,6 @@ export const MainWrap = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
   overflow: hidden;
   background-color: transparent;
 `;
@@ -19,10 +18,10 @@ export const PostCardWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 30px;
   background-color: #fff;
-  & section + section {
-    margin-top: 20px;
+  border-bottom: 1px solid #bdbdbd;
+  & section {
+    margin: 20px 16px;
   }
 `;
 

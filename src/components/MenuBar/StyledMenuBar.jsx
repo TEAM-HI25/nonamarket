@@ -5,9 +5,9 @@ const MenuBarWrapper = styled.div`
   justify-content: end;
   gap: 16px;
   width: 390px;
-  margin-bottom: 16px;
   border-bottom: 0.5px solid #dbdbdb;
   padding: 9px 16px;
+  background-color: #fff;
   button {
     img {
       width: 26px;
