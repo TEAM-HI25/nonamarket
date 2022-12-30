@@ -30,8 +30,6 @@ export const ProfilePostAlbumWrap = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 8px;
-  img {
-    width: 114px;
-    height: 114px;
+  li {
   }
 `;

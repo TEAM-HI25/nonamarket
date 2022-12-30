@@ -11,7 +11,6 @@ const ProfileInfo = ({ userProfile, authAccountName }) => {
   const [followingCnt, setFolloingCnt] = useState(userProfile.followingCount);
   console.log(userProfile.followerCount);
   console.log(followerCnt);
-  console.log(userProfile);
   return (
     <S.Container>
       <S.ProfileInfoWrapper>

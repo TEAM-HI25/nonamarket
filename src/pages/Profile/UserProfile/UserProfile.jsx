@@ -12,10 +12,10 @@ import FetchApi from '../../../api';
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
-  // 로그인한 사용자의 accountname
   const authAccountName = user.accountname;
   const [userProfile, setUserProfile] = useState(null);
   const [userPostArr, setUserPostArr] = useState([]);
+  const [list, setList] = useState(true);
   const location = useLocation();
   const pageAccount = location.pathname.split('/')[2];
   const BASE_URL = 'https://mandarin.api.weniv.co.kr';
@@ -48,6 +48,10 @@ const UserProfile = () => {
     }
   }, []);
 
+  const onListToggle = () => {
+    setList(!list);
+  };
+
   return (
     <S.Container>
       <Nav type='home' />
@@ -62,26 +66,20 @@ const UserProfile = () => {
         )}
         <ProductWrapp pageAccount={pageAccount} />
         <S.PostCardWrap>
-          <MenuBar />
+          <MenuBar list={list} onListToggle={onListToggle} />
           {userPostArr.length ? (
             userPostArr.map((item) => <PostCard key={item.id} data={item} />)
           ) : (
-            <>아마도 싫어합니다.</>
+            <>로딩중입니다...</>
           )}
         </S.PostCardWrap>
         <S.PostCardWrap>
-          {/* <h2 className='hidden'>SNS 이미지 리스트</h2>
+          <h2 className='hidden'>SNS 이미지 리스트</h2>
           <S.ProfilePostAlbumWrap>
-            <li>사진</li>
-            <li>사진</li>
-            <li>사진</li>
-            <li>사진</li>
-            <li>사진</li>
-            <li>사진</li>
-            <li>사진</li>
-            <li>사진</li>
-            <li>사진</li>
-          </S.ProfilePostAlbumWrap> */}
+            {/* {userPostArr.length ? (
+              userPostArr.map(() => )
+            ):()} */}
+          </S.ProfilePostAlbumWrap>
         </S.PostCardWrap>
       </S.MainWrap>
       <TabMenu />
