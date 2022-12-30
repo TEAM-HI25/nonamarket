@@ -2,20 +2,28 @@ import styled from 'styled-components';
 
 const ProductSection = styled.section`
   width: 390px;
-  height: 208px;
+  /* height: 208px; */
   padding: 20px 0 20px 16px;
-  border: 0.5px solid var(--border-color);
-  overflow-x: scroll;
-  overflow-y: hidden;
+  /* border: 0.5px solid var(--border-color); */
+  background-color: #fff;
+  /* overflow-x: scroll;
+  overflow-y: hidden; */
   h2 {
     margin-bottom: 16px;
     font-size: 1.6rem;
     line-height: 2rem;
     font-weight: 700;
   }
-  li {
+  ul {
     display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
     gap: 10px;
+
+    li {
+      display: flex;
+      gap: 10px;
+    }
   }
 `;
 

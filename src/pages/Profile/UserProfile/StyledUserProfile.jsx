@@ -15,24 +15,6 @@ export const MainWrap = styled.main`
   background-color: transparent;
 `;
 
-export const ProductsSection = styled.section`
-  padding: 20px 0 20px 16px;
-  width: 390px;
-  background-color: #fff;
-  h2 {
-    margin-bottom: 16px;
-    font-size: 1.6rem;
-    line-height: 2rem;
-    font-weight: 700;
-  }
-  div {
-    display: flex;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    gap: 10px;
-  }
-`;
-
 export const PostCardWrap = styled.div`
   display: flex;
   flex-direction: column;

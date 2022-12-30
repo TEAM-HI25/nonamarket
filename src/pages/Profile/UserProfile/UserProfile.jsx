@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../context/context';
 import Nav from '../../../components/Nav/Nav';
-// import Product from '../../../components/common/Product/Product';
+import ProductWrapp from '../../../components/common/Product/ProductWrapp';
 import TabMenu from '../../../components/common/TabMenu/TabMenu';
 import ProfileInfo from '../../../components/ProfileInfo/ProfileInfo';
 import MenuBar from '../../../components/MenuBar/MenuBar';
@@ -60,14 +60,7 @@ const UserProfile = () => {
         ) : (
           <p>로딩중입니다...</p>
         )}
-        <S.ProductsSection>
-          <h2>판매 중인 상품</h2>
-          <div>
-            {/* <Product /> */}
-            {/* <Product /> */}
-            {/* <Product /> */}
-          </div>
-        </S.ProductsSection>
+        <ProductWrapp pageAccount={pageAccount} />
         <S.PostCardWrap>
           <MenuBar />
           {userPostArr.length ? (

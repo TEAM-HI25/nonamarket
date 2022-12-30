@@ -5,7 +5,6 @@ import Nav from '../../components/Nav/Nav';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
 import FetchApi from '../../api';
 import * as S from './StyledAddProduct';
-import ProductWrapp from '../../components/common/Product/ProductWrapp';
 
 const AddProduct = () => {
   // input 상태관리
@@ -158,7 +157,6 @@ const AddProduct = () => {
             onChange={handleData}
             onBlur={handleCheckSaleLink}
           />
-          <ProductWrapp />
         </S.InputWrapp>
       </S.MainWrapp>
     </S.AllWrapp>
