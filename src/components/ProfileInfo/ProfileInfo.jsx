@@ -11,6 +11,7 @@ const ProfileInfo = ({ userProfile, authAccountName }) => {
   const [followingCnt, setFolloingCnt] = useState(userProfile.followingCount);
   console.log(userProfile.followerCount);
   console.log(followerCnt);
+  console.log(userProfile);
   return (
     <S.Container>
       <S.ProfileInfoWrapper>
@@ -28,7 +29,7 @@ const ProfileInfo = ({ userProfile, authAccountName }) => {
       <S.UserWrapper>
         <S.UserName>{userProfile.username}</S.UserName>
         <S.UserId>{userProfile.accountname}</S.UserId>
-        <S.UserIntro>{userProfile.userintro}</S.UserIntro>
+        <S.UserIntro>{userProfile.intro}</S.UserIntro>
       </S.UserWrapper>
       {pageAccount === authAccountName ? (
         <MyProfileBtnWrap />
