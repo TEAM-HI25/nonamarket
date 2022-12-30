@@ -1,25 +1,8 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import Button from '../common/Button/Button';
 import * as S from './StyledProfileInfo';
-import YourProfileBtnWrap from '../common/Button/FollowButton';
-
-const MyProfileBtnWrap = () => {
-  const navigate = useNavigate();
-  const handleMove = (e) => {
-    if (e.target.innerText === '프로필 수정') {
-      navigate('/modifyprofile');
-    } else if (e.target.innerText === '상품 등록') {
-      navigate('/addproduct');
-    }
-  };
-  return (
-    <S.BtnWrapper>
-      <Button name='프로필 수정' type='button' size='m' onClick={handleMove} />
-      <Button name='상품 등록' type='button' size='m' onClick={handleMove} />
-    </S.BtnWrapper>
-  );
-};
+import UserProfileBtnWrap from './UserProfileBtnWrapp';
+import MyProfileBtnWrap from './MyProfileBtnWrapp';
 
 const ProfileInfo = ({ userProfile, authAccountName }) => {
   const location = useLocation();
@@ -50,7 +33,7 @@ const ProfileInfo = ({ userProfile, authAccountName }) => {
       {pageAccount === authAccountName ? (
         <MyProfileBtnWrap />
       ) : (
-        <YourProfileBtnWrap
+        <UserProfileBtnWrap
           userProfile={userProfile}
           setFollowerCount={setFollowerCnt}
           setFolloingCount={setFolloingCnt}

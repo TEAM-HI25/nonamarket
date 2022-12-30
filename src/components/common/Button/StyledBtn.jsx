@@ -20,8 +20,15 @@ const SIZES = {
   `,
 };
 
+const COLOR = {
+  gray: css`
+    --button-bg-color: #c8beab;
+  `,
+};
+
 const StyledBtn = styled.button`
   ${(p) => p.sizeStyle};
+  ${(p) => p.btncolor};
   width: var(--button-width, 322px);
   cursor: pointer;
   padding: var(--button-padding, 13px 0px);
@@ -48,4 +55,4 @@ const StyledBtn = styled.button`
   }
 `;
 
-export { StyledBtn, SIZES };
+export { StyledBtn, SIZES, COLOR };

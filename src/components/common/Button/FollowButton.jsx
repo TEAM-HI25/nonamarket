@@ -2,9 +2,6 @@ import { useLocation } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import Button from './Button';
 import { AuthContext } from '../../../context/context';
-import * as S from './StyledProfileInfo';
-import iconMessageCircle from '../../../assets/images/icon-message-circle.svg';
-import iconShare from '../../../assets/images/icon-share.svg';
 
 const FollowButton = ({ userProfile, setFolloingCount, setFollowerCount }) => {
   const location = useLocation();
@@ -51,27 +48,16 @@ const FollowButton = ({ userProfile, setFolloingCount, setFollowerCount }) => {
       unfollowingPost();
     }
   };
-  return (
-    <S.BtnWrapper>
-      <S.Btn>
-        <img src={iconMessageCircle} alt='메세지아이콘' />
-      </S.Btn>
-      {!isFollow ? (
-        <Button name='팔로우' type='button' size='m' onClick={handelIsFollow} />
-      ) : (
-        <Button
-          name='언팔로우'
-          type='button'
-          size='m'
-          onClick={handelIsFollow}
-        />
-      )}
-      {/* <Button name='팔로우' type='button' size='m' onClick={handelIsFollow} />
-      <Button name='언팔로우' type='button' size='m' onClick={handelIsFollow} /> */}
-      <S.Btn>
-        <img src={iconShare} alt='공유아이콘' />
-      </S.Btn>
-    </S.BtnWrapper>
+  return !isFollow ? (
+    <Button name='팔로우' type='button' size='m' onClick={handelIsFollow} />
+  ) : (
+    <Button
+      name='언팔로우'
+      type='button'
+      size='m'
+      btncolor='gray'
+      onClick={handelIsFollow}
+    />
   );
 };
 
