@@ -12,7 +12,7 @@ export const ContentWrapper = styled.form.attrs({
 
 export const ContentInput = styled.textarea.attrs({
   rows: '8',
-  placeholder: '게시글 입력하기',
+  placeholder: '게시글 입력하기...',
 })`
   width: 100%;
   font-size: 1.4rem;
@@ -54,29 +54,29 @@ export const ImgUploadBtn = styled.label`
   cursor: pointer;
 `;
 
-export const UploadImageList = styled.div`
-  position: relative;
-  display: flex;
-  width: 304px;
-  height: 228px;
-  margin: 0 16px 0 71px;
-  overflow-x: scroll;
-  gap: 8px;
-
+export const PostImgWrapper = styled.section`
+  ul {
+    display: flex;
+    gap: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  li {
+    position: relative;
+  }
   img {
-    border-radius: 10px;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    border-radius: 10px;
+    background-size: cover;
   }
-
-  button {
-    background: url(${deleteBtn}) no-repeat;
+  .postImg-del {
+    position: absolute;
+    background-image: url(${deleteBtn});
+    background-size: contain;
     width: 22px;
     height: 22px;
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-size: 100%;
+    right: 6px;
+    top: 6px;
   }
 `;
