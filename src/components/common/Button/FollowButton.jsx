@@ -56,12 +56,18 @@ const FollowButton = ({ userProfile, setFolloingCount, setFollowerCount }) => {
       <S.Btn>
         <img src={iconMessageCircle} alt='메세지아이콘' />
       </S.Btn>
-      <Button
-        name='임시 팔로우'
-        type='button'
-        size='m'
-        onClick={handelIsFollow}
-      />
+      {!isFollow ? (
+        <Button name='팔로우' type='button' size='m' onClick={handelIsFollow} />
+      ) : (
+        <Button
+          name='언팔로우'
+          type='button'
+          size='m'
+          onClick={handelIsFollow}
+        />
+      )}
+      {/* <Button name='팔로우' type='button' size='m' onClick={handelIsFollow} />
+      <Button name='언팔로우' type='button' size='m' onClick={handelIsFollow} /> */}
       <S.Btn>
         <img src={iconShare} alt='공유아이콘' />
       </S.Btn>
