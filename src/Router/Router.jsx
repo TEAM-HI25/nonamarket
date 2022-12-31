@@ -19,6 +19,7 @@ import UploadPost from '../pages/UploadPost/UploadPost';
 import ChatList from '../pages/ChatList/ChatList';
 import ChatRoom from '../pages/ChatRoom/ChatRoom';
 import NotFound from '../pages/NotFound/NotFound';
+import EditPost from '../pages/EditPost/EditPost';
 
 const Router = () => {
   const { user } = useContext(AuthContext);
@@ -48,6 +49,7 @@ const Router = () => {
             <Route path='/addproduct' element={<AddProduct />} />
             <Route path='/product/:productid' element={<UpdateProduct />} />
             <Route path='/postdetail/:postid' element={<PostDetail />} />
+            <Route path='/editpost/:postid' element={<EditPost />} />
             <Route path='/uploadpost' element={<UploadPost />} />
             <Route path='/chatlist' element={<ChatList />} />
             <Route path='/chatroom' element={<ChatRoom />} />
