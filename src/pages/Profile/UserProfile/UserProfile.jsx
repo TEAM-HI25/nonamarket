@@ -2,20 +2,22 @@ import { useContext, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../context/context';
 import Nav from '../../../components/Nav/Nav';
-// import Product from '../../../components/common/Product/Product';
+import ProductWrapp from '../../../components/common/Product/ProductWrapp';
 import TabMenu from '../../../components/common/TabMenu/TabMenu';
 import ProfileInfo from '../../../components/ProfileInfo/ProfileInfo';
 import MenuBar from '../../../components/MenuBar/MenuBar';
 import PostCard from '../../../components/common/PostCard/PostCard';
+import PostAlbum from '../../../components/common/PostAlbum/PostAlbum';
 import * as S from './StyledUserProfile';
 import FetchApi from '../../../api';
+// import PostAlbum from '../../../components/common/PostAlbum/PostAlbum';
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
-  // 로그인한 사용자의 accountname
   const authAccountName = user.accountname;
   const [userProfile, setUserProfile] = useState(null);
   const [userPostArr, setUserPostArr] = useState([]);
+  const [list, setList] = useState(true);
   const location = useLocation();
   const pageAccount = location.pathname.split('/')[2];
   const BASE_URL = 'https://mandarin.api.weniv.co.kr';
@@ -48,6 +50,10 @@ const UserProfile = () => {
     }
   }, []);
 
+  const onListToggle = () => {
+    setList(!list);
+  };
+
   return (
     <S.Container>
       <Nav type='home' />
@@ -60,36 +66,26 @@ const UserProfile = () => {
         ) : (
           <p>로딩중입니다...</p>
         )}
-        <S.ProductsSection>
-          <h2>판매 중인 상품</h2>
-          <div>
-            {/* <Product /> */}
-            {/* <Product /> */}
-            {/* <Product /> */}
-          </div>
-        </S.ProductsSection>
-        <S.PostCardWrap>
-          <MenuBar />
-          {userPostArr.length ? (
-            userPostArr.map((item) => <PostCard key={item.id} data={item} />)
+        <ProductWrapp pageAccount={pageAccount} />
+        <MenuBar list={list} onListToggle={onListToggle} />
+        {/* eslint-disable-next-line no-nested-ternary */}
+        {userPostArr.length ? (
+          list ? (
+            <S.PostCardWrap>
+              {userPostArr.map((item) => (
+                <PostCard key={item.id} data={item} />
+              ))}
+            </S.PostCardWrap>
           ) : (
-            <>아마도 싫어합니다.</>
-          )}
-        </S.PostCardWrap>
-        <S.PostCardWrap>
-          {/* <h2 className='hidden'>SNS 이미지 리스트</h2>
-          <S.ProfilePostAlbumWrap>
-            <li>사진</li>
-            <li>사진</li>
-            <li>사진</li>
-            <li>사진</li>
-            <li>사진</li>
-            <li>사진</li>
-            <li>사진</li>
-            <li>사진</li>
-            <li>사진</li>
-          </S.ProfilePostAlbumWrap> */}
-        </S.PostCardWrap>
+            <S.ProfilePostAlbumWrap>
+              {userPostArr.map((item, index) => (
+                <PostAlbum key={item.id} data={item} index={index} />
+              ))}
+            </S.ProfilePostAlbumWrap>
+          )
+        ) : (
+          <>로딩중입니다...</>
+        )}
       </S.MainWrap>
       <TabMenu />
     </S.Container>

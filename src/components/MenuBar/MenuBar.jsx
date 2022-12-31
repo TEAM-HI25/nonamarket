@@ -1,14 +1,26 @@
 import iconPostListOn from '../../assets/images/icon-post-list-on.svg';
-// import iconPostListOff from './../assets/images/icon-post-list-off.svg'
-// import iconPostListOn from '../../assets/images/icon-post-album-on.svg';
-import iconPostListOff from '../../assets/images/icon-post-album-off.svg';
+import iconPostListOff from '../../assets/images/icon-post-list-off.svg';
+import iconPostAlbumOn from '../../assets/images/icon-post-album-on.svg';
+import iconPostAlbumOff from '../../assets/images/icon-post-album-off.svg';
 import MenuBarWrapper from './StyledMenuBar';
 
-const MenuBar = () => {
+const MenuBar = ({ list, onListToggle }) => {
   return (
     <MenuBarWrapper>
-      <img src={iconPostListOn} alt='게시글_리스트로_보기_아이콘' />
-      <img src={iconPostListOff} alt='게시글_이미지로_보기_아이콘' />
+      <button
+        type='button'
+        aria-label='게시글 리스트로 보기 아이콘'
+        onClick={onListToggle}
+      >
+        <img src={list ? iconPostListOn : iconPostListOff} alt='' />
+      </button>
+      <button
+        type='button'
+        aria-label='게시글 이미지로 보기 아이콘'
+        onClick={onListToggle}
+      >
+        <img src={list ? iconPostAlbumOff : iconPostAlbumOn} alt='' />
+      </button>
     </MenuBarWrapper>
   );
 };

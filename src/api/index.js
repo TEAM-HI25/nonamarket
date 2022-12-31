@@ -164,8 +164,8 @@ const FetchApi = {
     return data;
   },
 
-  async loadProductFeed(token, accountname) {
-    const response = await fetch(`${BASE_URL}/product/${accountname}`, {
+  async loadProductFeed(token, pageAccount) {
+    const response = await fetch(`${BASE_URL}/product/${pageAccount}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,
