@@ -57,6 +57,23 @@ const FetchApi = {
     return imageSrc;
   },
 
+  async uploadImgs(e) {
+    console.log(e.target.files);
+    const imageFile = e.target.files[0];
+    const formData = new FormData();
+    formData.append('image', imageFile);
+
+    const response = await fetch(`${BASE_URL}/image/uploadfiles`, {
+      method: 'POST',
+      body: formData,
+    });
+
+    const data = await response.json();
+    console.log(data);
+    const imageSrc = `${BASE_URL}/${data[0].filename}`;
+    return imageSrc;
+  },
+
   async getSignUp(username, email, password, accountname, intro, image) {
     const userData = {
       user: {

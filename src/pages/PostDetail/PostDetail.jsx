@@ -58,21 +58,23 @@ const PostDetail = () => {
   console.log(postData);
 
   return (
-    <>
+    <S.AllWrapper>
       <Nav type='home' />
-      <h2 className='hidden'>포스트</h2>
-      <S.PostCardWrapper>
-        {postData && <PostCard data={postData} />}
-      </S.PostCardWrapper>
-      <S.CommentWrapper>
-        <Comment
-          commentsData={commentsData}
-          postid={postid}
-          handleDelete={handleGetComment}
-        />
-      </S.CommentWrapper>
+      <S.MainWrapper>
+        <h2 className='hidden'>포스트</h2>
+        <S.PostCardWrapper>
+          {postData && <PostCard data={postData} />}
+        </S.PostCardWrapper>
+        <S.CommentWrapper>
+          <Comment
+            commentsData={commentsData}
+            postid={postid}
+            handleDelete={handleGetComment}
+          />
+        </S.CommentWrapper>
+      </S.MainWrapper>
       <CommentInput postid={postid} setCommentsData={setCommentsData} />
-    </>
+    </S.AllWrapper>
   );
 };
 

@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
 export const CommentWrapper = styled.form`
+  width: 100%;
+  position: sticky;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
   padding: 13px 16px;
   border-top: 0.5px solid #dbdbdb;
+  background-color: #fff;
 `;
 
 export const CommentInput = styled.input.attrs({
