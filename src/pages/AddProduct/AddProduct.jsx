@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/context';
 import Nav from '../../components/Nav/Nav';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
@@ -14,7 +14,7 @@ const AddProduct = () => {
   const [saleLink, setSaleLink] = useState('');
 
   const { user } = useContext(AuthContext);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // 모든 값 valid check, 서버 전송 가능 상태시 버튼 true
   const [isValid, setIsValid] = useState({
@@ -110,7 +110,7 @@ const AddProduct = () => {
     };
     const productData = await FetchApi.registerProduct(reqData, user.token);
     console.log(productData);
-    // navigate('/myprofile');
+    navigate(`/profile/${user.accountname}`);
   };
 
   return (

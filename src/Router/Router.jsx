@@ -13,6 +13,7 @@ import FollowerList from '../pages/FollowerList/FollowerList';
 import FollowingList from '../pages/FollowingList/FollowingList';
 import ModifyProfile from '../pages/ModifyProfile/ModifyProfile';
 import AddProduct from '../pages/AddProduct/AddProduct';
+import UpdateProduct from '../pages/UpdateProduct/UpdateProduct';
 import PostDetail from '../pages/PostDetail/PostDetail';
 import UploadPost from '../pages/UploadPost/UploadPost';
 import ChatList from '../pages/ChatList/ChatList';
@@ -45,6 +46,7 @@ const Router = () => {
             <Route path='/followinglist' element={<FollowingList />} />
             <Route path='/modifyprofile' element={<ModifyProfile />} />
             <Route path='/addproduct' element={<AddProduct />} />
+            <Route path='/product/:productid' element={<UpdateProduct />} />
             <Route path='/postdetail/:postid' element={<PostDetail />} />
             <Route path='/uploadpost' element={<UploadPost />} />
             <Route path='/chatlist' element={<ChatList />} />

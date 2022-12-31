@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import useModal from '../../../hooks/useModal';
 import Modal from '../Modals/Modal';
 import ModalBtn from '../Modals/ModalBtn';
@@ -5,6 +6,7 @@ import InnerModal from '../Modals/InnerModal';
 import * as S from './StyledProduct';
 
 const Product = ({ product }) => {
+  const navigate = useNavigate();
   const replacePrice = product.price
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -29,7 +31,12 @@ const Product = ({ product }) => {
       {isShowModal && (
         <Modal CloseModal={handleCloseModal}>
           <ModalBtn name='삭제' onClick={handleShowInnerModal} />
-          <ModalBtn name='수정' />
+          <ModalBtn
+            name='수정'
+            onClick={() => {
+              navigate(`/product/${product.id}`);
+            }}
+          />
           <ModalBtn name='웹사이트에서 상품 보기 ' />
         </Modal>
       )}
