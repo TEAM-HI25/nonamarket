@@ -50,34 +50,6 @@ const EditPost = () => {
     setContentText(e.target.value);
   };
 
-  // 업로드 클릭시 포스트글 서버에 보내기 (텍스트 + 이미지)
-  //   const handleUpload = async () => {
-  //     try {
-  //       if (!contentText && imgFile.length === 0) {
-  //         // eslint-disable-next-line no-alert
-  //         alert('내용 또는 이미지를 입력해주세요.');
-  //       }
-  //       const response = await fetch(`${BASE_URL}/post`, {
-  //         method: 'POST',
-  //         headers: {
-  //           Authorization: `Bearer ${user.token}`,
-  //           'Content-type': 'application/json',
-  //         },
-  //         body: JSON.stringify({
-  //           post: {
-  //             content: contentText,
-  //             image: imgFile.join(', '),
-  //           },
-  //         }),
-  //       });
-  //       const data = await response.json();
-  //       console.log(data);
-  //       navigate('/myprofile');
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-
   // 이미지 업로드
   const handleUploadImg = async (e) => {
     const imgInput = e.target.files[0];
@@ -115,7 +87,7 @@ const EditPost = () => {
         });
       };
 
-      if (data.message === '이미지 파일만 업로드 가능합니다.') {
+      if (data.message === '이미지 파일만 업로드가 가능합니다.') {
         // eslint-disable-next-line no-alert
         alert(
           '업로드 가능한 확장자: *.jpg, *.gif, *.png, *.jpeg, *.bmp, *.tif, *.heic',
