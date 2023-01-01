@@ -6,7 +6,7 @@ import * as S from './StyledFollowerList';
 const FollowerList = () => {
   return (
     <S.AllWrapp>
-      <Nav type='follow' />
+      <Nav type='follow' followtitle='FollowerList' />
       <S.FollowersSection>
         <UserFollow />
         <UserFollow />
