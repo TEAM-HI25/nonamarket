@@ -36,6 +36,10 @@ const Router = () => {
             <Route path='/homefeed' element={<HomeFeed />} />
             <Route path='/searchuser' element={<SearchUser />} />
             <Route path='/profile/:accountName' element={<UserProfile />} />
+            <Route
+              path='/profile/:accountName/followerlist'
+              element={<FollowerList />}
+            />
             {/* <Route path='/yourprofile' element={<YourProfile />}>
               <Route
                 path='/yourprofile/:accountName'
@@ -43,8 +47,10 @@ const Router = () => {
               />
             </Route>
             <Route path='/myprofile' element={<MyProfile />} /> */}
-            <Route path='/followerlist' element={<FollowerList />} />
-            <Route path='/followinglist' element={<FollowingList />} />
+            <Route
+              path='/profile/:accountName/followinglist'
+              element={<FollowingList />}
+            />
             <Route path='/modifyprofile' element={<ModifyProfile />} />
             <Route path='/addproduct' element={<AddProduct />} />
             <Route path='/product/:productid' element={<UpdateProduct />} />

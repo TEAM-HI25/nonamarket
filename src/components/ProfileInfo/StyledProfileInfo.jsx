@@ -18,24 +18,23 @@ export const NumberWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: 6px;
-
-  span:nth-child(2) {
-    font-weight: 400;
-    font-size: 8px;
-    color: #767676;
+  a {
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    span:nth-child(1) {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 23px;
+    }
+    span:nth-child(2) {
+      font-weight: 400;
+      font-size: 8px;
+      color: #767676;
+    }
   }
-`;
-
-export const NumberOfFollowers = styled.span`
-  font-weight: 700;
-  font-size: 1.8rem;
-  line-height: 23px;
-`;
-
-export const NumberOfFollowings = styled(NumberOfFollowers)`
-  color: #767676;
 `;
 
 export const ProfileImg = styled.img`

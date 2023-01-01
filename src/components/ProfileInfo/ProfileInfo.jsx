@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { useState } from 'react';
 import * as S from './StyledProfileInfo';
 import UserProfileBtnWrap from './UserProfileBtnWrapp';
@@ -16,13 +16,17 @@ const ProfileInfo = ({ userProfile, authAccountName }) => {
       <S.ProfileInfoWrapper>
         <h2 className='hidden'>프로필 정보</h2>
         <S.NumberWrapper>
-          <S.NumberOfFollowers>{followerCnt}</S.NumberOfFollowers>
-          <span>followers</span>
+          <Link to='followerlist'>
+            <span>{followerCnt}</span>
+            <span>followers</span>
+          </Link>
         </S.NumberWrapper>
         <S.ProfileImg src={userProfile.image} alt='프로필 이미지' />
         <S.NumberWrapper>
-          <S.NumberOfFollowings>{followingCnt}</S.NumberOfFollowings>
-          <span>followings</span>
+          <Link to='followinglist'>
+            <span>{followingCnt}</span>
+            <span>followings</span>
+          </Link>
         </S.NumberWrapper>
       </S.ProfileInfoWrapper>
       <S.UserWrapper>
