@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/context';
 import Nav from '../../components/Nav/Nav';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
@@ -15,7 +15,7 @@ const UpdateProduct = () => {
 
   const { user } = useContext(AuthContext);
   const { productid } = useParams();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // 모든 값 valid check, 서버 전송 가능 상태시 버튼 true
   const [isValid, setIsValid] = useState({
@@ -78,7 +78,7 @@ const UpdateProduct = () => {
 
   const PRODUCT_PRICE_CHECK = /^[0-9\\,]*$/;
   const handleCheckPrice = () => {
-    if (PRODUCT_PRICE_CHECK.test(productPrice)) {
+    if (PRODUCT_PRICE_CHECK.test(productPrice) && productPrice.length !== 0) {
       setIsValid({ ...isValid, productPrice: true });
     } else {
       setIsValid({ ...isValid, productPrice: false });
@@ -116,12 +116,45 @@ const UpdateProduct = () => {
       setProductName(data.product.itemName);
       setProductPrice(priceFormat(data.product.price));
       setSaleLink(data.product.link);
+      setIsValid({
+        ...isValid,
+        productImg: true,
+        productName: true,
+        productPrice: true,
+        saleLink: true,
+      });
     };
     getOriginalProduct();
   }, []);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const updateData = {
+      product: {
+        itemName: `${productName}`,
+        price: parseInt(productPrice.replace(',', ''), 10), // 서버 전송 가능 형태로 가공
+        link: `${saleLink}`,
+        itemImage: `${productImg}`,
+      },
+    };
+    const response = await fetch(
+      `https://mandarin.api.weniv.co.kr/product/${productid}`,
+      {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(updateData),
+      },
+    );
+    const data = await response.json();
+    navigate(`/profile/${user.accountname}`);
+    return data;
+  };
+
   return (
-    <S.AllWrapp>
+    <S.AllWrapp onSubmit={handleSubmit}>
       <Nav type='upload' btnName='저장' disabled={!pass} />
       <S.MainWrapp>
         <h1 className='hidden'>상품등록 페이지</h1>
@@ -141,7 +174,7 @@ const UpdateProduct = () => {
             type='text'
             label='상품명'
             forid='productname'
-            state={productName || ''}
+            state={productName}
             placeholder='2~15자 이내여야 합니다.'
             onChange={handleData}
             onKeyUp={handleCheckName}
@@ -150,7 +183,7 @@ const UpdateProduct = () => {
             type='text'
             label='가격'
             forid='productprice'
-            state={productPrice || ''}
+            state={productPrice}
             placeholder='숫자만 입력 가능합니다.'
             onChange={handleData}
             onKeyUp={handleCheckPrice}
@@ -159,7 +192,7 @@ const UpdateProduct = () => {
             type='text'
             label='판매 링크'
             forid='salelink'
-            state={saleLink || ''}
+            state={saleLink}
             placeholder='URL을 입력해 주세요'
             onChange={handleData}
             onKeyUp={handleCheckSaleLink}
