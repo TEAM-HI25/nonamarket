@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/context';
+import Loading from '../../components/Loading/Loading';
 import Button from '../../components/common/Button/Button';
 import PostCard from '../../components/common/PostCard/PostCard';
 import symbolLogoMini from '../../assets/images/symbol-logo-mini.svg';
@@ -32,7 +33,9 @@ const HomeFeed = () => {
     <S.AllWrapp>
       <Nav type='main' />
       {/* eslint-disable-next-line no-nested-ternary */}
-      {isloading ? null : feed.length > 0 ? (
+      {isloading ? (
+        <Loading />
+      ) : feed.length > 0 ? (
         <S.StyledHomeFeedOn>
           <h2 className='hidden'>피드 리스트</h2>
           {feed.map((item) => (
