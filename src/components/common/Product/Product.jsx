@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../context/context';
 import useModal from '../../../hooks/useModal';
 import Modal from '../Modals/Modal';
 import ModalBtn from '../Modals/ModalBtn';
@@ -7,6 +9,7 @@ import * as S from './StyledProduct';
 
 const Product = ({ product }) => {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
   const replacePrice = product.price
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -23,7 +26,14 @@ const Product = ({ product }) => {
 
   return (
     <div>
-      <S.ProductBtn type='button' onClick={handleShowModal}>
+      <S.ProductBtn
+        type='button'
+        onClick={() => {
+          if (product.accountname === user.accountname) {
+            handleShowModal();
+          }
+        }}
+      >
         <S.ProductImg src={product.itemImage} alt='업로드된상품이미지' />
         <S.ProductName>{product.itemName}</S.ProductName>
         {replacePrice === '1' ? (
