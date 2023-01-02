@@ -2,9 +2,15 @@ import styled from 'styled-components';
 import uploadFile from '../../assets/images/upload-file.svg';
 import deleteBtn from '../../assets/images/x.svg';
 
+export const AllWrapper = styled.div`
+  background-color: #fff;
+  height: 100vh;
+`;
+
 export const ContentWrapper = styled.form.attrs({
   method: 'post',
 })`
+  background-color: #fff;
   display: flex;
   gap: 13px;
   padding: 20px 16px 16px;
@@ -55,20 +61,24 @@ export const ImgUploadBtn = styled.label`
 `;
 
 export const PostImgWrapper = styled.section`
+  width: 390px;
   ul {
+    background-color: #fff;
     display: flex;
-    gap: 8px;
+    gap: 5px;
     padding-left: 20px;
     padding-right: 20px;
+    overflow-x: scroll;
   }
   li {
     position: relative;
   }
   img {
-    width: 100%;
-    height: 100%;
+    width: 140px;
+    /* height: 100%; */
     border-radius: 10px;
-    background-size: cover;
+    /* background-size: cover; */
+    flex-shrink: 0;
   }
   .postImg-del {
     position: absolute;

@@ -45,25 +45,6 @@ const UploadPost = () => {
     getUserProfile();
   });
 
-  // 이미지 서버로 보내기
-  // const handleGetImg = async (e) => {
-  //   const data = await FetchApi.uploadImgs(e);
-  //   console.log(data);
-  //   setImgUrl(data);
-  // };
-
-  // 이미지 미리보기
-  // const handleUploadImg = (e) => {
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(e);
-  //   return new Promise((resolve) => {
-  //     reader.onload = () => {
-  //       setImgSrc(reader.result);
-  //       resolve();
-  //     };
-  //   });
-  // };
-
   const handleContentText = (e) => {
     setContentText(e.target.value);
     console.log(typeof contentText);
@@ -91,7 +72,7 @@ const UploadPost = () => {
       });
       const data = await response.json();
       console.log(data);
-      navigate('/myprofile');
+      navigate(`/profile/${user.accountname}`);
     } catch (error) {
       console.error(error);
     }
@@ -158,7 +139,7 @@ const UploadPost = () => {
   // 2. 이미지 3장 업로드 기능 추가 + 이미지 삭제 구현하기
 
   return (
-    <>
+    <S.AllWrapper>
       <Nav
         type='upload'
         btnName='업로드'
@@ -199,7 +180,7 @@ const UploadPost = () => {
             })}
         </ul>
       </S.PostImgWrapper>
-    </>
+    </S.AllWrapper>
   );
 };
 
