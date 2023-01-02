@@ -24,7 +24,6 @@ const FollowerList = () => {
         });
         const data = await response.json();
         setFollowerList(data);
-        console.log(data);
       };
       getFollowerdata();
     }
@@ -36,7 +35,6 @@ const FollowerList = () => {
         {followerList.map((item, index) => (
           <UserFollow key={item.id} data={item} index={index} />
         ))}
-        ;
       </S.FollowersSection>
       <TabMenu />
     </S.AllWrapp>

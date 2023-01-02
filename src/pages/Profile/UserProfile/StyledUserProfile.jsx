@@ -7,6 +7,7 @@ export const Container = styled.section`
 
 export const MainWrap = styled.main`
   ${MainWrappCss};
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +20,6 @@ export const PostCardWrap = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #fff;
-  border-bottom: 1px solid #bdbdbd;
   & section {
     margin: 20px 16px;
   }
@@ -27,7 +27,6 @@ export const PostCardWrap = styled.div`
 
 export const ProfilePostAlbumWrap = styled.ul`
   max-width: 390px;
-  min-height: 100vh;
   padding: 16px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

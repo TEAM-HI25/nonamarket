@@ -9,8 +9,6 @@ const ProfileInfo = ({ userProfile, authAccountName }) => {
   const pageAccount = location.pathname.split('/')[2];
   const [followerCnt, setFollowerCnt] = useState(userProfile.followerCount);
   const [followingCnt, setFolloingCnt] = useState(userProfile.followingCount);
-  console.log(userProfile.followerCount);
-  console.log(followerCnt);
   return (
     <S.Container>
       <S.ProfileInfoWrapper>
