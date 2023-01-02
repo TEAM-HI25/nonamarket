@@ -98,6 +98,7 @@ const AddProduct = () => {
     }
   };
 
+  // 데이터 전송
   const handleSubmit = async (event) => {
     event.preventDefault(); // submit 제출 막기(새로고침막기)
     const reqData = {
@@ -137,7 +138,7 @@ const AddProduct = () => {
             state={productName}
             placeholder='2~15자 이내여야 합니다.'
             onChange={handleData}
-            onBlur={handleCheckName}
+            onKeyUp={handleCheckName}
           />
           <LabelInput
             type='text'
@@ -146,7 +147,7 @@ const AddProduct = () => {
             state={productPrice}
             placeholder='숫자만 입력 가능합니다.'
             onChange={handleData}
-            onBlur={handleCheckPrice}
+            onKeyUp={handleCheckPrice}
           />
           <LabelInput
             type='text'
@@ -155,7 +156,7 @@ const AddProduct = () => {
             state={saleLink}
             placeholder='URL을 입력해 주세요'
             onChange={handleData}
-            onBlur={handleCheckSaleLink}
+            onKeyUp={handleCheckSaleLink}
           />
         </S.InputWrapp>
       </S.MainWrapp>
