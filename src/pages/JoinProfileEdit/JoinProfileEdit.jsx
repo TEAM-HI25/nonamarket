@@ -133,7 +133,7 @@ const JoinProfileEdit = ({ email, password }) => {
           onChange={handleData}
         />
         <S.JoinPfBtn
-          name='감귤마켓 시작하기'
+          name='노나마켓 시작하기'
           disabled={!(isValidName && isValidAccount)}
         />
       </form>
