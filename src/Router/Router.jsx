@@ -7,7 +7,6 @@ import LoginEmail from '../pages/LoginEmail/LoginEmail';
 import JoinEmail from '../pages/JoinEmail/JoinEmail';
 import HomeFeed from '../pages/HomeFeed/HomeFeed';
 import SearchUser from '../pages/SearchUser/SearchUser';
-// import YourProfile from '../pages/Profile/YourProfile/YourProfile';
 import UserProfile from '../pages/Profile/UserProfile/UserProfile';
 import FollowerList from '../pages/FollowerList/FollowerList';
 import FollowingList from '../pages/FollowingList/FollowingList';
@@ -36,13 +35,6 @@ const Router = () => {
             <Route path='/homefeed' element={<HomeFeed />} />
             <Route path='/searchuser' element={<SearchUser />} />
             <Route path='/profile/:accountName' element={<UserProfile />} />
-            {/* <Route path='/yourprofile' element={<YourProfile />}>
-              <Route
-                path='/yourprofile/:accountName'
-                element={<YourProfile />}
-              />
-            </Route>
-            <Route path='/myprofile' element={<MyProfile />} /> */}
             <Route path='/followerlist' element={<FollowerList />} />
             <Route path='/followinglist' element={<FollowingList />} />
             <Route path='/modifyprofile' element={<ModifyProfile />} />

@@ -2,27 +2,24 @@ import styled from 'styled-components';
 
 export const ResultList = styled.li`
   a {
-    display: flex;
-    width: 358px;
-    height: 50px;
+    align-items: center;
+    justify-content: space-between;
     cursor: pointer;
-    div:nth-child(1) {
-      flex-basis: 50px;
-    }
+    display: flex;
+    gap: 12px;
     div:nth-child(2) {
-      flex-grow: 1;
+      margin-right: auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      margin-left: 12px;
       gap: 6px;
     }
   }
 `;
 
 export const UserprofileImg = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   object-fit: cover;
 `;
@@ -38,4 +35,12 @@ export const UserId = styled.span`
   font-weight: 400;
   line-height: 1.5rem;
   color: #767676;
+`;
+export const ChatDate = styled.span`
+  align-self: flex-end;
+  color: #767676;
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.5rem;
 `;
