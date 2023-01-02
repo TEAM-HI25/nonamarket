@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const ContentsWrapper = styled.section`
   position: relative;
@@ -66,6 +67,18 @@ export const PostContents = styled.div`
     width: 304px;
     margin-top: 16px;
     border-radius: 10px;
+  }
+`;
+
+export const PostImgLink = styled(Link)`
+  width: 100%;
+  display: flex;
+  overflow-x: auto;
+  img {
+    margin-top: 16px;
+    &:not(:first-of-type) {
+      margin-left: 8px;
+    }
   }
 `;
 

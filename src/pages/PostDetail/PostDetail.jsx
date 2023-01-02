@@ -26,9 +26,6 @@ const PostDetail = () => {
       });
       const data = await response.json();
       setCommentsData(data.comments);
-      console.log(data);
-      console.log(data.comments[0].author);
-      console.log(commentsData[0].author.accountname, user.accountname);
     } catch (error) {
       console.log(error);
     }
