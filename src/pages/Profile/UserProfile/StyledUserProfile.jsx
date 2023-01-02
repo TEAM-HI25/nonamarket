@@ -27,6 +27,7 @@ export const PostCardWrap = styled.div`
 
 export const ProfilePostAlbumWrap = styled.ul`
   max-width: 390px;
+  min-height: 100vh;
   padding: 16px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

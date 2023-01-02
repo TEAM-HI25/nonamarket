@@ -17,6 +17,7 @@ const UserProfile = () => {
   const authAccountName = user.accountname;
   const [userProfile, setUserProfile] = useState(null);
   const [userPostArr, setUserPostArr] = useState([]);
+  const [userAlbumPostArr, setUserAlbumPostArr] = useState([]);
   const [list, setList] = useState(true);
   const location = useLocation();
   const pageAccount = location.pathname.split('/')[2];
@@ -45,6 +46,8 @@ const UserProfile = () => {
         });
         const data = await response.json();
         setUserPostArr(data.post);
+        const newdata = data.post.filter((post) => post.image !== '');
+        setUserAlbumPostArr(newdata);
       };
       getMyPost();
     }
@@ -78,7 +81,7 @@ const UserProfile = () => {
             </S.PostCardWrap>
           ) : (
             <S.ProfilePostAlbumWrap>
-              {userPostArr.map((item, index) => (
+              {userAlbumPostArr.map((item, index) => (
                 <PostAlbum key={item.id} data={item} index={index} />
               ))}
             </S.ProfilePostAlbumWrap>
