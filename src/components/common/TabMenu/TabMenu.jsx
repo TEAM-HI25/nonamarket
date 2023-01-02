@@ -35,10 +35,10 @@ const TabMenu = () => {
       {/* 채팅으로 이동 */}
 
       <S.MenuList>
-        <S.MenuNavLink to='/chatroom'>
+        <S.MenuNavLink to='/chatList'>
           <S.MenuImg
             src={
-              location.pathname === '/chatroom'
+              location.pathname === '/chatList'
                 ? activeIconMessageCircle
                 : iconMessageCircle
             }

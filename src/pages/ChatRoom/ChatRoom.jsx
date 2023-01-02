@@ -3,7 +3,7 @@ import Nav from '../../components/Nav/Nav';
 const ChatRoom = () => {
   return (
     <>
-      <Nav type='follow' />;
+      <Nav type='chat' />;
     </>
   );
 };

@@ -1,17 +1,16 @@
 import styled from 'styled-components';
+import { AllWrappCss } from '../../styles/Globalstyled';
 
 export const LayOut = styled.section`
+  ${AllWrappCss}
   width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
+  align-items: flex-start;
 `;
 
 export const Main = styled.main`
   flex-grow: 1;
   margin-top: 20px;
-  margin-left: 50px;
+  margin-left: 16px;
 `;
 
 export const ResultListWrapp = styled.ul`

@@ -7,7 +7,6 @@ import LoginEmail from '../pages/LoginEmail/LoginEmail';
 import JoinEmail from '../pages/JoinEmail/JoinEmail';
 import HomeFeed from '../pages/HomeFeed/HomeFeed';
 import SearchUser from '../pages/SearchUser/SearchUser';
-// import YourProfile from '../pages/Profile/YourProfile/YourProfile';
 import UserProfile from '../pages/Profile/UserProfile/UserProfile';
 import FollowerList from '../pages/Follow/FollowerList';
 import FollowingList from '../pages/Follow/FollowingList';
@@ -40,13 +39,6 @@ const Router = () => {
               path='/profile/:accountName/followerlist'
               element={<FollowerList />}
             />
-            {/* <Route path='/yourprofile' element={<YourProfile />}>
-              <Route
-                path='/yourprofile/:accountName'
-                element={<YourProfile />}
-              />
-            </Route>
-            <Route path='/myprofile' element={<MyProfile />} /> */}
             <Route
               path='/profile/:accountName/followinglist'
               element={<FollowingList />}
