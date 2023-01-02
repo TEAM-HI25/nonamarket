@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import kakao from '../../assets/images/icon-message-circle-fill.svg';
 import facebook from '../../assets/images/facebook.svg';
 import google from '../../assets/images/google.svg';
@@ -40,12 +40,22 @@ export const LoginWrap = styled.section`
   position: relative;
   height: 100vh;
   background-color: #f5c045;
+  overflow-y: hidden;
 `;
 
 export const WhiteLogo = styled.img`
   width: 189px;
   height: 133px;
   margin-top: 184px;
+`;
+
+const slideAnimation = keyframes`
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 `;
 
 export const ModalWrap = styled.article`
@@ -55,6 +65,7 @@ export const ModalWrap = styled.article`
   padding: 50px 34px 70px;
   border-radius: 20px 20px 0 0 / 20px 20px 0 0;
   background-color: #f7f7f7;
+  animation: ${slideAnimation} 0.8s;
 `;
 
 export const LinkWrap = styled.div`
