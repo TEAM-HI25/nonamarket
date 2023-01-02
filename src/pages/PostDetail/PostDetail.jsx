@@ -25,10 +25,10 @@ const PostDetail = () => {
         },
       });
       const data = await response.json();
-      console.log(data);
       setCommentsData(data.comments);
-      // setCommentsData(data.comments.reverse());
-      console.log(commentsData);
+      console.log(data);
+      console.log(data.comments[0].author);
+      console.log(commentsData[0].author.accountname, user.accountname);
     } catch (error) {
       console.log(error);
     }
@@ -66,11 +66,14 @@ const PostDetail = () => {
           {postData && <PostCard data={postData} />}
         </S.PostCardWrapper>
         <S.CommentWrapper>
-          <Comment
-            commentsData={commentsData}
-            postid={postid}
-            handleDelete={handleGetComment}
-          />
+          {commentsData &&
+            commentsData.map((comment) => (
+              <Comment
+                comment={comment}
+                postid={postid}
+                handleDelete={handleGetComment}
+              />
+            ))}
         </S.CommentWrapper>
       </S.MainWrapper>
       <CommentInput postid={postid} setCommentsData={setCommentsData} />
