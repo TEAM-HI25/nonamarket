@@ -14,20 +14,26 @@ export const StyledHomeFeedOn = styled.section`
 export const StyledHomeFeedOff = styled.section`
   ${MainWrappCss};
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 390px;
   margin: 0 auto;
   background-color: var(--main-text-color);
-  //body backgroundcolor 구분하려고 넣었습니다.
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   img {
     width: 150px;
-    margin: 260px 0 25px 0;
+    margin-bottom: 25px;
   }
+
   p {
     font-size: 1.4rem;
     line-height: 1.4rem;
-    text-align: center;
     color: #767676;
     margin-bottom: 20px;
   }
