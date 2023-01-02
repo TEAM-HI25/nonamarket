@@ -39,7 +39,7 @@ const PostCard = ({ data }) => {
   };
 
   const handleGoUserPage = () => {
-    navigate(`/yourprofile/${author.accountname}`);
+    navigate(`/profile/${author.accountname}`);
   };
 
   const handleGoDetailPage = () => {
@@ -56,7 +56,7 @@ const PostCard = ({ data }) => {
         />
 
         <S.UserInfo>
-          <Link to={`/yourprofile/${author.accountname}`}>
+          <Link to={`/profile/${author.accountname}`}>
             <S.UserName>{author.username}</S.UserName>
             <S.UserAccount>@ {author.accountname}</S.UserAccount>
           </Link>
