@@ -74,7 +74,7 @@ export const PostImgWrapper = styled.section`
     position: relative;
   }
   img {
-    width: 140px;
+    width: 160px;
     /* height: 100%; */
     border-radius: 10px;
     /* background-size: cover; */

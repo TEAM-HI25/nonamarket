@@ -64,10 +64,14 @@ const PostCard = ({ data }) => {
             <img src={verticalMenuIcon} alt='더보기 메뉴' />
           </button>
         </S.UserInfo>
-
         <S.PostContents onClick={handleGoDetailPage}>
           <p>{content}</p>
-          {image && <img src={image} alt='컨텐츠 관련 이미지' />}
+          <S.PostImgLink to={`/post/${id}`}>
+            {image &&
+              image
+                .split(',')
+                .map((item) => <img src={item} alt='컨텐츠 관련 이미지' />)}
+          </S.PostImgLink>
         </S.PostContents>
 
         <S.BtnWrapper>

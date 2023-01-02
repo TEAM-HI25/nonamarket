@@ -4,7 +4,6 @@ import Nav from '../../components/Nav/Nav';
 import ProfileImg from '../../components/common/ProfileImg/ProfileImg';
 import * as S from './StyledUploadPost';
 import { AuthContext } from '../../context/context';
-// import FetchApi from '../../api';
 
 const UploadPost = () => {
   const { user } = useContext(AuthContext);
@@ -103,13 +102,13 @@ const UploadPost = () => {
 
       const imgPreview = (file) => {
         const reader = new FileReader();
-        // const imgBox = document.createElement('img');
-
-        // imgBox.className = 'imgBox';
         reader.readAsDataURL(file);
         return new Promise((resolve) => {
           reader.onload = () => {
             setImgSrc([...imgSrc, reader.result]);
+            console.log(imgSrc);
+            const test = imgSrc[0].split(',');
+            console.log(test);
             resolve();
           };
         });
@@ -133,10 +132,6 @@ const UploadPost = () => {
   const handelDeleteImg = (idx) => {
     setImgSrc(imgSrc.filter((_, index) => index !== idx));
   };
-
-  // ** refactoring List
-  // 1. textarea 자동 높이 조절 기능추가
-  // 2. 이미지 3장 업로드 기능 추가 + 이미지 삭제 구현하기
 
   return (
     <S.AllWrapper>
