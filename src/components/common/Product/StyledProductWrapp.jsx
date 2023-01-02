@@ -15,7 +15,7 @@ const ProductSection = styled.section`
   }
   ul {
     display: flex;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
     gap: 10px;
 

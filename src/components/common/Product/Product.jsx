@@ -37,7 +37,12 @@ const Product = ({ product }) => {
               navigate(`/product/${product.id}`);
             }}
           />
-          <ModalBtn name='웹사이트에서 상품 보기 ' />
+          <ModalBtn
+            name='웹사이트에서 상품 보기 '
+            onClick={() => {
+              window.open(product.link);
+            }}
+          />
         </Modal>
       )}
       {isShowInnerModal && (
