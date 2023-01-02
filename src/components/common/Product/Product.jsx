@@ -29,8 +29,10 @@ const Product = ({ product }) => {
       <S.ProductBtn
         type='button'
         onClick={() => {
-          if (product.accountname === user.accountname) {
+          if (product.author.accountname === user.accountname) {
             handleShowModal();
+          } else {
+            window.open(product.link);
           }
         }}
       >

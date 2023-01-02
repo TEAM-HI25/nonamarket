@@ -133,7 +133,7 @@ const AddProduct = () => {
           </S.ProductLoadWrapp>
           <LabelInput
             type='text'
-            label='상품명'
+            label='노나먹을 식재료명'
             forid='productname'
             state={productName}
             placeholder='2~15자 이내여야 합니다.'
