@@ -1,14 +1,5 @@
 const PostAlbum = ({ data }) => {
-  const {
-    // author,
-    // content,
-    image,
-    // createdAt,
-    // id,
-    // heartCount,
-    // hearted,
-    // commentCount,
-  } = data;
+  const { image } = data;
   return (
     <li>
       <img src={image} alt='사진입니다.' />
