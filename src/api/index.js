@@ -95,6 +95,31 @@ const FetchApi = {
     return data;
   },
 
+  async putModifyData(userName, userAccountName, userIntro, img, Token) {
+    const userData = {
+      user: {
+        userName,
+        userAccountName,
+        userIntro,
+        img,
+        Token,
+      },
+    };
+    console.log(userData.user);
+    console.log(userData.user.Token);
+    const response = await fetch(`${BASE_URL}/user`, {
+      method: 'PUT',
+      body: JSON.stringify(userData),
+      headers: {
+        Authorization: `Bearer ${userData.user.Token}`,
+        'Content-type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    return data;
+  },
+
   async checkAccountValid(accountname) {
     const response = await fetch(`${BASE_URL}/user/accountnamevalid`, {
       method: 'POST',
