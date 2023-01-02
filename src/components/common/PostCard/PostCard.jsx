@@ -35,7 +35,7 @@ const PostCard = ({ data }) => {
   const navigate = useNavigate();
 
   const handleGoPostEdit = () => {
-    navigate('/addproduct');
+    navigate(`/editpost/${id}`);
   };
 
   const handleGoUserPage = () => {
