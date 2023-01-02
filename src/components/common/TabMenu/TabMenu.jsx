@@ -62,7 +62,10 @@ const TabMenu = () => {
         <S.MenuNavLink to={`/profile/${authAccountName}`}>
           <S.MenuImg
             src={
-              location.pathname === `/profile/${authAccountName}`
+              location.pathname === `/profile/${authAccountName}` ||
+              location.pathname ===
+                `/profile/${authAccountName}/followinglist` ||
+              location.pathname === `/profile/${authAccountName}/followerlist`
                 ? activeIconUser
                 : iconUser
             }
