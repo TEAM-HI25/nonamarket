@@ -26,7 +26,11 @@ const Product = ({ product }) => {
       <S.ProductBtn type='button' onClick={handleShowModal}>
         <S.ProductImg src={product.itemImage} alt='업로드된상품이미지' />
         <S.ProductName>{product.itemName}</S.ProductName>
-        <S.ProductPrice>{replacePrice}원</S.ProductPrice>
+        {replacePrice === '1' ? (
+          <S.ProductPrice>무료 나눔</S.ProductPrice>
+        ) : (
+          <S.ProductPrice>{replacePrice}원</S.ProductPrice>
+        )}
       </S.ProductBtn>
       {isShowModal && (
         <Modal CloseModal={handleCloseModal}>

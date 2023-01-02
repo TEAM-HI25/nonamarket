@@ -21,7 +21,7 @@ const ProductWrapp = ({ pageAccount }) => {
 
   return productList.length > 0 ? (
     <ProductSection>
-      <h2>판매 중인 상품</h2>
+      <h2>보관중인 식재료🍴</h2>
       <ul>
         <li>
           {productList.map((item) => {
