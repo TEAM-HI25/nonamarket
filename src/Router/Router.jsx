@@ -8,8 +8,8 @@ import JoinEmail from '../pages/JoinEmail/JoinEmail';
 import HomeFeed from '../pages/HomeFeed/HomeFeed';
 import SearchUser from '../pages/SearchUser/SearchUser';
 import UserProfile from '../pages/Profile/UserProfile/UserProfile';
-import FollowerList from '../pages/FollowerList/FollowerList';
-import FollowingList from '../pages/FollowingList/FollowingList';
+import FollowerList from '../pages/Follow/FollowerList';
+import FollowingList from '../pages/Follow/FollowingList';
 import ModifyProfile from '../pages/ModifyProfile/ModifyProfile';
 import AddProduct from '../pages/AddProduct/AddProduct';
 import UpdateProduct from '../pages/UpdateProduct/UpdateProduct';
@@ -35,8 +35,14 @@ const Router = () => {
             <Route path='/homefeed' element={<HomeFeed />} />
             <Route path='/searchuser' element={<SearchUser />} />
             <Route path='/profile/:accountName' element={<UserProfile />} />
-            <Route path='/followerlist' element={<FollowerList />} />
-            <Route path='/followinglist' element={<FollowingList />} />
+            <Route
+              path='/profile/:accountName/followerlist'
+              element={<FollowerList />}
+            />
+            <Route
+              path='/profile/:accountName/followinglist'
+              element={<FollowingList />}
+            />
             <Route path='/modifyprofile' element={<ModifyProfile />} />
             <Route path='/addproduct' element={<AddProduct />} />
             <Route path='/product/:productid' element={<UpdateProduct />} />

@@ -1,15 +1,12 @@
-import UserFollow from '../../components/common/UserFollow/UserFollow';
+import UserFollow from '../../components/UserListItem/UserFollow/UserFollow';
 import TabMenu from '../../components/common/TabMenu/TabMenu';
-import ArrowImg from '../../assets/images/icon-arrow-left.svg';
+import Nav from '../../components/Nav/Nav';
 import * as S from './StyledFollowerList';
 
 const FollowerList = () => {
   return (
-    <>
-      <S.FollowersNavWrapp>
-        <img src={ArrowImg} alt='뒤로가기 버튼' />
-        <p>Followers</p>
-      </S.FollowersNavWrapp>
+    <S.AllWrapp>
+      <Nav type='follow' followtitle='FollowerList' />
       <S.FollowersSection>
         <UserFollow />
         <UserFollow />
@@ -17,7 +14,7 @@ const FollowerList = () => {
         <UserFollow />
       </S.FollowersSection>
       <TabMenu />
-    </>
+    </S.AllWrapp>
   );
 };
 
