@@ -25,12 +25,10 @@ const FollowingList = () => {
         });
         const data = await response.json();
         setFollowingList(data);
-        console.log(data);
       };
       getFollowerdata();
     }
   }, []);
-  console.log(followingList);
 
   return (
     <S.AllWrapp>
@@ -39,7 +37,6 @@ const FollowingList = () => {
         {followingList.map((item, index) => (
           <UserFollow key={item.id} data={item} index={index} />
         ))}
-        ;
       </S.FollowersSection>
       <TabMenu />
     </S.AllWrapp>

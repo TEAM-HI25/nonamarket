@@ -58,7 +58,6 @@ const TabMenu = () => {
       </S.MenuList>
 
       {/* 로그인한 유저의 프로필 페이지로 이동 */}
-      {/* <S.MenuNavLink to={`/myprofile/${user.accountname}`}> */}
       <S.MenuList>
         <S.MenuNavLink to={`/profile/${authAccountName}`}>
           <S.MenuImg
@@ -69,14 +68,6 @@ const TabMenu = () => {
             }
             alt='프로필탭'
           />
-          {/* <S.MenuImg
-            src={
-              location.pathname === `/myprofile/${user.accountname}`
-                ? activeIconUser
-                : iconUser
-            }
-            alt='프로필탭'
-          /> */}
           <p>프로필</p>
         </S.MenuNavLink>
       </S.MenuList>
