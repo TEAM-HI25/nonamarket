@@ -8,6 +8,7 @@ import TabMenu from '../../components/common/TabMenu/TabMenu';
 import Nav from '../../components/Nav/Nav';
 import FetchApi from '../../api';
 import * as S from './StyledHomeFeed';
+import Loading from '../../components/Loading/Loading';
 
 const HomeFeed = () => {
   const [feed, setFeed] = useState([]);
@@ -32,7 +33,9 @@ const HomeFeed = () => {
     <S.AllWrapp>
       <Nav type='main' />
       {/* eslint-disable-next-line no-nested-ternary */}
-      {isloading ? null : feed.length > 0 ? (
+      {isloading ? (
+        <Loading />
+      ) : feed.length > 0 ? (
         <S.StyledHomeFeedOn>
           <h2 className='hidden'>피드 리스트</h2>
           {feed.map((item) => (
