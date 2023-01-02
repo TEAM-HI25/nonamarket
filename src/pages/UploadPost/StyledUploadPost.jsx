@@ -68,7 +68,7 @@ export const PostImgWrapper = styled.section`
     gap: 5px;
     padding-left: 20px;
     padding-right: 20px;
-    overflow-x: scroll;
+    overflow-x: auto;
   }
   li {
     position: relative;
