@@ -44,14 +44,16 @@ const HomeFeed = () => {
         </S.StyledHomeFeedOn>
       ) : (
         <S.StyledHomeFeedOff>
-          <img src={symbolLogoMini} alt='심볼로고' />
-          <p>유저를 검색해 팔로우 해보세요!</p>
-          <Button
-            name='검색하기'
-            type='button'
-            size='m'
-            onClick={handleGoSearch}
-          />
+          <div>
+            <img src={symbolLogoMini} alt='심볼로고' />
+            <p>유저를 검색해 팔로우 해보세요!</p>
+            <Button
+              name='검색하기'
+              type='button'
+              size='m'
+              onClick={handleGoSearch}
+            />
+          </div>
         </S.StyledHomeFeedOff>
       )}
       <TabMenu />
