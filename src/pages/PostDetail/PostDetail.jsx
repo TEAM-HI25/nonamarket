@@ -26,6 +26,7 @@ const PostDetail = () => {
       });
       const data = await response.json();
       setCommentsData(data.comments);
+      console.log(data.comments);
     } catch (error) {
       console.log(error);
     }
@@ -66,6 +67,7 @@ const PostDetail = () => {
           {commentsData &&
             commentsData.map((comment) => (
               <Comment
+                key={comment.id}
                 comment={comment}
                 postid={postid}
                 handleDelete={handleGetComment}
