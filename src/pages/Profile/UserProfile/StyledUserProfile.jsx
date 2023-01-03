@@ -62,3 +62,8 @@ export const EmptyContainer = styled.div`
     margin-bottom: 25px;
   }
 `;
+
+export const Empty = styled.div`
+  min-height: 60vh;
+  width: 100%;
+`;
