@@ -25,7 +25,8 @@ const Body = styled.body`
 const MainLogoWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 188px;
+  min-height: 100vh;
+  background-color: #fff;
   animation: ${logoAnimation} 0.7s ease-out;
 `;
 
