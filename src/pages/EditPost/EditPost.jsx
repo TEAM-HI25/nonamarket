@@ -4,7 +4,6 @@ import Nav from '../../components/Nav/Nav';
 import ProfileImg from '../../components/common/ProfileImg/ProfileImg';
 import * as S from './StyledEditPost';
 import { AuthContext } from '../../context/context';
-// import FetchApi from '../../api';
 
 const EditPost = () => {
   const { user } = useContext(AuthContext);
@@ -159,7 +158,7 @@ const EditPost = () => {
   }, []);
 
   return (
-    <>
+    <S.AllWrapper>
       <Nav
         type='upload'
         btnName='업로드'
@@ -200,7 +199,7 @@ const EditPost = () => {
             })}
         </ul>
       </S.PostImgWrapper>
-    </>
+    </S.AllWrapper>
   );
 };
 

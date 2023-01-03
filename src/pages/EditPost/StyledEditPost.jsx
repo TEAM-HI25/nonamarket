@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import uploadFile from '../../assets/images/upload-file.svg';
 import deleteBtn from '../../assets/images/x.svg';
 
+export const AllWrapper = styled.div`
+  background-color: #fff;
+  height: 100vh;
+`;
+
 export const ContentWrapper = styled.form.attrs({
   method: 'post',
 })`
