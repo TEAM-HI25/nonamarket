@@ -32,6 +32,117 @@ pw : 123456
 
 # 5. 개발 환경
 # 6. UI
+
+
+
+
+|                             0. Splash                              |                            1. 로그인                             |
+| :---------------------------------------------------------------: | :---------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> |
+
+|                             2. 회원가입                             |                               3. 회원가입 - 프로필 설정                                |
+| :--------------------------------------------------------------: | :------------------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> |
+
+|                              4. 홈피드                              |                           5. 검색                            |
+| :---------------------------------------------------------------: | :-------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> |
+
+
+|                           6. 게시글 등록                            |                             7. 게시글 수정                             |
+| :-------------------------------------------------------------------: | :----------------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> |
+
+|                         8. 게시글 삭제                         |                           9. 게시글 댓글 등록                           |
+| :-------------------------------------------------------------------: | :-------------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> |
+
+|                         10. 게시글 댓글 삭제                          |                           11. 게시글 댓글 신고                           |
+| :-------------------------------------------------------------------: | :-------------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> |
+
+
+
+|                        12. 내 프로필                      |                          13. 내 프로필 수정                            |
+| :--------------------------------------------------------------------: | :--------------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> |
+
+|                           14. 타 유저 프로필                            |                              15. 팔로우                               |
+| :---------------------------------------------------------------: | :-----------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> |
+
+
+|                      16. 팔로잉 목록                        |                              17. 팔로워 목록                               |
+| :---------------------------------------------------------------: | :-----------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> |
+
+|                      18. 판매 상품 등록                     |                              19. 판매 상품 수정                               |
+| :---------------------------------------------------------------: | :-----------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> |
+
+|                      18.  로그아웃                       |                              19. 좋아요                              |
+| :---------------------------------------------------------------: | :-----------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> |
+
+|                      20.  404 페이지                     |                              21. 채팅                              |
+| :---------------------------------------------------------------: | :-----------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> |
+
+
 # 7. 핵심 코드
 # 8. 폴더 구조
+```
+📦src
+ ┣ 📂api
+ ┣ 📂assets
+ ┃ ┣ 📂font
+ ┃ ┗ 📂images
+ ┣ 📂components
+ ┃ ┣ 📂Comment
+ ┃ ┣ 📂CommentInput
+ ┃ ┣ 📂common
+ ┃ ┃ ┣ 📂Button
+ ┃ ┃ ┣ 📂ImageInput
+ ┃ ┃ ┣ 📂LabelInput
+ ┃ ┃ ┣ 📂Modals
+ ┃ ┃ ┣ 📂PostAlbum
+ ┃ ┃ ┣ 📂PostCard
+ ┃ ┃ ┣ 📂Product
+ ┃ ┃ ┣ 📂ProfileImg
+ ┃ ┃ ┗ 📂TabMenu
+ ┃ ┣ 📂ImagePreview
+ ┃ ┣ 📂Loading
+ ┃ ┣ 📂MenuBar
+ ┃ ┣ 📂Nav
+ ┃ ┣ 📂ProfileInfo
+ ┃ ┗ 📂UserListItem
+ ┃ ┃ ┗ 📂UserFollow
+ ┣ 📂context
+ ┣ 📂hooks
+ ┣ 📂pages
+ ┃ ┣ 📂AddProduct
+ ┃ ┣ 📂ChatList
+ ┃ ┣ 📂ChatRoom
+ ┃ ┣ 📂EditPost
+ ┃ ┣ 📂Follow
+ ┃ ┣ 📂HomeFeed
+ ┃ ┣ 📂JoinEmail
+ ┃ ┣ 📂JoinProfileEdit
+ ┃ ┣ 📂Login
+ ┃ ┣ 📂LoginEmail
+ ┃ ┣ 📂ModifyProfile
+ ┃ ┣ 📂NotFound
+ ┃ ┣ 📂PostDetail
+ ┃ ┣ 📂Profile
+ ┃ ┃ ┗ 📂UserProfile
+ ┃ ┣ 📂SearchUser
+ ┃ ┣ 📂Splash
+ ┃ ┣ 📂UpdateProduct
+ ┃ ┗ 📂UploadPost
+ ┣ 📂Router
+ ┣ 📂styles
+ ┣ 📜App.jsx
+ ┣ 📜index.css
+ ┗ 📜index.jsx
+ ```
 # 9. 앞으로 추가될 기능
