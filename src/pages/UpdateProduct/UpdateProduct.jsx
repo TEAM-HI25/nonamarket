@@ -149,6 +149,7 @@ const UpdateProduct = () => {
       },
     );
     const data = await response.json();
+    console.log(data);
     navigate(`/profile/${user.accountname}`);
     return data;
   };

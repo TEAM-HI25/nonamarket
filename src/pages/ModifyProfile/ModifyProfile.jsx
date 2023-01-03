@@ -1,14 +1,14 @@
-import { useState, useContext } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import FetchApi from '../../api';
 import ImageInput from '../../components/common/ImageInput/ImageInput';
 import { AuthContext } from '../../context/context';
 import Nav from '../../components/Nav/Nav';
 import * as S from './StyledModifyProfile';
-// import profileImg from '../../assets/images/profile-image.svg';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
 
 const ModifyProfile = () => {
+  const navigate = useNavigate();
   const [userName, setUserName] = useState('');
   const [img, setImg] = useState(
     'https://mandarin.api.weniv.co.kr/1671553289850.png',
@@ -19,17 +19,27 @@ const ModifyProfile = () => {
   const [accountMsg, setAccountMsg] = useState('');
   const [isValidName, setIsValidName] = useState(false);
   const [isValidAccount, setIsValidAccount] = useState(false);
-  // const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
   const Token = user.token;
   // const AccountName = user.accountname;
+
+  // 프로필 데이터 받아오기
+  useEffect(() => {
+    const getUserInfo = async () => {
+      const Data = await FetchApi.getMyinfo(Token);
+      setUserName(Data.user.username);
+      setImg(Data.user.image);
+      setUserAccountName(Data.user.accountname);
+      setUserIntro(Data.user.intro);
+    };
+    getUserInfo();
+  }, []);
 
   // 영문,숫자,특수문자만 사용가능한 정규표현식
   const ACCOUNT_CHECK = /^[-._a-z0-9]+$/gi;
   const handleGetImg = async (event) => {
-    const data = await FetchApi.uploadImg(event); // imgSrc를 리턴 받음
-    setImg(data); // img == imgSrc
-    console.log(img);
+    const data = await FetchApi.uploadImg(event);
+    setImg(data);
   };
 
   const handleData = (event) => {
@@ -80,7 +90,13 @@ const ModifyProfile = () => {
       Token,
     );
     console.log(ModifyData);
-    // navigate(`/profile/${AccountName}`);
+    const changeAccount = {
+      token: Token,
+      accountname: ModifyData.user.accountname,
+    };
+    localStorage.setItem('accountname', ModifyData.user.accountname);
+    dispatch({ type: 'login', payload: changeAccount });
+    navigate(`/profile/${ModifyData.user.accountname}`);
   };
 
   return (

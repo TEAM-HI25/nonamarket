@@ -95,23 +95,21 @@ const FetchApi = {
     return data;
   },
 
-  async putModifyData(userName, userAccountName, userIntro, img, Token) {
+  async putModifyData(username, accountname, intro, image, Token) {
     const userData = {
       user: {
-        userName,
-        userAccountName,
-        userIntro,
-        img,
-        Token,
+        username,
+        accountname,
+        intro,
+        image,
       },
     };
     console.log(userData.user);
-    console.log(userData.user.Token);
     const response = await fetch(`${BASE_URL}/user`, {
       method: 'PUT',
       body: JSON.stringify(userData),
       headers: {
-        Authorization: `Bearer ${userData.user.Token}`,
+        Authorization: `Bearer ${Token}`,
         'Content-type': 'application/json',
       },
     });
@@ -186,6 +184,7 @@ const FetchApi = {
       },
     });
     const data = await response.json();
+    console.log(data);
     return data;
   },
 
