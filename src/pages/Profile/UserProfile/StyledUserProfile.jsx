@@ -41,3 +41,24 @@ export const ProfilePostAlbumWrap = styled.ul`
     }
   }
 `;
+
+export const EmptyContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  width: 100%;
+  background-color: #fff;
+  p {
+    font-size: 25px;
+    color: #bdbdbd;
+  }
+  span {
+    font-size: 13px;
+    font-weight: 500px;
+    color: #bdbdbd;
+    margin-bottom: 25px;
+  }
+`;
