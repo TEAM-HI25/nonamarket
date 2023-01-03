@@ -5,7 +5,6 @@ import UserFollow from '../../components/UserListItem/UserFollow/UserFollow';
 import TabMenu from '../../components/common/TabMenu/TabMenu';
 import Nav from '../../components/Nav/Nav';
 import * as S from './StyledFollowerList';
-// import FetchApi from '../../../api';
 
 const FollowingList = () => {
   const { user } = useContext(AuthContext);
@@ -26,6 +25,7 @@ const FollowingList = () => {
         });
         const data = await response.json();
         setFollowingList(data);
+        console.log(data);
       };
       getFollowerdata();
     }
