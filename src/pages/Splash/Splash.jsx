@@ -16,7 +16,7 @@ const Splash = () => {
       } else if (user.token !== null) {
         navigate('/homefeed');
       }
-    }, 2500);
+    }, 1200);
   }, []);
 
   return (
