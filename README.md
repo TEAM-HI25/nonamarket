@@ -11,27 +11,73 @@ pw : 123456
 <details>
 <summary>목차</summary>
 <div markdown="1">
+<br/>
 
-마크다운에서느 토글 지원 안해서 html 태그 사용해서 토글 기능 사용할 수 있습니다.
+1. [프로젝트 소개](#intro)
+2. [요구사항](#requirements)
+3. [팀원소개](#members)
+4. [역할 분담](#roles)
+5. [개발 환경](#environments)
+6. [UI](#ui)
+7. [핵심 코드](#code)
+8. [폴더 구조](#tree)
 
 </div>
 </details>
 
-# 1. 프로젝트 소개
+# <sapn id="intro"> 1. 프로젝트 소개 </span>
 
-# 2. 요구사항
+# <span id="requirements"> 2. 요구사항 </span>
+- 인증 : 로그인, 회원가입, 프로필 설정, 유효성 평가
 
-# 3. 팀원 소개
+- 게시글 : 게시글 등록/수정/삭제/신고, 다중 이미지 파일 업로드/수정/미리보기
+
+- 상품 : 상품 등록/수정/삭제, 이미지 파일 업로드/수정/미리보기, 유효성 평가
+
+- 댓글 : 댓글 등록/삭제/신고
+
+- 검색 : 유저 검색
+
+- 팔로우 : 유저 팔로우/언팔로우
+
+- 좋아요 : 게시물 좋아요 / 취소
+<br><br>
+
+# 3.<span id="members"> 팀원 소개 </span>
 |양지성|방현영|선은혜|한유진|
 |:---:|:---:|:---:|:---:|
-|내용 1|내용 2|<img src ="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb5xRPt%2FbtrRXfkYEZz%2F939HTbExIPUONQKhxDgBj0%2Fimg.jpg" width="170px" height="210px"/>|내용 4|
-|🔗GitHub|🔗GitHub|🔗GitHub|🔗GitHub|
+|<img src ="https://user-images.githubusercontent.com/107895498/210340041-c4e176b7-a510-4119-aa42-dae8a3c917a8.jpg" width="170px" height="210px"/>|<img src ="https://user-images.githubusercontent.com/107895498/210340227-c0478e03-f21e-4040-9e93-7fdbfebc1116.jpg" width="170px" height="210px"/>|<img src ="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb5xRPt%2FbtrRXfkYEZz%2F939HTbExIPUONQKhxDgBj0%2Fimg.jpg" width="170px" height="210px"/>|<img src ="https://user-images.githubusercontent.com/107895498/210340563-714e23bb-5778-42e5-af79-37ca93aec0d6.jpg" width="170px" height="210px"/>|
+|🔗[GitHub](https://github.com/Yang-zzz)|🔗[GitHub](https://github.com/Hyeonyeongg)|🔗[GitHub](https://github.com/EllaSEON)|🔗[GitHub](https://github.com/yoyoujin)|
 |총괄 팀장|코드 리뷰 리더|회의록 리더|디자인 리더|
+<br>
 
-# 4. 역할 분담
+# 4. <span id = "roles"> 역할 분담 </span>
+<img width="6752" alt="nona-role" src="https://user-images.githubusercontent.com/102464638/210340798-8cae5a95-65c0-4de9-8d9f-aae6d6f395d5.png">
+<br><br>
 
-# 5. 개발 환경
-# 6. UI
+# 5. <span id="environments"> 개발 환경 </span>
+## 1) 개발기간 : 2022.12.09 ~ 2023.01.05
+
+## 2) 기술
+- FrontEnd : React, React-router, Hooks (수정하기)
+- BackEnd : 제공된 API 사용
+
+## 3) 협업 도구
+- Discord: 실시간 채팅 및 코드 리뷰를 위한 화면 공유
+- Notion : 🔗[회의록 및 컨벤션](https://likelion.notion.site/TEAM-HI25-NOTION-eb56f0d2f9c041d08c2359f6a6282b4a)
+
+## 4) 이슈 관리
+- 🔗[GitHub Issues](https://github.com/TEAM-HI25/nonamarket/issues) 와 🔗[GitHub Project](https://github.com/orgs/TEAM-HI25/projects/1) 를 사용하여 버전 관리 및 진행 상황을 공유함
+
+![image](https://user-images.githubusercontent.com/102464638/210343011-282720b3-3ea8-4116-9e97-392647158537.png)
+
+## 5) Git Flow
+
+
+
+
+
+# 6. <span id="ui"> UI </span>
 
 
 
@@ -87,8 +133,8 @@ pw : 123456
 
 
 
-# 7. 핵심 코드
-# 8. 폴더 구조
+# 7. <span id = "code"> 핵심 코드 </span>
+# 8. <span id = "tree"> 폴더 구조 </span> 
 ```
 📦src
  ┣ 📂api
