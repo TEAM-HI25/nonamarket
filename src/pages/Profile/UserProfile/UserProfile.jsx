@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/context';
 import Nav from '../../../components/Nav/Nav';
 import ProductWrapp from '../../../components/common/Product/ProductWrapp';
@@ -8,11 +8,14 @@ import ProfileInfo from '../../../components/ProfileInfo/ProfileInfo';
 import MenuBar from '../../../components/MenuBar/MenuBar';
 import PostCard from '../../../components/common/PostCard/PostCard';
 import PostAlbum from '../../../components/common/PostAlbum/PostAlbum';
+import Button from '../../../components/common/Button/Button';
+import Loading from '../../../components/Loading/Loading';
 import * as S from './StyledUserProfile';
 import FetchApi from '../../../api';
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const authAccountName = user.accountname;
   const [userProfile, setUserProfile] = useState(null);
   const [userPostArr, setUserPostArr] = useState([]);
@@ -55,6 +58,9 @@ const UserProfile = () => {
   const onListToggle = () => {
     setList(!list);
   };
+  const handleGoPost = () => {
+    navigate(`/uploadpost`);
+  };
 
   return (
     <S.Container>
@@ -66,7 +72,7 @@ const UserProfile = () => {
             authAccountName={authAccountName}
           />
         ) : (
-          <p>로딩중입니다...</p>
+          <Loading />
         )}
         <ProductWrapp pageAccount={pageAccount} />
         <MenuBar list={list} onListToggle={onListToggle} />
@@ -86,7 +92,16 @@ const UserProfile = () => {
             </S.ProfilePostAlbumWrap>
           )
         ) : (
-          <>로딩중입니다...</>
+          <S.EmptyContainer>
+            <p>반갑습니다 :-)</p>
+            <span>아래 버튼을 눌러 게시글을 작성해보세요!</span>
+            <Button
+              type='button'
+              size='m'
+              name='작성하러가기!'
+              onClick={handleGoPost}
+            />
+          </S.EmptyContainer>
         )}
       </S.MainWrap>
       <TabMenu />
