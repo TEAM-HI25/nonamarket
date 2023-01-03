@@ -107,8 +107,8 @@ const UploadPost = () => {
           reader.onload = () => {
             setImgSrc([...imgSrc, reader.result]);
             console.log(imgSrc);
-            const test = imgSrc[0].split(',');
-            console.log(test);
+            // const test = imgSrc[0].split(',');
+            // console.log(test);
             resolve();
           };
         });

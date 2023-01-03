@@ -74,13 +74,11 @@ const EditPost = () => {
 
       const imgPreview = (file) => {
         const reader = new FileReader();
-        // const imgBox = document.createElement('img');
-
-        // imgBox.className = 'imgBox';
         reader.readAsDataURL(file);
         return new Promise((resolve) => {
           reader.onload = () => {
             setImgSrc([...imgSrc, reader.result]);
+            console.log([...imgSrc, reader.result]);
             resolve();
           };
         });
@@ -101,12 +99,14 @@ const EditPost = () => {
     }
   };
 
-  const handelDeleteImg = (idx) => {
-    setImgSrc(imgSrc.filter((_, index) => index !== idx));
-  };
+  // const handelDeleteImg = (idx) => {
+  //   setImgSrc(imgSrc.filter((_, index) => index !== idx));
+  // };
 
   // 게시글 수정
   const modifyPost = async () => {
+    // console.log(imgSrc, 'imgSrc');
+    // console.log(imgFile, 'imgFile');
     try {
       if (!contentText && imgFile.length === 0) {
         // eslint-disable-next-line no-alert
@@ -121,7 +121,7 @@ const EditPost = () => {
         body: JSON.stringify({
           post: {
             content: `${contentText}`,
-            image: imgSrc.join(','),
+            image: imgFile.join(','),
           },
         }),
       });
@@ -148,6 +148,7 @@ const EditPost = () => {
         setContentText(postContent.content);
         if (postContent.image) {
           setImgSrc(postContent.image.split(', '));
+          setImgFile(postContent.image.split(', '));
         }
         console.log(postContent);
       } catch (error) {
@@ -156,6 +157,11 @@ const EditPost = () => {
     };
     getPost();
   }, []);
+
+  // 이미지 삭제하기
+  const handleDeleteImg = (idx) => {
+    setImgSrc(imgSrc.filter((_, index) => index !== idx));
+  };
 
   return (
     <S.AllWrapper>
@@ -189,7 +195,7 @@ const EditPost = () => {
                     type='button'
                     className='postImg-del'
                     onClick={() => {
-                      handelDeleteImg(idx);
+                      handleDeleteImg(idx);
                     }}
                   >
                     <span className='hidden'>이미지삭제버튼</span>

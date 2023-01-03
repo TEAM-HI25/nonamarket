@@ -60,6 +60,7 @@ export const ImgUploadBtn = styled.label`
 `;
 
 export const PostImgWrapper = styled.section`
+  width: 390px;
   ul {
     display: flex;
     gap: 8px;
@@ -70,8 +71,7 @@ export const PostImgWrapper = styled.section`
     position: relative;
   }
   img {
-    width: 100%;
-    height: 100%;
+    width: 160px;
     border-radius: 10px;
     background-size: cover;
   }
