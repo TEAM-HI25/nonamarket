@@ -22,10 +22,19 @@ pw : 123456
 7. [핵심 코드](#code)
 8. [폴더 구조](#tree)
 
+
 </div>
 </details>
 
 # <sapn id="intro"> 1. 프로젝트 소개 </span>
+
+```jsx
+🔸 이 프로젝트는 1인가구에서 남는 식재료 또는 반찬을 공유할 수 있는 SNS 커뮤니티 입니다.
+
+🔸 서비스 사용자들은 포스팅 기능을 통해 사진과 글을 기록하며 1인 가구에 도움이되는 정보를 공유할 수 있습니다. 
+
+🔸 무료로 나눔하고 싶거나 판매하고 싶은 물건이 있다면 상품 판매를 등록하고 본인의 SNS에 바로 홍보할 수 있습니다. 
+```
 
 # <span id="requirements"> 2. 요구사항 </span>
 - 인증 : 로그인, 회원가입, 프로필 설정, 유효성 평가
@@ -36,7 +45,7 @@ pw : 123456
 
 - 댓글 : 댓글 등록/삭제/신고
 
-- 검색 : 유저 검색
+- 검색 : 유저 검색 / 무한스크롤
 
 - 팔로우 : 유저 팔로우/언팔로우
 
@@ -55,16 +64,23 @@ pw : 123456
 <img width="6752" alt="nona-role" src="https://user-images.githubusercontent.com/102464638/210340798-8cae5a95-65c0-4de9-8d9f-aae6d6f395d5.png">
 <br><br>
 
+
+### 🛠 공통 담당
+- <strong>공통 작업 : 로그인 / 회원가입 / 프로필 등록 / 버튼 컴포넌트</strong>
+
+
 # 5. <span id="environments"> 개발 환경 </span>
 ## 1) 개발기간 : 2022.12.09 ~ 2023.01.05
 
 ## 2) 기술
-- FrontEnd : React, React-router, Hooks (수정하기)
+- FrontEnd : React, React-router, Hooks, Styled-components (수정하기)
 - BackEnd : 제공된 API 사용
 
 ## 3) 협업 도구
 - Discord: 실시간 채팅 및 코드 리뷰를 위한 화면 공유
 - Notion : 🔗[회의록 및 컨벤션](https://likelion.notion.site/TEAM-HI25-NOTION-eb56f0d2f9c041d08c2359f6a6282b4a)
+- VSCode Live Share
+- Figma : 🔗[디자인 시안 참고](https://www.figma.com/file/UiVmNohc371gSwo46cobj3/%EB%85%B8%EB%82%98%EB%A8%B9%EC%9E%90?node-id=1067%3A1263&t=9yzZIzAJSqqm9x8T-0)
 
 ## 4) 이슈 관리
 - 🔗[GitHub Issues](https://github.com/TEAM-HI25/nonamarket/issues) 와 🔗[GitHub Project](https://github.com/orgs/TEAM-HI25/projects/1) 를 사용하여 버전 관리 및 진행 상황을 공유함
@@ -105,7 +121,7 @@ pw : 123456
 
 |                         10. 게시글 댓글 등록 및 삭제                           |                           11. 게시글 댓글 신고                             |
 | :-------------------------------------------------------------------: | :-------------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/107895498/210338373-bbe3be94-a692-4c42-ba89-9596ec7ac326.gif" width="234" height="540"/> | <img src="" width="234" height="540"/> |
+| <img src="https://user-images.githubusercontent.com/107895498/210338373-bbe3be94-a692-4c42-ba89-9596ec7ac326.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210351956-acd2dfb2-75fb-48d9-a596-e95ed311caa3.gif" width="234" height="540"/> |
 
 
 
@@ -124,16 +140,36 @@ pw : 123456
 
 |                      18. 로그아웃                     |                              19.  좋아요                             |
 | :---------------------------------------------------------------: | :-----------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/96678570/210339672-6f04226f-86dc-4858-b1a9-5e146c6e6b0f.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> |
+| <img src="https://user-images.githubusercontent.com/96678570/210339672-6f04226f-86dc-4858-b1a9-5e146c6e6b0f.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/107895498/210352545-337e3839-f769-4a27-8f61-cc77ce7774d7.gif" width="234" height="540"/> |
 
-|                      20.   404 페이지                        |                              21.                               |
+|                      20.   404 페이지                        |                              21.  채팅                             |
 | :---------------------------------------------------------------: | :-----------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210328938-c24f1c50-a159-413d-a39c-7bc00b21cebd.gif" width="234" height="540"/> |
+| <img src="https://user-images.githubusercontent.com/96678570/210352642-af324b81-d61f-4e41-be98-214a79014ca3.gif" width="234" height="540"/> | <img src="https://user-images.githubusercontent.com/96678570/210353691-11d38687-41cf-4f61-96ad-16f07095c8e9.png" width="234" height="540"/> |
 
 
 
 
 # 7. <span id = "code"> 핵심 코드 </span>
+
+### 1) useContext
+- token, accountname이 여러 컴포넌트 내에서 api통신을 할 때 필요로 하는 것을 발견.
+- 전역에서 필요한 token, accountname을 useContext를 이용하여 관리
+- useContext를 사용함으로써 prop drilling을 방지
+- token, accountname을 얻기 위한 불필요한 데이터 요청 방지
+
+### 2) CustomHook
+- 모달 구현 시 모달이 필요한 여러 컴포넌트 내에서 동일한 로직이 반복적으로 사용되는 것을 발견.
+- 이를, useModal 이라는 커스텀 훅으로 만듦으로써 코드의 중복 최소화 및 상태 관리 로직의 재사용성을 높임.
+
+### 3) Button 컴포넌트
+- 재사용성이 높은 버튼을 공통 컴포넌트로 만들어 여러 페이지 내에서 사용할 수 있게 구현함
+- 기본 버튼 컴포넌트 구현 후 버튼의 스타일 컴포넌트에서 사이즈,disabled,색상 등을 prop 인자로 받아와서 여러 페이지에서 사용할 수 있게 구현함. 
+- 특히, 버튼의 사이즈를 SIZES 라는 객체(s,ms,m)로 변수를 지정하여 확장성있는 코드로 구현함 
+
+(보류) 라우터 접근제한
+eslint, prettier
+api 파일 분리 
+
 # 8. <span id = "tree"> 폴더 구조 </span> 
 ```
 📦src
@@ -141,10 +177,10 @@ pw : 123456
  ┣ 📂assets
  ┃ ┣ 📂font
  ┃ ┗ 📂images
- ┣ 📂components
+ ┣ 📂components    
  ┃ ┣ 📂Comment
  ┃ ┣ 📂CommentInput
- ┃ ┣ 📂common
+ ┃ ┣ 📂common           // 공통으로 사용되는 컴포넌트 폴더
  ┃ ┃ ┣ 📂Button
  ┃ ┃ ┣ 📂ImageInput
  ┃ ┃ ┣ 📂LabelInput
@@ -161,7 +197,7 @@ pw : 123456
  ┃ ┣ 📂ProfileInfo
  ┃ ┗ 📂UserListItem
  ┃ ┃ ┗ 📂UserFollow
- ┣ 📂context
+ ┣ 📂context         // 로그인 한 사용자 정보를 담기 위한 context 파일 관리 폴더
  ┣ 📂hooks
  ┣ 📂pages
  ┃ ┣ 📂AddProduct
@@ -189,4 +225,3 @@ pw : 123456
  ┣ 📜index.css
  ┗ 📜index.jsx
  ```
-# 9. 앞으로 추가될 기능
