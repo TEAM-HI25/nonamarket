@@ -91,7 +91,7 @@ const UserProfile = () => {
               ))}
             </S.ProfilePostAlbumWrap>
           )
-        ) : (
+        ) : pageAccount === user.accountname ? (
           <S.EmptyContainer>
             <p>반갑습니다 :-)</p>
             <span>아래 버튼을 눌러 게시글을 작성해보세요!</span>
@@ -101,6 +101,11 @@ const UserProfile = () => {
               name='작성하러가기!'
               onClick={handleGoPost}
             />
+          </S.EmptyContainer>
+        ) : (
+          <S.EmptyContainer>
+            <p>작성된 게시물이 없습니다 :-(</p>
+            <span>올릴 게시물을 신중하게 고민중이에요...🧐</span>
           </S.EmptyContainer>
         )}
       </S.MainWrap>
