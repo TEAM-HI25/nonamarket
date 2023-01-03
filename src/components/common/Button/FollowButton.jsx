@@ -25,9 +25,7 @@ const FollowButton = ({ userProfile, setFolloingCount, setFollowerCount }) => {
         setIsFollow(data.profile.isfollow);
         setFolloingCount(data.profile.followingCount);
         setFollowerCount(data.profile.followerCount);
-        console.log(data.profile.isfollow);
       };
-      console.log(pageAccount);
       followingPost();
     } else if (isFollow === true) {
       const unfollowingPost = async () => {
@@ -43,7 +41,6 @@ const FollowButton = ({ userProfile, setFolloingCount, setFollowerCount }) => {
         setIsFollow(data.profile.isfollow);
         setFolloingCount(data.profile.followingCount);
         setFollowerCount(data.profile.followerCount);
-        console.log(data.profile.isfollow);
       };
       unfollowingPost();
     }

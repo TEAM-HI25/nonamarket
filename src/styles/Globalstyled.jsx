@@ -17,7 +17,7 @@ const GlobalStyled = createGlobalStyle`
   body {
     font-family: "Spoqa Han Sans Neo", sans-serif;
     font-weight: 400;
-    background-color: #e8e8e8;
+    background-color: #faf7de;
     /* 배경과 구분하려고 색 넣었습니다. */
   }
 

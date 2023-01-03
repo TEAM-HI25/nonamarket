@@ -10,7 +10,6 @@ import PostCard from '../../../components/common/PostCard/PostCard';
 import PostAlbum from '../../../components/common/PostAlbum/PostAlbum';
 import * as S from './StyledUserProfile';
 import FetchApi from '../../../api';
-// import PostAlbum from '../../../components/common/PostAlbum/PostAlbum';
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
