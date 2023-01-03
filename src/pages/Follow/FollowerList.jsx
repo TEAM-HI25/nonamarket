@@ -25,7 +25,6 @@ const FollowerList = () => {
         });
         const data = await response.json();
         setFollowerList(data);
-        console.log(data);
       };
       getFollowerdata();
     }
