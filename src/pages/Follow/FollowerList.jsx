@@ -34,7 +34,8 @@ const FollowerList = () => {
       <Nav type='follow' followtitle='FollowerList' />
       <S.FollowersSection>
         {followerList.map((item, index) => (
-          <UserFollow key={item.id} data={item} index={index} />
+          // eslint-disable-next-line no-underscore-dangle
+          <UserFollow key={item._id} data={item} index={index} />
         ))}
       </S.FollowersSection>
       <TabMenu />
