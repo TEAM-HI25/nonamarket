@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../context/context';
 import UserFollow from '../../components/UserListItem/UserFollow/UserFollow';
 import TabMenu from '../../components/common/TabMenu/TabMenu';
@@ -7,14 +8,14 @@ import * as S from './StyledFollowerList';
 
 const FollowerList = () => {
   const { user } = useContext(AuthContext);
-  const authAccountName = user.accountname;
+  const { accountName } = useParams();
   const BASE_URL = 'https://mandarin.api.weniv.co.kr';
   const [followerList, setFollowerList] = useState([]);
 
   useEffect(() => {
     if (!followerList.length) {
       const getFollowerdata = async () => {
-        const url = `${BASE_URL}/profile/${authAccountName}/follower`;
+        const url = `${BASE_URL}/profile/${accountName}/follower`;
         const response = await fetch(url, {
           method: `GET`,
           headers: {

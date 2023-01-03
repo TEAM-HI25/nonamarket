@@ -95,6 +95,29 @@ const FetchApi = {
     return data;
   },
 
+  async putModifyData(username, accountname, intro, image, Token) {
+    const userData = {
+      user: {
+        username,
+        accountname,
+        intro,
+        image,
+      },
+    };
+    console.log(userData.user);
+    const response = await fetch(`${BASE_URL}/user`, {
+      method: 'PUT',
+      body: JSON.stringify(userData),
+      headers: {
+        Authorization: `Bearer ${Token}`,
+        'Content-type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    return data;
+  },
+
   async checkAccountValid(accountname) {
     const response = await fetch(`${BASE_URL}/user/accountnamevalid`, {
       method: 'POST',
@@ -161,6 +184,7 @@ const FetchApi = {
       },
     });
     const data = await response.json();
+    console.log(data);
     return data;
   },
 
