@@ -5,6 +5,7 @@ export const LayOut = styled.section`
   ${AllWrappCss}
   width: 100%;
   align-items: flex-start;
+  background-color: #fff;
 `;
 
 export const Main = styled.main`
@@ -18,15 +19,3 @@ export const ResultListWrapp = styled.ul`
   flex-direction: column;
   gap: 16px;
 `;
-
-// export const ProfileWrapp = styled.div`
-//   flex-basis: 50px;
-// `;
-// export const UserNameIdWrapp = styled.div`
-//   flex-grow: 1;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   margin-left: 12px;
-//   gap: 6px;
-// `;

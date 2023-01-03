@@ -41,6 +41,7 @@ export const ProfileImg = styled.img`
   width: 111px;
   height: 111px;
   border-radius: 50%;
+  object-fit: cover;
 `;
 
 export const UserWrapper = styled.div`

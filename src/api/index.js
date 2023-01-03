@@ -35,7 +35,6 @@ const FetchApi = {
   },
 
   async uploadImg(e) {
-    console.log(e.target.files);
     const imageFile = e.target.files[0];
     const formData = new FormData();
     formData.append('image', imageFile);
@@ -49,13 +48,11 @@ const FetchApi = {
     });
 
     const data = await response.json();
-    console.log(data);
     const imageSrc = `${BASE_URL}/${data.filename}`;
     return imageSrc;
   },
 
   async uploadImgs(e) {
-    console.log(e.target.files);
     const imageFile = e.target.files[0];
     const formData = new FormData();
     formData.append('image', imageFile);
@@ -66,7 +63,6 @@ const FetchApi = {
     });
 
     const data = await response.json();
-    console.log(data);
     const imageSrc = `${BASE_URL}/${data[0].filename}`;
     return imageSrc;
   },
@@ -104,7 +100,6 @@ const FetchApi = {
         image,
       },
     };
-    console.log(userData.user);
     const response = await fetch(`${BASE_URL}/user`, {
       method: 'PUT',
       body: JSON.stringify(userData),
@@ -114,7 +109,6 @@ const FetchApi = {
       },
     });
     const data = await response.json();
-    console.log(data);
     return data;
   },
 
@@ -184,7 +178,6 @@ const FetchApi = {
       },
     });
     const data = await response.json();
-    console.log(data);
     return data;
   },
 
