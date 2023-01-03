@@ -66,11 +66,13 @@ const PostCard = ({ data }) => {
         </S.UserInfo>
         <S.PostContents onClick={handleGoDetailPage}>
           <p>{content}</p>
-          <S.PostImgLink to={`/post/${id}`}>
+          <S.PostImgLink>
             {image &&
               image
                 .split(',')
-                .map((item) => <img src={item} alt='컨텐츠 관련 이미지' />)}
+                .map((item) => (
+                  <img key={item} src={item} alt='컨텐츠 관련 이미지' />
+                ))}
           </S.PostImgLink>
         </S.PostContents>
 

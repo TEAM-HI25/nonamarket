@@ -53,8 +53,6 @@ const PostDetail = () => {
     handleGetComment();
   }, []);
 
-  console.log(postData);
-
   return (
     <S.AllWrapper>
       <Nav type='home' />
