@@ -96,9 +96,12 @@ pw : 123456
 
 ## 3) 협업 도구
 - Discord: 실시간 채팅 및 코드 리뷰를 위한 화면 공유
-- Notion : 🔗[회의록 및 컨벤션](https://likelion.notion.site/TEAM-HI25-NOTION-eb56f0d2f9c041d08c2359f6a6282b4a)
+- Notion : 🔗[팀 노션](https://likelion.notion.site/TEAM-HI25-NOTION-eb56f0d2f9c041d08c2359f6a6282b4a)
 - VSCode Live Share
 - Figma : 🔗[디자인 시안 참고](https://www.figma.com/file/UiVmNohc371gSwo46cobj3/%EB%85%B8%EB%82%98%EB%A8%B9%EC%9E%90?node-id=1067%3A1263&t=9yzZIzAJSqqm9x8T-0)
+- 컨벤션 :
+  🔗[코드 컨벤션](https://github.com/TEAM-HI25/nonamarket/wiki/%EC%BD%94%EB%93%9C-%EC%BB%A8%EB%B2%A4%EC%85%98)
+  🔗[깃허브 컨벤션](https://github.com/TEAM-HI25/nonamarket/wiki/%EA%B9%83%ED%97%88%EB%B8%8C-%EC%BB%A8%EB%B2%A4%EC%85%98)
 
 ## 4) 이슈 관리
 - 🔗[GitHub Issues](https://github.com/TEAM-HI25/nonamarket/issues) 와 🔗[GitHub Project](https://github.com/orgs/TEAM-HI25/projects/1) 를 사용하여 버전 관리 및 진행 상황을 공유함
