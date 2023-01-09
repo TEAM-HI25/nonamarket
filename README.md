@@ -197,6 +197,7 @@ pw : 123456
 # 8. <span id = "trouble"> 트러블 슈팅 </span>
  ## 1) 양지성👨
 [문제 상황]
+<br/>
 : 팀 프로젝트를 위한 github organizition 공용 repo를 생성하고 초기 세팅하면서 발생한 충돌(error)
 - 작업자 4명이 모두 같은 branch(당시 브랜치 위치: develop)에서 파일 편집 공동작업을 진행.
 - 작업자1이 push 후, 작업자2 가 push 를 시도하니 충돌 발생.
@@ -212,7 +213,7 @@ pw : 123456
 두번째 해결과정
 마주한 에러: Your local changes to the follwoing files would be overwritten by merge: ‘파일명’
 : **please commit your changes or stash them before you merge.**
-위에 작성된 안내 문구에 따라 스테이싱 되어있던 상태를 잠시 임시 저장소로 옮겨두고, 로컬 저장소에 원격 저장소의 가장최근상태의 branch를 로컬저장소로 merge 될 수 있도록 해주면 된다.
+- 위에 작성된 안내 문구에 따라 스테이싱 되어있던 상태를 잠시 임시 저장소로 옮겨두고, 로컬 저장소에 원격 저장소의 가장최근상태의 branch를 로컬저장소로 merge 될 수 있도록 해주면 된다.
 <br/><br/>
  ## 2) 방현영👧
   [문제 상황]
