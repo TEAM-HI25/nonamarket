@@ -198,8 +198,24 @@ pw : 123456
  ## 1) 양지성👨
  
  [문제 상황]
-
+: 팀 프로젝트를 위한 github organizition 공용 repo를 생성하고 초기 세팅하면서 발생한 충돌(error)
+- 작업자 4명이 모두 같은 branch(당시 브랜치 위치: develop), [Readme.md](http://Readme.md) 파일 편집 공동작업을 진행.
+- 작업자1이 push 후, 작업자2 가 push 를 시도하니 충돌 발생.
+- 작업자2의 로컬저장소와 공동repo인 원격저장소와 싱크가 맞지 않아 발생한 문제.
+- 작업자3,4도 git add. 까지 모두 마친상황.
+  (각자의 로컬 저장소에서 변경된 파일의 상태를 ***스테이징 상태**로 넘긴 상황)
  [해결 과정]
+첫번째 해결과정
+마주한 에러: failed to push some refs to ‘원격 repository주소’
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4f88e480-f7a3-4e5c-b8f2-fb0946616919/Untitled.png)
+- 원격 저장소에 있는 파일이 로컬 저장소에는 없기 때문에 나타나는 error이다.
+- 원격 저장소와 로컬저장소의 싱크를 맞출 수 있도록 git pull <origin develop> 명령어를 입력 후 다시 변경된 내용을 원격저장소로 push 해주어야 한다.
+<br/><br/>
+두번째 해결과정
+마주한 에러: Your local changes to the follwoing files would be overwritten by merge: ‘파일명’
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/78cc6050-8f93-4789-b2c6-a316c6c10efb/Untitled.png)
+: **please commit your changes or stash them before you merge.**
+위에 작성된 안내 문구에 따라 스테이싱 되어있던 상태를 잠시 임시 저장소로 옮겨두고, 로컬 저장소에 원격 저장소의 가장최근상태의 branch를 로컬저장소로 merge 될 수 있도록 해주면 된다.
  <br/><br/>
  ## 2) 방현영👧
   [문제 상황]
