@@ -7,6 +7,7 @@ import {
   JoinEmailBtn,
 } from './StyledJoinEmail';
 import FetchApi from '../../api';
+import regex from '../../utils/regex';
 
 const JoinEmail = () => {
   const [isNext, setIsNext] = useState(false);
@@ -17,12 +18,9 @@ const JoinEmail = () => {
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
 
-  const EMAIL_CHECK =
-    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,6}$/i;
-
   // 이메일 유효성 검사
   const checkEmail = async () => {
-    if (!EMAIL_CHECK.test(email)) {
+    if (!regex.EMAIL_CHECK.test(email)) {
       setEmailMsg('*올바른 이메일 형식이 아닙니다.');
       setIsValidEmail(false);
     } else {
