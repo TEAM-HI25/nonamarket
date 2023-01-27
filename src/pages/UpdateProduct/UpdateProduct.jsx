@@ -5,6 +5,7 @@ import Nav from '../../components/Nav/Nav';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
 import FetchApi from '../../api';
 import productAPI from '../../api/productAPI';
+import regex from '../../utils/regex';
 import * as S from '../AddProduct/StyledAddProduct';
 
 const UpdateProduct = () => {
@@ -65,10 +66,8 @@ const UpdateProduct = () => {
   };
 
   // 2-1) 상품명 유효성 검사
-
-  const PRODUCT_NAME_CHECK = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|0-9]{2,15}$/;
   const handleCheckName = () => {
-    if (PRODUCT_NAME_CHECK.test(productName)) {
+    if (regex.PRODUCT_NAME_CHECK.test(productName)) {
       setIsValid({ ...isValid, productName: true });
     } else {
       setIsValid({ ...isValid, productName: false });
@@ -76,10 +75,11 @@ const UpdateProduct = () => {
   };
 
   // 2-2) 가격 유효성 검사
-
-  const PRODUCT_PRICE_CHECK = /^[0-9\\,]*$/;
   const handleCheckPrice = () => {
-    if (PRODUCT_PRICE_CHECK.test(productPrice) && productPrice.length !== 0) {
+    if (
+      regex.PRODUCT_PRICE_CHECK.test(productPrice) &&
+      productPrice.length !== 0
+    ) {
       setIsValid({ ...isValid, productPrice: true });
     } else {
       setIsValid({ ...isValid, productPrice: false });
@@ -87,11 +87,8 @@ const UpdateProduct = () => {
   };
 
   // 2-3) url 유효성 검사
-  const SALE_LINK_CHECK =
-    /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!]))?/;
-
   const handleCheckSaleLink = () => {
-    if (SALE_LINK_CHECK.test(saleLink)) {
+    if (regex.SALE_LINK_CHECK.test(saleLink)) {
       setIsValid({ ...isValid, saleLink: true });
     } else {
       setIsValid({ ...isValid, saleLink: false });
