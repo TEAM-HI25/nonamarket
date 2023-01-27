@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/context';
 import Nav from '../../components/Nav/Nav';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
-import FetchApi from '../../api';
+import productAPI from '../../api/productAPI';
+import FetchApi from '../../api/index';
 import * as S from './StyledAddProduct';
 
 const AddProduct = () => {
@@ -109,7 +110,7 @@ const AddProduct = () => {
         itemImage: `${productImg}`,
       },
     };
-    const productData = await FetchApi.registerProduct(reqData, user.token);
+    const productData = await productAPI.registerProduct(reqData, user.token);
     console.log(productData);
     navigate(`/profile/${user.accountname}`);
   };
