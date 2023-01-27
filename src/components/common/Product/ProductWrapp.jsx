@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../context/context';
-import FetchApi from '../../../api';
+import productAPI from '../../../api/productAPI';
 import ProductSection from './StyledProductWrapp';
 import Product from './Product';
 
@@ -12,7 +12,7 @@ const ProductWrapp = ({ pageAccount }) => {
   // 화면에 첫 렌더링될때만 서버통신 실행
   useEffect(() => {
     const setProductFeed = async () => {
-      const data = await FetchApi.loadProductFeed(user.token, pageAccount);
+      const data = await productAPI.loadProductFeed(user.token, pageAccount);
       setProductList(data.product);
     };
     setProductFeed();

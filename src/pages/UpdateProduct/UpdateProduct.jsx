@@ -4,6 +4,7 @@ import { AuthContext } from '../../context/context';
 import Nav from '../../components/Nav/Nav';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
 import FetchApi from '../../api';
+import productAPI from '../../api/productAPI';
 import * as S from '../AddProduct/StyledAddProduct';
 
 const UpdateProduct = () => {
@@ -97,21 +98,12 @@ const UpdateProduct = () => {
     }
   };
 
-  // 기존 상품 데이터 불러오기
   useEffect(() => {
-    const getOriginalProduct = async () => {
-      const response = await fetch(
-        `https://mandarin.api.weniv.co.kr/product/detail/${productid}`,
-        {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-            'Content-type': 'application/json',
-          },
-        },
+    const setProductFeed = async () => {
+      const data = await productAPI.getOriginalProductInfo(
+        user.token,
+        productid,
       );
-      const data = await response.json();
-      console.log(data);
       setproductImg(data.product.itemImage);
       setProductName(data.product.itemName);
       setProductPrice(priceFormat(data.product.price));
@@ -124,7 +116,7 @@ const UpdateProduct = () => {
         saleLink: true,
       });
     };
-    getOriginalProduct();
+    setProductFeed();
   }, []);
 
   const handleSubmit = async (event) => {
@@ -137,19 +129,11 @@ const UpdateProduct = () => {
         itemImage: `${productImg}`,
       },
     };
-    const response = await fetch(
-      `https://mandarin.api.weniv.co.kr/product/${productid}`,
-      {
-        method: 'PUT',
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(updateData),
-      },
+    const data = await productAPI.reviseProductInfo(
+      user.token,
+      productid,
+      updateData,
     );
-    const data = await response.json();
-    console.log(data);
     navigate(`/profile/${user.accountname}`);
     return data;
   };
