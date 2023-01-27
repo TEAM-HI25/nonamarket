@@ -54,6 +54,20 @@ const productAPI = {
     const data = await response.json();
     return data;
   },
+  async deleteProduct(token, productId) {
+    const response = await fetch(
+      `https://mandarin.api.weniv.co.kr/product/${productId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-type': 'application/json',
+        },
+      },
+    );
+    const data = await response.json();
+    return data;
+  },
 };
 
 export default productAPI;
