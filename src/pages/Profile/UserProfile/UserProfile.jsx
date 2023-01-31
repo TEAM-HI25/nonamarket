@@ -11,7 +11,7 @@ import PostAlbum from '../../../components/common/PostAlbum/PostAlbum';
 import Button from '../../../components/common/Button/Button';
 import Loading from '../../../components/Loading/Loading';
 import * as S from './StyledUserProfile';
-import FetchApi from '../../../api';
+import profileAPI from '../../../api/profileAPI';
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
@@ -28,7 +28,7 @@ const UserProfile = () => {
   useEffect(() => {
     if (!userProfile) {
       const getUserProfileInfo = async () => {
-        const data = await FetchApi.getUserInfo(user.token, pageAccount);
+        const data = await profileAPI.getUserInfo(user.token, pageAccount);
         setUserProfile(data.profile);
       };
       getUserProfileInfo();

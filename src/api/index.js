@@ -180,18 +180,18 @@ const FetchApi = {
     const data = await response.json();
     return data;
   },
-
-  async getUserInfo(token, accountname) {
-    const response = await fetch(`${BASE_URL}/profile/${accountname}`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
-  },
+  // 완료
+  // async getUserInfo(token, accountname) {
+  //   const response = await fetch(`${BASE_URL}/profile/${accountname}`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       'Content-type': 'application/json',
+  //     },
+  //   });
+  //   const data = await response.json();
+  //   return data;
+  // },
 
   async loadProductFeed(token, pageAccount) {
     const response = await fetch(`${BASE_URL}/product/${pageAccount}`, {
