@@ -6,7 +6,7 @@ import {
   JoinEmailTitle,
   JoinEmailBtn,
 } from './StyledJoinEmail';
-import FetchApi from '../../api';
+import userAPI from '../../api/userAPI';
 import regex from '../../utils/regex';
 
 const JoinEmail = () => {
@@ -24,7 +24,7 @@ const JoinEmail = () => {
       setEmailMsg('*올바른 이메일 형식이 아닙니다.');
       setIsValidEmail(false);
     } else {
-      const data = await FetchApi.checkEmailValid(email);
+      const data = await userAPI.checkEmailValid(email);
       if (data.message === '이미 가입된 이메일 주소 입니다.') {
         setEmailMsg('*이미 가입된 이메일 주소 입니다.');
         setIsValidEmail(false);
