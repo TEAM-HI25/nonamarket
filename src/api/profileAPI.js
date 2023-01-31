@@ -13,11 +13,27 @@ const profileAPI = {
     const data = await response.json();
     return data;
   },
-  // FollweList 데이터
 
+  // FollweList 데이터
   async getFollowerList(token, accountName) {
     const response = await fetch(
       `${BASE_URL}/profile/${accountName}/follower`,
+      {
+        method: `GET`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-type': 'application/json',
+        },
+      },
+    );
+    const data = await response.json();
+    return data;
+  },
+
+  // FollowingList 데이터
+  async getFollowingdata(token, accountName) {
+    const response = await fetch(
+      `${BASE_URL}/profile/${accountName}/following`,
       {
         method: `GET`,
         headers: {
