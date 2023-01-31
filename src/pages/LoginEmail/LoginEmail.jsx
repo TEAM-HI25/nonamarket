@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
 import FetchApi from '../../api';
+import regex from '../../utils/regex';
 import { AuthContext } from '../../context/context';
 import * as S from './StyledLoginEmail';
 
@@ -13,9 +14,6 @@ const LoginEmail = () => {
   const [message, setMessage] = useState(''); // 에러메세지 state
   const navigate = useNavigate(); // e
 
-  const EMAIL_CHECK =
-    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,6}$/i;
-
   const handleData = (event) => {
     if (event.target.type === 'email') {
       setEmail(event.target.value);
@@ -25,7 +23,7 @@ const LoginEmail = () => {
   };
   // 정규표현식 일치 여부에 따라 버튼색이 바뀌는 함수
   const handleCheckValid = () => {
-    return EMAIL_CHECK.test(email) && password.length > 5
+    return regex.EMAIL_CHECK.test(email) && password.length > 5
       ? setIsValid(true)
       : setIsValid(false);
   };
