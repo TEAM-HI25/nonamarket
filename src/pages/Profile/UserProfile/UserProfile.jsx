@@ -2,6 +2,8 @@ import { useContext, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/context';
 import Nav from '../../../components/Nav/Nav';
+import profileAPI from '../../../api/profileAPI';
+import postAPI from '../../../api/postAPI';
 import ProductWrapp from '../../../components/common/Product/ProductWrapp';
 import TabMenu from '../../../components/common/TabMenu/TabMenu';
 import ProfileInfo from '../../../components/ProfileInfo/ProfileInfo';
@@ -11,7 +13,6 @@ import PostAlbum from '../../../components/common/PostAlbum/PostAlbum';
 import Button from '../../../components/common/Button/Button';
 import Loading from '../../../components/Loading/Loading';
 import * as S from './StyledUserProfile';
-import profileAPI from '../../../api/profileAPI';
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
@@ -23,7 +24,7 @@ const UserProfile = () => {
   const [list, setList] = useState(true);
   const location = useLocation();
   const pageAccount = location.pathname.split('/')[2];
-  const BASE_URL = 'https://mandarin.api.weniv.co.kr';
+  // const BASE_URL = 'https://mandarin.api.weniv.co.kr';
 
   useEffect(() => {
     if (!userProfile) {
@@ -38,15 +39,7 @@ const UserProfile = () => {
   useEffect(() => {
     if (!userPostArr.length) {
       const getMyPost = async () => {
-        const url = `${BASE_URL}/post/${pageAccount}/userpost`;
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-            'Content-type': 'application/json',
-          },
-        });
-        const data = await response.json();
+        const data = await postAPI.getMyPost(user.token, pageAccount);
         setUserPostArr(data.post);
         const newdata = data.post.filter((post) => post.image !== '');
         setUserAlbumPostArr(newdata);
