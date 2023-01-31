@@ -1,56 +1,56 @@
 const BASE_URL = 'https://mandarin.api.weniv.co.kr';
 
 const FetchApi = {
-  async getLogin(email, password) {
-    const response = await fetch(`${BASE_URL}/user/login`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        user: {
-          email,
-          password,
-        },
-      }),
-    });
-    const data = await response.json();
-    return data;
-  },
+  // async getLogin(email, password) {
+  //   const response = await fetch(`${BASE_URL}/user/login`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       user: {
+  //         email,
+  //         password,
+  //       },
+  //     }),
+  //   });
+  //   const data = await response.json();
+  //   return data;
+  // },
 
-  async checkEmailValid(email) {
-    const response = await fetch(`${BASE_URL}/user/emailvalid`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        user: {
-          email,
-        },
-      }),
-    });
-    const data = await response.json();
-    return data;
-  },
+  // async checkEmailValid(email) {
+  //   const response = await fetch(`${BASE_URL}/user/emailvalid`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       user: {
+  //         email,
+  //       },
+  //     }),
+  //   });
+  //   const data = await response.json();
+  //   return data;
+  // },
 
-  async uploadImg(e) {
-    const imageFile = e.target.files[0];
-    const formData = new FormData();
-    formData.append('image', imageFile);
+  // async uploadImg(e) {
+  //   const imageFile = e.target.files[0];
+  //   const formData = new FormData();
+  //   formData.append('image', imageFile);
 
-    const response = await fetch(`${BASE_URL}/image/uploadfile`, {
-      method: 'POST',
-      // headers: {
-      //   'Content-type': 'multipart/form-data',
-      // },
-      body: formData,
-    });
+  //   const response = await fetch(`${BASE_URL}/image/uploadfile`, {
+  //     method: 'POST',
+  //     // headers: {
+  //     //   'Content-type': 'multipart/form-data',
+  //     // },
+  //     body: formData,
+  //   });
 
-    const data = await response.json();
-    const imageSrc = `${BASE_URL}/${data.filename}`;
-    return imageSrc;
-  },
+  //   const data = await response.json();
+  //   const imageSrc = `${BASE_URL}/${data.filename}`;
+  //   return imageSrc;
+  // },
 
   async uploadImgs(e) {
     const imageFile = e.target.files[0];
@@ -67,29 +67,29 @@ const FetchApi = {
     return imageSrc;
   },
 
-  async getSignUp(username, email, password, accountname, intro, image) {
-    const userData = {
-      user: {
-        username,
-        email,
-        password,
-        accountname,
-        intro,
-        image,
-      },
-    };
+  // async getSignUp(username, email, password, accountname, intro, image) {
+  //   const userData = {
+  //     user: {
+  //       username,
+  //       email,
+  //       password,
+  //       accountname,
+  //       intro,
+  //       image,
+  //     },
+  //   };
 
-    const response = await fetch(`${BASE_URL}/user`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    });
+  //   const response = await fetch(`${BASE_URL}/user`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //     },
+  //     body: JSON.stringify(userData),
+  //   });
 
-    const data = await response.json();
-    return data;
-  },
+  //   const data = await response.json();
+  //   return data;
+  // },
 
   async putModifyData(username, accountname, intro, image, Token) {
     const userData = {
@@ -112,22 +112,22 @@ const FetchApi = {
     return data;
   },
 
-  async checkAccountValid(accountname) {
-    const response = await fetch(`${BASE_URL}/user/accountnamevalid`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        user: {
-          accountname,
-        },
-      }),
-    });
+  // async checkAccountValid(accountname) {
+  //   const response = await fetch(`${BASE_URL}/user/accountnamevalid`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       user: {
+  //         accountname,
+  //       },
+  //     }),
+  //   });
 
-    const data = await response.json();
-    return data;
-  },
+  //   const data = await response.json();
+  //   return data;
+  // },
 
   async searchUser(keyword, token) {
     const response = await fetch(
