@@ -1,9 +1,9 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { useLocation } from 'react-router-dom';
 import ImageInput from '../../components/common/ImageInput/ImageInput';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
-import FetchApi from '../../api';
+import imageAPI from '../../api/imageAPI';
+import userAPI from '../../api/userAPI';
 import regex from '../../utils/regex';
 import BASE_URL from '../../utils/baseUrl';
 import { AuthContext } from '../../context/context';
@@ -19,18 +19,12 @@ const JoinProfileEdit = ({ email, password }) => {
   const [isValidName, setIsValidName] = useState(false);
   const [isValidAccount, setIsValidAccount] = useState(false);
   const navigate = useNavigate();
-  // const location = useLocation(); 삭제예정
   const { dispatch } = useContext(AuthContext);
-
-  // const email = loacation.state.email;
-  // const password = loaction.state.password;
-  // console.log(location);
 
   // 영문,숫자,특수문자만 사용가능한 정규표현식
   const handleGetImg = async (event) => {
-    const data = await FetchApi.uploadImg(event); // imgSrc를 리턴 받음
-    setImg(data); // img == imgSrc
-    console.log(img);
+    const data = await imageAPI.uploadImg(event);
+    setImg(data);
   };
 
   const handleData = (event) => {
@@ -60,7 +54,7 @@ const JoinProfileEdit = ({ email, password }) => {
       setAccountMsg('*영문자, 숫자, 점(.), 밑줄(_)만 포함해야 합니다.');
       setIsValidAccount(false);
     } else {
-      const data = await FetchApi.checkAccountValid(userAccountName);
+      const data = await userAPI.checkAccountValid(userAccountName);
       if (data.message === '이미 가입된 계정ID 입니다.') {
         setAccountMsg('*이미 가입된 계정ID 입니다.');
         setIsValidAccount(false);
@@ -73,7 +67,7 @@ const JoinProfileEdit = ({ email, password }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const Signdata = await FetchApi.getSignUp(
+    await userAPI.getSignUp(
       userName,
       email,
       password,
@@ -81,10 +75,8 @@ const JoinProfileEdit = ({ email, password }) => {
       userIntro,
       img,
     );
-    console.log(Signdata);
-    // 토큰 받아오기 위해 로그인 로직 다시 씀,로그인 로직 실행안하면 토큰 없는 상태로 홈피드로 들어가게됨
-    const data = await FetchApi.getLogin(email, password);
-    console.log(data);
+
+    const data = await userAPI.getLogin(email, password);
     localStorage.setItem('token', data.user.token);
     localStorage.setItem('accountname', data.user.accountname);
 
