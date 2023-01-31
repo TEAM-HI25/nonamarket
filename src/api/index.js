@@ -90,27 +90,27 @@ const FetchApi = {
     const data = await response.json();
     return data;
   },
-
-  async putModifyData(username, accountname, intro, image, Token) {
-    const userData = {
-      user: {
-        username,
-        accountname,
-        intro,
-        image,
-      },
-    };
-    const response = await fetch(`${BASE_URL}/user`, {
-      method: 'PUT',
-      body: JSON.stringify(userData),
-      headers: {
-        Authorization: `Bearer ${Token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
-  },
+  // 완료
+  // async putModifyData(username, accountname, intro, image, Token) {
+  //   const userData = {
+  //     user: {
+  //       username,
+  //       accountname,
+  //       intro,
+  //       image,
+  //     },
+  //   };
+  //   const response = await fetch(`${BASE_URL}/user`, {
+  //     method: 'PUT',
+  //     body: JSON.stringify(userData),
+  //     headers: {
+  //       Authorization: `Bearer ${Token}`,
+  //       'Content-type': 'application/json',
+  //     },
+  //   });
+  //   const data = await response.json();
+  //   return data;
+  // },
 
   async checkAccountValid(accountname) {
     const response = await fetch(`${BASE_URL}/user/accountnamevalid`, {
@@ -170,16 +170,18 @@ const FetchApi = {
     return data;
   },
 
-  async getMyinfo(token) {
-    const response = await fetch(`${BASE_URL}/user/myinfo`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const data = await response.json();
-    return data;
-  },
+  // 완료
+  // async getMyinfo(token) {
+  //   const response = await fetch(`${BASE_URL}/user/myinfo`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  //   const data = await response.json();
+  //   return data;
+  // },
+
   // 완료
   // async getUserInfo(token, accountname) {
   //   const response = await fetch(`${BASE_URL}/profile/${accountname}`, {

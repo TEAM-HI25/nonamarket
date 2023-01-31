@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import FetchApi from '../../api';
+import userAPI from '../../api/userAPI';
+import FetchApi from '../../api/index';
 import ImageInput from '../../components/common/ImageInput/ImageInput';
 import { AuthContext } from '../../context/context';
 import Nav from '../../components/Nav/Nav';
@@ -26,7 +27,7 @@ const ModifyProfile = () => {
   // 프로필 데이터 받아오기
   useEffect(() => {
     const getUserInfo = async () => {
-      const Data = await FetchApi.getMyinfo(Token);
+      const Data = await userAPI.getMyinfo(Token);
       setUserName(Data.user.username);
       setImg(Data.user.image);
       setUserAccountName(Data.user.accountname);
@@ -82,7 +83,7 @@ const ModifyProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const ModifyData = await FetchApi.putModifyData(
+    const ModifyData = await userAPI.putModifyData(
       userName,
       userAccountName,
       userIntro,

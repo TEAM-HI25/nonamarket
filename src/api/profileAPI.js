@@ -45,5 +45,26 @@ const profileAPI = {
     const data = await response.json();
     return data;
   },
+
+  async putModifyData(username, accountname, intro, image, Token) {
+    const userData = {
+      user: {
+        username,
+        accountname,
+        intro,
+        image,
+      },
+    };
+    const response = await fetch(`${BASE_URL}/user`, {
+      method: 'PUT',
+      body: JSON.stringify(userData),
+      headers: {
+        Authorization: `Bearer ${Token}`,
+        'Content-type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    return data;
+  },
 };
 export default profileAPI;
