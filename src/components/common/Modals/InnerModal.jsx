@@ -37,21 +37,13 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       deletePost();
     } else if (name === '게시글신고') {
       const reportPost = async () => {
-        const response = await fetch(
-          `https://mandarin.api.weniv.co.kr/post/${postId}/report`,
-          {
-            method: 'POST',
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-              'Content-type': 'application/json',
-            },
-          },
-        );
-        const data = await response.json();
+        const data = await postAPI.reportPost(user.token, postId);
         if (data.report) {
           // eslint-disable-next-line no-alert
           alert('신고되었습니다.');
           CloseInnerModal();
+        } else {
+          console.log(data);
         }
       };
       reportPost();

@@ -37,6 +37,18 @@ const postAPI = {
     const data = await response.json();
     return data;
   },
+
+  async reportPost(token, postId) {
+    const response = await fetch(`${BASE_URL}/post/${postId}/report`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    return data;
+  },
 };
 
 export default postAPI;
