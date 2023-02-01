@@ -25,6 +25,18 @@ const postAPI = {
     const data = await response.json();
     return data;
   },
+
+  async deletePost(token, postId) {
+    const response = await fetch(`${BASE_URL}/post/${postId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    return data;
+  },
 };
 
 export default postAPI;
