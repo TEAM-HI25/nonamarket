@@ -1,12 +1,12 @@
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import userAPI from '../../api/userAPI';
-import FetchApi from '../../api/index';
-import ImageInput from '../../components/common/ImageInput/ImageInput';
 import { AuthContext } from '../../context/context';
+import userAPI from '../../api/userAPI';
+import imageAPI from '../../api/imageAPI';
 import Nav from '../../components/Nav/Nav';
-import * as S from './StyledModifyProfile';
+import ImageInput from '../../components/common/ImageInput/ImageInput';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
+import * as S from './StyledModifyProfile';
 
 const ModifyProfile = () => {
   const navigate = useNavigate();
@@ -22,7 +22,6 @@ const ModifyProfile = () => {
   const [isValidAccount, setIsValidAccount] = useState(false);
   const { user, dispatch } = useContext(AuthContext);
   const Token = user.token;
-  // const AccountName = user.accountname;
 
   // 프로필 데이터 받아오기
   useEffect(() => {
@@ -39,7 +38,7 @@ const ModifyProfile = () => {
   // 영문,숫자,특수문자만 사용가능한 정규표현식
   const ACCOUNT_CHECK = /^[-._a-z0-9]+$/gi;
   const handleGetImg = async (event) => {
-    const data = await FetchApi.uploadImg(event);
+    const data = await imageAPI.uploadImg(event);
     setImg(data);
   };
 
@@ -70,7 +69,7 @@ const ModifyProfile = () => {
       setAccountMsg('*영문자, 숫자, 점(.), 밑줄(_)만 포함해야 합니다.');
       setIsValidAccount(false);
     } else {
-      const data = await FetchApi.checkAccountValid(userAccountName);
+      const data = await userAPI.checkAccountValid(userAccountName);
       if (data.message === '이미 가입된 계정ID 입니다.') {
         setAccountMsg('*이미 가입된 계정ID 입니다.');
         setIsValidAccount(false);

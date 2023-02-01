@@ -24,7 +24,6 @@ const UserProfile = () => {
   const [list, setList] = useState(true);
   const location = useLocation();
   const pageAccount = location.pathname.split('/')[2];
-  // const BASE_URL = 'https://mandarin.api.weniv.co.kr';
 
   useEffect(() => {
     if (!userProfile) {
