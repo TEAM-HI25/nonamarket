@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../../components/Nav/Nav';
 import ProfileImg from '../../components/common/ProfileImg/ProfileImg';
@@ -8,12 +8,19 @@ import { AuthContext } from '../../context/context';
 const UploadPost = () => {
   const { user } = useContext(AuthContext);
   const [profileImg, setProfileImg] = useState('');
-  const [imgFile, setImgFile] = useState([]); // 파일 객체를 저장할 state
-  const [imgUrl, setImgUrl] = useState(''); // 파일 객체의 이미지 url을 저장할 state
-  const [imgSrc, setImgSrc] = useState([]);
+  const [imgSrc, setImgSrc] = useState('');
   const [contentText, setContentText] = useState('');
+  const [imgFile, setImgFile] = useState([]);
+  const textRef = useRef();
+  const imgRef = useRef();
   const BASE_URL = 'https://mandarin.api.weniv.co.kr';
   const navigate = useNavigate();
+
+  // textarea
+  // const handleResizeHeight = () => {
+  //   textRef.current.style.height = 'auto';
+  //   textRef.current.style.height = `${textRef.current.scrollHeight}px`;
+  // };
 
   // 유저 프로필 이미지 받아오기
   useEffect(() => {
@@ -37,67 +44,14 @@ const UploadPost = () => {
     getUserProfile();
   });
 
-  // textarea value
   const handleContentText = (e) => {
     setContentText(e.target.value);
   };
 
-  // 이미지 POST 전송 - API 파일로 분리 에정
-  const postImgAPI = async (file) => {
-    const formData = new FormData();
-    formData.append('image', file);
-
-    const response = await fetch(`${BASE_URL}/image/uploadfiles`, {
-      method: 'POST',
-      body: formData,
-    });
-
-    const data = await response.json();
-    return data;
-  };
-
-  // 이미지 미리보기
-  const handleChangeFile = async (e) => {
-    const imgObject = e.target.files[0];
-    setImgFile((prevState) => [...prevState, imgObject]);
-
-    if (imgObject === undefined) return;
-
-    if (imgFile.length > 2) {
-      // eslint-disable-next-line no-alert
-      alert('이미지는 3장 까지 업로드 가능합니다.');
-      return;
-    }
-
-    const imgRecoding = (file) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      e.target.value = '';
-      // eslint-disable-next-line consistent-return
-      return new Promise((resolve) => {
-        reader.onload = () => {
-          setImgUrl((imgurl) => [...imgurl, reader.result]);
-          resolve();
-        };
-      });
-    };
-
-    const data = await postImgAPI(imgObject);
-    if (data.message === '이미지 파일만 업로드 가능합니다.') {
-      // eslint-disable-next-line no-alert
-      alert(data.message);
-      setImgSrc([...imgSrc]);
-    } else {
-      setImgSrc([...imgSrc, `${BASE_URL}/${data[0].filename}`]);
-      imgRecoding(imgObject);
-    }
-    console.log(imgSrc);
-  };
-
-  // 게시글 생성 (글+이미지 서버에 보내기) - API파일에 분리예정
+  // 업로드 클릭시 포스트글 서버에 보내기 (텍스트 + 이미지)
   const handleUpload = async () => {
     try {
-      if (!contentText && imgSrc.length === 0) {
+      if (!contentText && imgFile.length === 0) {
         // eslint-disable-next-line no-alert
         alert('내용 또는 이미지를 입력해주세요.');
       }
@@ -110,7 +64,7 @@ const UploadPost = () => {
         body: JSON.stringify({
           post: {
             content: contentText,
-            image: imgSrc.join(', '),
+            image: imgFile.join(', '),
           },
         }),
       });
@@ -122,9 +76,60 @@ const UploadPost = () => {
     }
   };
 
-  // 이미지 삭제
+  // 이미지 업로드
+  const handleUploadImg = async (e) => {
+    const imgInput = e.target.files[0];
+    const formData = new FormData();
+
+    setImgFile((imgfile) => [...imgfile, imgInput.name]);
+    formData.append('image', imgInput);
+
+    if (imgFile.length > 2) {
+      // eslint-disable-next-line no-alert
+      alert('이미지는 3장 까지 업로드 가능합니다.');
+    }
+
+    try {
+      const response = await fetch(`${BASE_URL}/image/uploadfiles`, {
+        method: 'POST',
+        body: formData,
+      });
+      console.log(response);
+
+      const data = await response.json();
+      console.log(data);
+
+      const imgPreview = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        return new Promise((resolve) => {
+          reader.onload = () => {
+            setImgSrc([...imgSrc, reader.result]);
+            console.log(imgSrc);
+            // const test = imgSrc[0].split(',');
+            // console.log(test);
+            resolve();
+          };
+        });
+      };
+
+      if (data.message === '이미지 파일만 업로드 가능합니다.') {
+        // eslint-disable-next-line no-alert
+        alert(
+          '업로드 가능한 확장자: *.jpg, *.gif, *.png, *.jpeg, *.bmp, *.tif, *.heic',
+        );
+        setImgFile([...imgFile]);
+      } else {
+        setImgFile([...imgFile, `${BASE_URL}/${data[0].filename}`]);
+        imgPreview(imgInput);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handelDeleteImg = (idx) => {
-    setImgUrl(imgUrl.filter((_, index) => index !== idx));
+    setImgSrc(imgSrc.filter((_, index) => index !== idx));
   };
 
   return (
@@ -132,7 +137,7 @@ const UploadPost = () => {
       <Nav
         type='upload'
         btnName='업로드'
-        disabled={!contentText && !imgUrl}
+        disabled={!contentText && !imgSrc}
         onClick={handleUpload}
       />
       <S.ContentWrapper>
@@ -140,19 +145,21 @@ const UploadPost = () => {
         <S.ContentInput
           id='comment'
           value={contentText}
+          // onInput={handleResizeHeight}
           onChange={handleContentText}
+          ref={textRef}
         />
       </S.ContentWrapper>
       <S.ImgUploadBtn htmlFor='imguploadinput' />
-      <S.uploadImgInput id='imguploadinput' onChange={handleChangeFile} />
+      <S.uploadImgInput id='imguploadinput' onChange={handleUploadImg} />
       <S.PostImgWrapper>
         <ul>
-          {imgUrl &&
-            imgUrl.map((item, idx) => {
+          {imgSrc &&
+            imgSrc.map((item, idx) => {
               return (
                 // eslint-disable-next-line react/no-array-index-key
                 <li key={idx} id={idx}>
-                  <img src={item} alt='이미지프리뷰' />
+                  <img src={item} ref={imgRef} alt='이미지' />
                   <button
                     type='button'
                     className='postImg-del'
