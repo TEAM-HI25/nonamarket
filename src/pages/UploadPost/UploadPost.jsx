@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/context';
+import postAPI from '../../api/postAPI';
 import Nav from '../../components/Nav/Nav';
 import ProfileImg from '../../components/common/ProfileImg/ProfileImg';
 import * as S from './StyledUploadPost';
-import { AuthContext } from '../../context/context';
+import BASE_URL from '../../utils/baseUrl';
 
 const UploadPost = () => {
   const { user } = useContext(AuthContext);
@@ -12,48 +14,18 @@ const UploadPost = () => {
   const [imgUrl, setImgUrl] = useState(''); // 파일 객체의 이미지 url을 저장할 state
   const [imgSrc, setImgSrc] = useState([]);
   const [contentText, setContentText] = useState('');
-  const BASE_URL = 'https://mandarin.api.weniv.co.kr';
   const navigate = useNavigate();
 
   // 유저 프로필 이미지 받아오기
   useEffect(() => {
-    const getUserProfile = async () => {
-      const url = `${BASE_URL}/profile/${user.accountname}`;
-
-      try {
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-            'Content-type': 'application/json',
-          },
-        });
-        const data = await response.json();
-        setProfileImg(data.profile.image);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getUserProfile();
+    postAPI
+      .getUserProfile(user.token, user.accountname)
+      .then((data) => setProfileImg(data.profile.image));
   });
 
   // textarea value
   const handleContentText = (e) => {
     setContentText(e.target.value);
-  };
-
-  // 이미지 POST 전송 - API 파일로 분리 에정
-  const postImgAPI = async (file) => {
-    const formData = new FormData();
-    formData.append('image', file);
-
-    const response = await fetch(`${BASE_URL}/image/uploadfiles`, {
-      method: 'POST',
-      body: formData,
-    });
-
-    const data = await response.json();
-    return data;
   };
 
   // 이미지 미리보기
@@ -82,7 +54,7 @@ const UploadPost = () => {
       });
     };
 
-    const data = await postImgAPI(imgObject);
+    const data = await postAPI.postUploadImgs(imgObject);
     if (data.message === '이미지 파일만 업로드 가능합니다.') {
       // eslint-disable-next-line no-alert
       alert(data.message);
@@ -96,30 +68,13 @@ const UploadPost = () => {
 
   // 게시글 생성 (글+이미지 서버에 보내기) - API파일에 분리예정
   const handleUpload = async () => {
-    try {
-      if (!contentText && imgSrc.length === 0) {
-        // eslint-disable-next-line no-alert
-        alert('내용 또는 이미지를 입력해주세요.');
-      }
-      const response = await fetch(`${BASE_URL}/post`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({
-          post: {
-            content: contentText,
-            image: imgSrc.join(', '),
-          },
-        }),
-      });
-      const data = await response.json();
-      console.log(data);
-      navigate(`/profile/${user.accountname}`);
-    } catch (error) {
-      console.error(error);
+    if (!contentText && imgSrc.length === 0) {
+      // eslint-disable-next-line no-alert
+      alert('내용 또는 이미지를 입력해주세요.');
     }
+
+    postAPI.createPost(user.token, contentText, imgSrc);
+    navigate(`/profile/${user.accountname}`);
   };
 
   // 이미지 삭제
