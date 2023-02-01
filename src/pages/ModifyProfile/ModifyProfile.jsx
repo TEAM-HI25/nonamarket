@@ -6,6 +6,7 @@ import imageAPI from '../../api/imageAPI';
 import Nav from '../../components/Nav/Nav';
 import ImageInput from '../../components/common/ImageInput/ImageInput';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
+import ACCOUNT_CHECK from '../../utils/regex';
 import * as S from './StyledModifyProfile';
 
 const ModifyProfile = () => {
@@ -23,7 +24,7 @@ const ModifyProfile = () => {
   const { user, dispatch } = useContext(AuthContext);
   const Token = user.token;
 
-  // 프로필 데이터 받아오기
+  // 서버에 저장된 기존 프로필 데이터 받아오기
   useEffect(() => {
     const getUserInfo = async () => {
       const Data = await userAPI.getMyinfo(Token);
@@ -35,13 +36,13 @@ const ModifyProfile = () => {
     getUserInfo();
   }, []);
 
-  // 영문,숫자,특수문자만 사용가능한 정규표현식
-  const ACCOUNT_CHECK = /^[-._a-z0-9]+$/gi;
+  // 수정할 프로필 이미지 데이터 서버전송
   const handleGetImg = async (event) => {
     const data = await imageAPI.uploadImg(event);
     setImg(data);
   };
 
+  // 수정되는 username & useraccountname & userintro value 값 저장 함수
   const handleData = (event) => {
     if (event.target.id === 'username') {
       setUserName(event.target.value);
@@ -80,6 +81,7 @@ const ModifyProfile = () => {
     }
   };
 
+  // 수정된 profile 데이터를 서버에 전송
   const handleSubmit = async (e) => {
     e.preventDefault();
     const ModifyData = await userAPI.putModifyData(
