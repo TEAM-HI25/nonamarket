@@ -1,9 +1,9 @@
 import { useContext, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/context';
-import Nav from '../../../components/Nav/Nav';
 import profileAPI from '../../../api/profileAPI';
 import postAPI from '../../../api/postAPI';
+import Nav from '../../../components/Nav/Nav';
 import ProductWrapp from '../../../components/common/Product/ProductWrapp';
 import TabMenu from '../../../components/common/TabMenu/TabMenu';
 import ProfileInfo from '../../../components/ProfileInfo/ProfileInfo';
@@ -24,7 +24,6 @@ const UserProfile = () => {
   const [list, setList] = useState(true);
   const location = useLocation();
   const pageAccount = location.pathname.split('/')[2];
-  // const BASE_URL = 'https://mandarin.api.weniv.co.kr';
 
   useEffect(() => {
     if (!userProfile) {
