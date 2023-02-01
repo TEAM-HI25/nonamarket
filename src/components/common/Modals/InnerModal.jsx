@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import postAPI from '../../../api/postAPI';
 import productAPI from '../../../api/productAPI';
 import { AuthContext } from '../../../context/context';
 import {
@@ -25,40 +26,24 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       window.location = '/';
     } else if (name === '게시글삭제') {
       const deletePost = async () => {
-        const response = await fetch(
-          `https://mandarin.api.weniv.co.kr/post/${postId}`,
-          {
-            method: 'DELETE',
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-              'Content-type': 'application/json',
-            },
-          },
-        );
-        const data = await response.json();
+        const data = await postAPI.deletePost(user.token, postId);
         if (data.status === '200') {
           CloseInnerModal();
           window.location.reload();
+        } else {
+          console.log(data);
         }
       };
       deletePost();
     } else if (name === '게시글신고') {
       const reportPost = async () => {
-        const response = await fetch(
-          `https://mandarin.api.weniv.co.kr/post/${postId}/report`,
-          {
-            method: 'POST',
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-              'Content-type': 'application/json',
-            },
-          },
-        );
-        const data = await response.json();
+        const data = await postAPI.reportPost(user.token, postId);
         if (data.report) {
           // eslint-disable-next-line no-alert
           alert('신고되었습니다.');
           CloseInnerModal();
+        } else {
+          console.log(data);
         }
       };
       reportPost();
