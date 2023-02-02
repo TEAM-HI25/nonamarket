@@ -12,7 +12,7 @@ import FollowerList from '../pages/Follow/FollowerList';
 import FollowingList from '../pages/Follow/FollowingList';
 import ModifyProfile from '../pages/ModifyProfile/ModifyProfile';
 import AddProduct from '../pages/AddProduct/AddProduct';
-import UpdateProduct from '../pages/UpdateProduct/UpdateProduct';
+import EditProduct from '../pages/EditProduct/EditProduct';
 import PostDetail from '../pages/PostDetail/PostDetail';
 import UploadPost from '../pages/UploadPost/UploadPost';
 import ChatList from '../pages/ChatList/ChatList';
@@ -45,7 +45,7 @@ const Router = () => {
             />
             <Route path='/modifyprofile' element={<ModifyProfile />} />
             <Route path='/addproduct' element={<AddProduct />} />
-            <Route path='/product/:productid' element={<UpdateProduct />} />
+            <Route path='/product/:productid' element={<EditProduct />} />
             <Route path='/postdetail/:postid' element={<PostDetail />} />
             <Route path='/editpost/:postid' element={<EditPost />} />
             <Route path='/uploadpost' element={<UploadPost />} />

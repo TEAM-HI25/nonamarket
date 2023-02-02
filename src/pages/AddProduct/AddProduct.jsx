@@ -1,5 +1,5 @@
-import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useContext, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../context/context';
 import Nav from '../../components/Nav/Nav';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
@@ -8,7 +8,7 @@ import FetchApi from '../../api/index';
 import regex from '../../utils/regex';
 import * as S from './StyledAddProduct';
 
-const AddProduct = () => {
+const AddProduct = ({ editing }) => {
   // input 상태관리
   const [productImg, setproductImg] = useState('');
   const [productName, setProductName] = useState('');
@@ -17,6 +17,7 @@ const AddProduct = () => {
 
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { productid } = useParams();
 
   // 모든 값 valid check, 서버 전송 가능 상태시 버튼 true
   const [isValid, setIsValid] = useState({
@@ -93,20 +94,62 @@ const AddProduct = () => {
     }
   };
 
-  // 데이터 전송
+  // 게시글 수정할 때 기존 데이터 가져오기
+  useEffect(() => {
+    if (editing) {
+      const setProductFeed = async () => {
+        const data = await productAPI.getOriginalProductInfo(
+          user.token,
+          productid,
+        );
+        setproductImg(data.product.itemImage);
+        setProductName(data.product.itemName);
+        setProductPrice(priceFormat(data.product.price));
+        setSaleLink(data.product.link);
+        setIsValid({
+          ...isValid,
+          productImg: true,
+          productName: true,
+          productPrice: true,
+          saleLink: true,
+        });
+      };
+      setProductFeed();
+    }
+  }, [productid]);
+
+  // editing 이 true 면 상품 수정, false 면 상품 등록
   const handleSubmit = async (event) => {
     event.preventDefault(); // submit 제출 막기(새로고침막기)
-    const reqData = {
-      product: {
-        itemName: `${productName}`,
-        price: parseInt(productPrice.replace(',', ''), 10), // 서버 전송 가능 형태로 가공
-        link: `${saleLink}`,
-        itemImage: `${productImg}`,
-      },
-    };
-    const productData = await productAPI.registerProduct(reqData, user.token);
-    console.log(productData);
-    navigate(`/profile/${user.accountname}`);
+    if (editing) {
+      const updateData = {
+        product: {
+          itemName: `${productName}`,
+          price: parseInt(productPrice.replace(',', ''), 10), // 서버 전송 가능 형태로 가공
+          link: `${saleLink}`,
+          itemImage: `${productImg}`,
+        },
+      };
+      const data = await productAPI.reviseProductInfo(
+        user.token,
+        productid,
+        updateData,
+      );
+      navigate(`/profile/${user.accountname}`);
+      return data;
+    } else {
+      const Data = {
+        product: {
+          itemName: `${productName}`,
+          price: parseInt(productPrice.replace(',', ''), 10), // 서버 전송 가능 형태로 가공
+          link: `${saleLink}`,
+          itemImage: `${productImg}`,
+        },
+      };
+      const productData = await productAPI.registerProduct(Data, user.token);
+      navigate(`/profile/${user.accountname}`);
+      return productData;
+    }
   };
 
   return (
