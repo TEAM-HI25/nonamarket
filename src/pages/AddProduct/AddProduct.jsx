@@ -121,31 +121,23 @@ const AddProduct = ({ editing }) => {
   // editing 이 true 면 상품 수정, false 면 상품 등록
   const handleSubmit = async (event) => {
     event.preventDefault(); // submit 제출 막기(새로고침막기)
+    const Data = {
+      product: {
+        itemName: `${productName}`,
+        price: parseInt(productPrice.replace(',', ''), 10), // 서버 전송 가능 형태로 가공
+        link: `${saleLink}`,
+        itemImage: `${productImg}`,
+      },
+    };
     if (editing) {
-      const updateData = {
-        product: {
-          itemName: `${productName}`,
-          price: parseInt(productPrice.replace(',', ''), 10), // 서버 전송 가능 형태로 가공
-          link: `${saleLink}`,
-          itemImage: `${productImg}`,
-        },
-      };
       const data = await productAPI.reviseProductInfo(
         user.token,
         productid,
-        updateData,
+        Data,
       );
       navigate(`/profile/${user.accountname}`);
       return data;
     } else {
-      const Data = {
-        product: {
-          itemName: `${productName}`,
-          price: parseInt(productPrice.replace(',', ''), 10), // 서버 전송 가능 형태로 가공
-          link: `${saleLink}`,
-          itemImage: `${productImg}`,
-        },
-      };
       const productData = await productAPI.registerProduct(Data, user.token);
       navigate(`/profile/${user.accountname}`);
       return productData;
