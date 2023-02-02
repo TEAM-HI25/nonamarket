@@ -1,8 +1,8 @@
-import AddProduct from '../AddProduct/AddProduct';
+import ProductForm from '../../components/ProductForm/ProductForm';
 
-// editing을 이용하여 편집페이지인지 등록인지 구분
+// editing boolean 값을 이용하여 상품 수정 페이지인지 상품 등록인지 구분
 const EditProduct = () => {
-  return <AddProduct editing={true} />;
+  return <ProductForm editing={true} />;
 };
 
 export default EditProduct;
