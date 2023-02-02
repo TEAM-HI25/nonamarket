@@ -92,6 +92,24 @@ const postAPI = {
     const data = await response.json();
     return data;
   },
+
+  async editPost(token, postid, contentText, img) {
+    const response = await fetch(`${BASE_URL}/post/${postid}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        post: {
+          content: `${contentText}`,
+          image: img.join(','),
+        },
+      }),
+    });
+    const data = await response.json();
+    return data;
+  },
 };
 
 export default postAPI;
