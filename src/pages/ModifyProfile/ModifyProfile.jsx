@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/context';
 import userAPI from '../../api/userAPI';
 import imageAPI from '../../api/imageAPI';
+import profileAPI from '../../api/profileAPI';
 import Nav from '../../components/Nav/Nav';
 import ImageInput from '../../components/common/ImageInput/ImageInput';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
-import ACCOUNT_CHECK from '../../utils/regex';
+import RegEx from '../../utils/regex';
 import * as S from './StyledModifyProfile';
 
 const ModifyProfile = () => {
@@ -66,7 +67,7 @@ const ModifyProfile = () => {
 
   // 계정 유효성 검사
   const handleCheckAccount = async () => {
-    if (!ACCOUNT_CHECK.test(userAccountName)) {
+    if (!RegEx.ACCOUNT_CHECK.test(userAccountName)) {
       setAccountMsg('*영문자, 숫자, 점(.), 밑줄(_)만 포함해야 합니다.');
       setIsValidAccount(false);
     } else {
@@ -84,7 +85,7 @@ const ModifyProfile = () => {
   // 수정된 profile 데이터를 서버에 전송
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const ModifyData = await userAPI.putModifyData(
+    const ModifyData = await profileAPI.putModifyData(
       userName,
       userAccountName,
       userIntro,
