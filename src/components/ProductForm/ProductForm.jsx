@@ -10,7 +10,7 @@ import * as S from './StyledProductForm';
 
 const ProductForm = ({ editing }) => {
   // input 상태관리
-  const [productImg, setproductImg] = useState('');
+  const [productImg, setProductImg] = useState('');
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [saleLink, setSaleLink] = useState('');
@@ -50,11 +50,11 @@ const ProductForm = ({ editing }) => {
 
   // 1. input창에 보이기
   const handleData = (event) => {
-    if (event.target.id === 'productname') {
+    if (event.target.id === 'productName') {
       setProductName(event.target.value);
-    } else if (event.target.id === 'productprice') {
+    } else if (event.target.id === 'productPrice') {
       setProductPrice(priceFormat(event.target.value));
-    } else if (event.target.id === 'salelink') {
+    } else if (event.target.id === 'saleLink') {
       setSaleLink(event.target.value);
     }
   };
@@ -62,7 +62,7 @@ const ProductForm = ({ editing }) => {
   // 이미지 주소 받아오기
   const handleGetImg = async (event) => {
     const data = await imageAPI.uploadImg(event);
-    setproductImg(data);
+    setProductImg(data);
     console.log(productImg);
     setIsValid({ ...isValid, productImg: true });
   };
@@ -102,7 +102,7 @@ const ProductForm = ({ editing }) => {
           user.token,
           productid,
         );
-        setproductImg(data.product.itemImage);
+        setProductImg(data.product.itemImage);
         setProductName(data.product.itemName);
         setProductPrice(priceFormat(data.product.price));
         setSaleLink(data.product.link);
@@ -164,7 +164,7 @@ const ProductForm = ({ editing }) => {
           <LabelInput
             type='text'
             label='노나먹을 식재료명'
-            forid='productname'
+            forid='productName'
             state={productName}
             placeholder='2~15자 이내여야 합니다.'
             onChange={handleData}
@@ -173,7 +173,7 @@ const ProductForm = ({ editing }) => {
           <LabelInput
             type='text'
             label='가격'
-            forid='productprice'
+            forid='productPrice'
             state={productPrice}
             placeholder='숫자만 입력 가능합니다.'
             onChange={handleData}
@@ -182,7 +182,7 @@ const ProductForm = ({ editing }) => {
           <LabelInput
             type='text'
             label='판매 링크'
-            forid='salelink'
+            forid='saleLink'
             state={saleLink}
             placeholder='URL을 입력해 주세요'
             onChange={handleData}
