@@ -40,9 +40,6 @@ const Comment = ({ comment, postid }) => {
   };
 
   return (
-    // {commentsData &&
-    //   commentsData.map((comment) => {
-    //     return (
     <S.CommentListWrapper>
       <S.CommentListContainer>
         <li key={comment.id}>
@@ -91,16 +88,6 @@ const Comment = ({ comment, postid }) => {
           comment={comment}
         />
       )}
-
-      {/* {isOpenModal && (
-                <CommentModal
-                  onClick={handleCloseModal}
-                  setIsOpenModal={setIsOpenModal}
-                  comment={comment}
-                  postid={postid}
-                  handleDelete={handleDelete}
-                />
-              )} */}
     </S.CommentListWrapper>
   );
 };
