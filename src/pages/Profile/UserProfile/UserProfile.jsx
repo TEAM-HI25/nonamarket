@@ -50,10 +50,29 @@ const UserProfile = () => {
   const onListToggle = () => {
     setList(!list);
   };
+
   const handleGoPost = () => {
     navigate(`/uploadpost`);
   };
-
+  const postTypeSelect = () => {
+    if (list) {
+      return (
+        <S.PostCardWrap>
+          {userPostArr.map((item) => (
+            <PostCard key={item.id} data={item} />
+          ))}
+        </S.PostCardWrap>
+      );
+    } else {
+      return (
+        <S.ProfilePostAlbumWrap>
+          {userAlbumPostArr.map((item, index) => (
+            <PostAlbum key={item.id} data={item} index={index} />
+          ))}
+        </S.ProfilePostAlbumWrap>
+      );
+    }
+  };
   return (
     <S.Container>
       <Nav type='home' />
@@ -70,19 +89,7 @@ const UserProfile = () => {
         <MenuBar list={list} onListToggle={onListToggle} />
         {/* eslint-disable-next-line no-nested-ternary */}
         {userPostArr.length ? (
-          list ? (
-            <S.PostCardWrap>
-              {userPostArr.map((item) => (
-                <PostCard key={item.id} data={item} />
-              ))}
-            </S.PostCardWrap>
-          ) : (
-            <S.ProfilePostAlbumWrap>
-              {userAlbumPostArr.map((item, index) => (
-                <PostAlbum key={item.id} data={item} index={index} />
-              ))}
-            </S.ProfilePostAlbumWrap>
-          )
+          postTypeSelect()
         ) : pageAccount === user.accountname ? (
           <S.EmptyContainer>
             <p>반갑습니다 :-)</p>
