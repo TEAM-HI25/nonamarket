@@ -11,7 +11,7 @@ const UploadPost = () => {
   const { user } = useContext(AuthContext);
   const [profileImg, setProfileImg] = useState('');
   const [imgFile, setImgFile] = useState([]); // 파일 객체를 저장할 state
-  const [imgUrl, setImgUrl] = useState(''); // 파일 객체의 이미지 url을 저장할 state
+  // const [imgUrl, setImgUrl] = useState('');
   const [imgSrc, setImgSrc] = useState([]);
   const [contentText, setContentText] = useState('');
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const UploadPost = () => {
       .then((data) => setProfileImg(data.profile.image));
   });
 
-  // textarea value
+  // textarea 상태
   const handleContentText = (e) => {
     setContentText(e.target.value);
   };
@@ -41,19 +41,7 @@ const UploadPost = () => {
       return;
     }
 
-    const imgRecoding = (file) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      e.target.value = '';
-      // eslint-disable-next-line consistent-return
-      return new Promise((resolve) => {
-        reader.onload = () => {
-          setImgUrl((imgurl) => [...imgurl, reader.result]);
-          resolve();
-        };
-      });
-    };
-
+    // 서버에 이미지 보내기
     const data = await postAPI.postUploadImgs(imgObject);
     if (data.message === '이미지 파일만 업로드 가능합니다.') {
       // eslint-disable-next-line no-alert
@@ -61,12 +49,10 @@ const UploadPost = () => {
       setImgSrc([...imgSrc]);
     } else {
       setImgSrc([...imgSrc, `${BASE_URL}/${data[0].filename}`]);
-      imgRecoding(imgObject);
     }
-    console.log(imgSrc);
   };
 
-  // 게시글 생성 (글+이미지 서버에 보내기) - API파일에 분리예정
+  // 게시글 생성 (글+이미지 서버에 보내기)
   const handleUpload = async () => {
     if (!contentText && imgSrc.length === 0) {
       // eslint-disable-next-line no-alert
@@ -79,7 +65,7 @@ const UploadPost = () => {
 
   // 이미지 삭제
   const handelDeleteImg = (idx) => {
-    setImgUrl(imgUrl.filter((_, index) => index !== idx));
+    setImgSrc(imgSrc.filter((_, index) => index !== idx));
   };
 
   return (
@@ -87,7 +73,7 @@ const UploadPost = () => {
       <Nav
         type='upload'
         btnName='업로드'
-        disabled={!contentText && !imgUrl}
+        disabled={!contentText && !imgSrc.length}
         onClick={handleUpload}
       />
       <S.ContentWrapper>
@@ -102,8 +88,8 @@ const UploadPost = () => {
       <S.uploadImgInput id='imguploadinput' onChange={handleChangeFile} />
       <S.PostImgWrapper>
         <ul>
-          {imgUrl &&
-            imgUrl.map((item, idx) => {
+          {imgSrc &&
+            imgSrc.map((item, idx) => {
               return (
                 // eslint-disable-next-line react/no-array-index-key
                 <li key={idx} id={idx}>

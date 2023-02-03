@@ -1,6 +1,5 @@
 import BASE_URL from '../utils/baseUrl';
 
-// UserProfile 에서 사용됨
 const postAPI = {
   async loadFeed(token) {
     const response = await fetch(`${BASE_URL}/post/feed`, {
@@ -91,6 +90,36 @@ const postAPI = {
     });
     const data = await response.json();
     return data;
+  },
+
+  async editPost(token, postid, contentText, img) {
+    const response = await fetch(`${BASE_URL}/post/${postid}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        post: {
+          content: `${contentText}`,
+          image: img.join(','),
+        },
+      }),
+    });
+    const data = await response.json();
+    return data;
+  },
+
+  async getPost(token, postid) {
+    const response = await fetch(`${BASE_URL}/post/${postid}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    const postContent = data.post;
+    return postContent;
   },
 };
 
