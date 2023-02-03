@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import commnetAPI from '../../../api/commentAPI';
 import postAPI from '../../../api/postAPI';
 import productAPI from '../../../api/productAPI';
 import { AuthContext } from '../../../context/context';
@@ -49,17 +50,11 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       reportPost();
     } else if (name === '댓글삭제') {
       const deleteComment = async () => {
-        const response = await fetch(
-          `https://mandarin.api.weniv.co.kr/post/${postId}/comments/${comment.id}`,
-          {
-            method: 'DELETE',
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-              'Content-type': 'application/json',
-            },
-          },
+        const data = await commnetAPI.deleteComment(
+          user.token,
+          postId,
+          comment.id,
         );
-        const data = await response.json();
         if (data.status === '200') {
           CloseInnerModal();
           window.location.reload();
