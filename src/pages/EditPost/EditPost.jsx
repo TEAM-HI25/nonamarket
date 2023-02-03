@@ -12,7 +12,6 @@ const EditPost = () => {
   const { postid } = useParams();
   const [profileImg, setProfileImg] = useState('');
   const [imgFile, setImgFile] = useState([]);
-  const [imgUrl, setImgUrl] = useState('');
   const [imgSrc, setImgSrc] = useState([]);
   const [contentText, setContentText] = useState('');
   const navigate = useNavigate();
@@ -42,19 +41,6 @@ const EditPost = () => {
       return;
     }
 
-    const imgRecoding = (file) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      e.target.value = '';
-      // eslint-disable-next-line consistent-return
-      return new Promise((resolve) => {
-        reader.onload = () => {
-          setImgUrl((imgurl) => [...imgurl, reader.result]);
-          resolve();
-        };
-      });
-    };
-
     // 서버에 이미지 보내기
     const data = await postAPI.postUploadImgs(imgObject);
     if (data.message === '이미지 파일만 업로드 가능합니다.') {
@@ -63,11 +49,10 @@ const EditPost = () => {
       setImgSrc([...imgSrc]);
     } else {
       setImgSrc([...imgSrc, `${BASE_URL}/${data[0].filename}`]);
-      imgRecoding(imgObject);
     }
   };
 
-  // 게시글 수정 (수정된 글+이미지 서버에 보내기) - API파일에 분리예정
+  // 게시글 수정 (수정된 글+이미지 서버에 보내기)
   const handleUploadPost = async () => {
     if (!contentText && imgSrc.length === 0) {
       // eslint-disable-next-line no-alert
@@ -101,7 +86,7 @@ const EditPost = () => {
       <Nav
         type='upload'
         btnName='업로드'
-        disabled={!contentText && !imgUrl}
+        disabled={!contentText && !imgSrc.length}
         onClick={handleUploadPost}
       />
       <S.ContentWrapper>
