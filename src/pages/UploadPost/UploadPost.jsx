@@ -10,8 +10,7 @@ import BASE_URL from '../../utils/baseUrl';
 const UploadPost = () => {
   const { user } = useContext(AuthContext);
   const [profileImg, setProfileImg] = useState('');
-  const [imgFile, setImgFile] = useState([]); // 파일 객체를 저장할 state
-  // const [imgUrl, setImgUrl] = useState('');
+  const [imgFile, setImgFile] = useState([]);
   const [imgSrc, setImgSrc] = useState([]);
   const [contentText, setContentText] = useState('');
   const navigate = useNavigate();

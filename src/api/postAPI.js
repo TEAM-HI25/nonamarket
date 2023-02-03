@@ -121,6 +121,30 @@ const postAPI = {
     const postContent = data.post;
     return postContent;
   },
+
+  async getComment(token, postid) {
+    const response = await fetch(`${BASE_URL}/post/${postid}/comments`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    return data;
+  },
+
+  async getUserPost(token, postid) {
+    const response = await fetch(`${BASE_URL}/post/${postid}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    return data;
+  },
 };
 
 export default postAPI;

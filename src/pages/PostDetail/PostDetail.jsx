@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import postAPI from '../../api/postAPI';
 import Comment from '../../components/Comment/Comment';
 import CommentInput from '../../components/CommentInput/CommentInput';
 import PostCard from '../../components/common/PostCard/PostCard';
@@ -12,21 +13,12 @@ const PostDetail = () => {
   const [postData, setPostData] = useState();
   const [commentsData, setCommentsData] = useState([]);
   const { postid } = useParams();
-  const BASE_URL = 'https://mandarin.api.weniv.co.kr';
 
   // 댓글 업데이트
   const handleGetComment = async () => {
     try {
-      const response = await fetch(`${BASE_URL}/post/${postid}/comments`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-          'Content-type': 'application/json',
-        },
-      });
-      const data = await response.json();
+      const data = await postAPI.getComment(user.token, postid);
       setCommentsData(data.comments);
-      console.log(data.comments);
     } catch (error) {
       console.log(error);
     }
@@ -36,14 +28,7 @@ const PostDetail = () => {
   useEffect(() => {
     const getPostCard = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/post/${postid}`, {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-            'Content-type': 'application/json',
-          },
-        });
-        const data = await response.json();
+        const data = await postAPI.getUserPost(user.token, postid);
         setPostData(data.post);
       } catch (error) {
         console.log(error);
