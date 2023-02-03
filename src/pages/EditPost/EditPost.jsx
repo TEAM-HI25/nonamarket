@@ -17,31 +17,6 @@ const EditPost = () => {
   const [contentText, setContentText] = useState('');
   const navigate = useNavigate();
 
-  // 게시글 수정 페이지 접속시 기존 데이터 받아오기
-  useEffect(() => {
-    const getPost = async () => {
-      try {
-        const response = await fetch(`${BASE_URL}/post/${postid}`, {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-            'Content-type': 'application/json',
-          },
-        });
-        const data = await response.json();
-        const postContent = data.post;
-        setContentText(postContent.content);
-        if (postContent.image) {
-          setImgSrc(postContent.image.split(', '));
-          setImgFile(postContent.image.split(', '));
-        }
-        console.log(postContent);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getPost();
-  }, []);
-
   // 유저 프로필 이미지 받아오기
   useEffect(() => {
     postAPI
@@ -49,7 +24,7 @@ const EditPost = () => {
       .then((data) => setProfileImg(data.profile.image));
   });
 
-  // textarea value
+  // textarea 상태
   const handleContentText = (e) => {
     setContentText(e.target.value);
   };
@@ -80,6 +55,7 @@ const EditPost = () => {
       });
     };
 
+    // 서버에 이미지 보내기
     const data = await postAPI.postUploadImgs(imgObject);
     if (data.message === '이미지 파일만 업로드 가능합니다.') {
       // eslint-disable-next-line no-alert
@@ -89,7 +65,6 @@ const EditPost = () => {
       setImgSrc([...imgSrc, `${BASE_URL}/${data[0].filename}`]);
       imgRecoding(imgObject);
     }
-    console.log(imgSrc);
   };
 
   // 게시글 수정 (수정된 글+이미지 서버에 보내기) - API파일에 분리예정
@@ -103,9 +78,22 @@ const EditPost = () => {
     navigate(`/profile/${user.accountname}`);
   };
 
+  // 게시글 수정 페이지 접속시 기존 데이터 받아오기
+  useEffect(() => {
+    const setPost = async () => {
+      const data = await postAPI.getPost(user.token, postid);
+      setContentText(data.content);
+
+      if (data.image) {
+        setImgSrc(data.image.split(','));
+      }
+    };
+    setPost();
+  }, []);
+
   // 이미지 삭제
   const handelDeleteImg = (idx) => {
-    setImgUrl(imgUrl.filter((_, index) => index !== idx));
+    setImgSrc(imgSrc.filter((_, index) => index !== idx));
   };
 
   return (
@@ -128,8 +116,8 @@ const EditPost = () => {
       <S.uploadImgInput id='imguploadinput' onChange={handleChangeFile} />
       <S.PostImgWrapper>
         <ul>
-          {imgUrl &&
-            imgUrl.map((item, idx) => {
+          {imgSrc &&
+            imgSrc.map((item, idx) => {
               return (
                 // eslint-disable-next-line react/no-array-index-key
                 <li key={idx} id={idx}>

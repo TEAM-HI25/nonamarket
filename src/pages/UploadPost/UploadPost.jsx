@@ -23,7 +23,7 @@ const UploadPost = () => {
       .then((data) => setProfileImg(data.profile.image));
   });
 
-  // textarea value
+  // textarea 상태
   const handleContentText = (e) => {
     setContentText(e.target.value);
   };
@@ -63,10 +63,9 @@ const UploadPost = () => {
       setImgSrc([...imgSrc, `${BASE_URL}/${data[0].filename}`]);
       imgRecoding(imgObject);
     }
-    console.log(imgSrc);
   };
 
-  // 게시글 생성 (글+이미지 서버에 보내기) - API파일에 분리예정
+  // 게시글 생성 (글+이미지 서버에 보내기)
   const handleUpload = async () => {
     if (!contentText && imgSrc.length === 0) {
       // eslint-disable-next-line no-alert
@@ -79,7 +78,7 @@ const UploadPost = () => {
 
   // 이미지 삭제
   const handelDeleteImg = (idx) => {
-    setImgUrl(imgUrl.filter((_, index) => index !== idx));
+    setImgSrc(imgSrc.filter((_, index) => index !== idx));
   };
 
   return (
@@ -102,8 +101,8 @@ const UploadPost = () => {
       <S.uploadImgInput id='imguploadinput' onChange={handleChangeFile} />
       <S.PostImgWrapper>
         <ul>
-          {imgUrl &&
-            imgUrl.map((item, idx) => {
+          {imgSrc &&
+            imgSrc.map((item, idx) => {
               return (
                 // eslint-disable-next-line react/no-array-index-key
                 <li key={idx} id={idx}>

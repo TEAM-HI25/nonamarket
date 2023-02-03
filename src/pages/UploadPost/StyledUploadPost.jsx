@@ -61,7 +61,7 @@ export const ImgUploadBtn = styled.label`
 `;
 
 export const PostImgWrapper = styled.section`
-  width: 390px;
+  /* width: 390px; */
   ul {
     background-color: #fff;
     display: flex;
