@@ -54,6 +54,8 @@ const UserProfile = () => {
   const handleGoPost = () => {
     navigate(`/uploadpost`);
   };
+
+  // 유저의 등록된 게시물 Card/AlbumType 보기유형 선택함수
   const postTypeSelect = () => {
     if (list) {
       return (
@@ -65,14 +67,39 @@ const UserProfile = () => {
       );
     } else {
       return (
-        <S.ProfilePostAlbumWrap>
+        <S.PostAlbumWrap>
           {userAlbumPostArr.map((item, index) => (
             <PostAlbum key={item.id} data={item} index={index} />
           ))}
-        </S.ProfilePostAlbumWrap>
+        </S.PostAlbumWrap>
       );
     }
   };
+  // 유저의 등록된 게시물이 비어있는 경우 나타내는 함수
+  const emptyPost = () => {
+    if (pageAccount === user.accountname) {
+      return (
+        <S.EmptyContainer>
+          <p>반갑습니다 :-)</p>
+          <span>아래 버튼을 눌러 게시글을 작성해보세요!</span>
+          <Button
+            type='button'
+            size='m'
+            name='작성하러가기!'
+            onClick={handleGoPost}
+          />
+        </S.EmptyContainer>
+      );
+    } else {
+      return (
+        <S.EmptyContainer>
+          <p>작성된 게시물이 없습니다 :-(</p>
+          <span>올릴 게시물을 신중하게 고민중이에요...🧐</span>
+        </S.EmptyContainer>
+      );
+    }
+  };
+
   return (
     <S.Container>
       <Nav type='home' />
@@ -87,26 +114,7 @@ const UserProfile = () => {
         )}
         <ProductWrapp pageAccount={pageAccount} />
         <MenuBar list={list} onListToggle={onListToggle} />
-        {/* eslint-disable-next-line no-nested-ternary */}
-        {userPostArr.length ? (
-          postTypeSelect()
-        ) : pageAccount === user.accountname ? (
-          <S.EmptyContainer>
-            <p>반갑습니다 :-)</p>
-            <span>아래 버튼을 눌러 게시글을 작성해보세요!</span>
-            <Button
-              type='button'
-              size='m'
-              name='작성하러가기!'
-              onClick={handleGoPost}
-            />
-          </S.EmptyContainer>
-        ) : (
-          <S.EmptyContainer>
-            <p>작성된 게시물이 없습니다 :-(</p>
-            <span>올릴 게시물을 신중하게 고민중이에요...🧐</span>
-          </S.EmptyContainer>
-        )}
+        {userPostArr.length ? postTypeSelect() : emptyPost()}
       </S.MainWrap>
       <TabMenu />
     </S.Container>
