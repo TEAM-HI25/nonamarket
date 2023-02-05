@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
+import ChatRoom from '../../pages/ChatRoom/ChatRoom';
 import ProfileImg from '../../assets/images/profile-image-mini.svg';
 import * as S from './StyledUserListItem';
 
-const ChatUserList = ({ name, desc }) => {
+const ChatUserList = ({ name, desc, time, chatid }) => {
   return (
     <S.ResultList>
-      <Link to='/chatroom'>
+      <Link to={`/chatroom/${chatid}`} element={<ChatRoom />}>
         <div>
           <S.UserprofileImg src={ProfileImg} alt='유저 프로필 이미지' />
         </div>
@@ -13,7 +14,7 @@ const ChatUserList = ({ name, desc }) => {
           <S.UserName>{name}</S.UserName>
           <S.UserId>{desc}</S.UserId>
         </div>
-        <S.ChatDate>2023.01.04</S.ChatDate>
+        <S.ChatDate>{time}</S.ChatDate>
       </Link>
     </S.ResultList>
   );
