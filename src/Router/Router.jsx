@@ -50,7 +50,7 @@ const Router = () => {
             <Route path='/editpost/:postid' element={<EditPost />} />
             <Route path='/uploadpost' element={<UploadPost />} />
             <Route path='/chatlist' element={<ChatList />} />
-            <Route path='/chatroom' element={<ChatRoom />} />
+            <Route path='/chatroom/:chatid' element={<ChatRoom />} />
             <Route path='/*' element={<NotFound />} />
           </Route>
         ) : (
