@@ -15,6 +15,7 @@ const Nav = ({
   disabled,
   followtitle,
   onClick,
+  name,
 }) => {
   const navigate = useNavigate();
   const handleReturn = () => {
@@ -33,7 +34,7 @@ const Nav = ({
         onClick={onClick}
       />
     ),
-    chat: <ChatNav handleReturn={handleReturn} />,
+    chat: <ChatNav handleReturn={handleReturn} name={name} />,
     follow: (
       <FollowHeader handleReturn={handleReturn} followtitle={followtitle} />
     ),

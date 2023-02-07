@@ -27,7 +27,8 @@ export const OtherUserChatMsg = styled.p`
 export const TimeMsg = styled.span`
   align-self: end;
   margin-left: 0.6rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  line-height: 1.2rem;
   color: #767676;
 `;
 export const InputBox = styled.form`
@@ -66,8 +67,7 @@ export const ChatUploadBtn = styled.button`
   line-height: 1.753rem;
   font-weight: 500;
   white-space: nowrap;
-
-  &.disabled {
+  :disabled {
     pointer-events: none;
     color: #c4c4c4;
   }
