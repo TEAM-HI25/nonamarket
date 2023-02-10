@@ -27,7 +27,7 @@ const UploadPost = () => {
     setContentText(e.target.value);
   };
 
-  // 이미지 미리보기
+  // 이미지 추가 & 미리보기
   const handleChangeFile = async (e) => {
     const imgObject = e.target.files[0];
     setImgFile((prevState) => [...prevState, imgObject]);
