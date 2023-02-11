@@ -4,8 +4,6 @@ import { createContext, useReducer, useMemo } from 'react';
 const AuthContext = createContext();
 // { type: 'login', payload: data.user }
 const authReducer = (state, action) => {
-  console.log(state);
-  console.log(action);
   switch (action.type) {
     case 'login':
       return { ...state, user: action.payload };
@@ -21,7 +19,6 @@ const AuthContextProvider = ({ children }) => {
       accountname: localStorage.getItem('accountname'),
     },
   });
-  console.log(state);
   const value = useMemo(
     () => ({
       ...state,
