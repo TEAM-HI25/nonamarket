@@ -1,3 +1,4 @@
+import imageCompression from 'browser-image-compression';
 import BASE_URL from '../utils/baseUrl';
 
 const postAPI = {
@@ -62,8 +63,18 @@ const postAPI = {
   },
 
   async postUploadImgs(file) {
+    // 이미지 압축
+    const options = {
+      maxSizeMB: 2,
+      maxWidthOrHeight: 440,
+    };
+    const compressedFile = await imageCompression(file, options);
+    const newFile = new File([compressedFile], `${compressedFile.name}`, {
+      type: compressedFile.type,
+    });
+
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append('image', newFile);
 
     const response = await fetch(`${BASE_URL}/image/uploadfiles`, {
       method: 'POST',
