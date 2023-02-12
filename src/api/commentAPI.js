@@ -1,5 +1,3 @@
-// import BASE_URL from '../utills/baseUrl';
-
 const commnetAPI = {
   async deleteComment(token, postId, commentid) {
     const response = await fetch(
