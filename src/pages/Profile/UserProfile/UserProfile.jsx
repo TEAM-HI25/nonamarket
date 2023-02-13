@@ -16,16 +16,19 @@ import Loading from '../../../components/Loading/Loading';
 import * as S from './StyledUserProfile';
 
 const UserProfile = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const { user } = useContext(AuthContext);
   const { dispatch } = useContext(UserContext);
-  const navigate = useNavigate();
-  const authAccountName = user.accountname;
+
+  const [listType, setListType] = useState(true);
   const [isAuth, setIsAuth] = useState(false);
-  const [userProfile, setUserProfile] = useState(null);
   const [userPostArr, setUserPostArr] = useState([]);
-  const [userAlbumPostArr, setUserAlbumPostArr] = useState([]);
-  const [list, setList] = useState(true);
-  const location = useLocation();
+  const [userProfile, setUserProfile] = useState(null);
+  // const [userAlbumPostArr, setUserAlbumPostArr] = useState([]);
+
+  const authAccountName = user.accountname;
   const pageAccountName = location.pathname.split('/')[2];
 
   useEffect(() => {
@@ -62,15 +65,15 @@ const UserProfile = () => {
       const getMyPost = async () => {
         const data = await postAPI.getMyPost(user.token, pageAccountName);
         setUserPostArr(data.post);
-        const newdata = data.post.filter((post) => post.image !== '');
-        setUserAlbumPostArr(newdata);
+        // const newdata = data.post.filter((post) => post.image !== '');
+        // setUserAlbumPostArr(newdata);
       };
       getMyPost();
     }
   }, []);
 
   const onListToggle = () => {
-    setList(!list);
+    setListType(!listType);
   };
 
   const handleGoPost = () => {
@@ -83,7 +86,7 @@ const UserProfile = () => {
 
   // 유저의 등록된 게시물 Card/AlbumType 보기유형 선택함수
   const postTypeSelect = () => {
-    if (list) {
+    if (listType) {
       return (
         <S.PostCardWrap>
           {userPostArr.map((item) => (
@@ -94,9 +97,11 @@ const UserProfile = () => {
     } else {
       return (
         <S.PostAlbumWrap>
-          {userAlbumPostArr.map((item, index) => (
-            <PostAlbum key={item.id} data={item} index={index} />
-          ))}
+          {userPostArr
+            .filter((post) => post.image !== '')
+            .map((item, index) => (
+              <PostAlbum key={item.id} data={item} index={index} />
+            ))}
         </S.PostAlbumWrap>
       );
     }
@@ -139,7 +144,7 @@ const UserProfile = () => {
           <Loading />
         )}
         <ProductWrapp pageAccount={pageAccountName} />
-        <MenuBar list={list} onListToggle={onListToggle} />
+        <MenuBar list={listType} onListToggle={onListToggle} />
         {userPostArr.length ? postTypeSelect() : emptyPost()}
       </S.MainWrap>
       <TabMenu isAuth={isAuth} setIsAuth={setIsAuth} />
