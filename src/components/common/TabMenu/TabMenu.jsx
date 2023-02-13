@@ -10,11 +10,16 @@ import iconUser from '../../../assets/images/icon-user.svg';
 import activeIconUser from '../../../assets/images/icon-user-fill.svg';
 import * as S from './StyledTabMenu';
 
-const TabMenu = () => {
+const TabMenu = ({ isAuth, setIsAuth }) => {
   const location = useLocation();
 
   const { user } = useContext(AuthContext);
   const authAccountName = user.accountname;
+
+  const handleAuthNavigate = () => {
+    // console.log(isAuth);
+    setIsAuth(!isAuth);
+  };
 
   return (
     <S.MenuWrapper>
@@ -59,7 +64,10 @@ const TabMenu = () => {
 
       {/* 로그인한 유저의 프로필 페이지로 이동 */}
       <S.MenuList>
-        <S.MenuNavLink to={`/profile/${authAccountName}`}>
+        <S.MenuNavLink
+          to={`/profile/${authAccountName}`}
+          onClick={handleAuthNavigate}
+        >
           <S.MenuImg
             src={
               location.pathname === `/profile/${authAccountName}` ||

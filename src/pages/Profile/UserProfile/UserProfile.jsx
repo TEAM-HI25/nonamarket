@@ -20,29 +20,47 @@ const UserProfile = () => {
   const { dispatch } = useContext(UserContext);
   const navigate = useNavigate();
   const authAccountName = user.accountname;
+  const [isAuth, setIsAuth] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
   const [userPostArr, setUserPostArr] = useState([]);
   const [userAlbumPostArr, setUserAlbumPostArr] = useState([]);
   const [list, setList] = useState(true);
   const location = useLocation();
-  const pageAccount = location.pathname.split('/')[2];
+  const pageAccountName = location.pathname.split('/')[2];
 
   useEffect(() => {
-    if (!userProfile) {
+    console.log(isAuth);
+
+    if (!userProfile || pageAccountName === authAccountName) {
       const getUserProfileInfo = async () => {
-        const data = await profileAPI.getUserInfo(user.token, pageAccount);
-        setUserProfile(data.profile);
-        const UserData = { ...data.profile };
-        dispatch({ type: 'UserProfile', payload: UserData });
+        if (isAuth) {
+          const authData = await profileAPI.getUserInfo(
+            user.token,
+            authAccountName,
+          );
+          setUserProfile(authData.profile);
+          console.log(authData);
+          const UserData = { ...authData.profile };
+          dispatch({ type: 'UserProfile', payload: UserData });
+        } else {
+          const pageUserData = await profileAPI.getUserInfo(
+            user.token,
+            pageAccountName,
+          );
+          setUserProfile(pageUserData.profile);
+          console.log(pageUserData);
+          const UserData = { ...pageUserData.profile };
+          dispatch({ type: 'UserProfile', payload: UserData });
+        }
       };
       getUserProfileInfo();
     }
-  }, [userProfile]);
+  }, [isAuth]);
 
   useEffect(() => {
     if (!userPostArr.length) {
       const getMyPost = async () => {
-        const data = await postAPI.getMyPost(user.token, pageAccount);
+        const data = await postAPI.getMyPost(user.token, pageAccountName);
         setUserPostArr(data.post);
         const newdata = data.post.filter((post) => post.image !== '');
         setUserAlbumPostArr(newdata);
@@ -58,6 +76,10 @@ const UserProfile = () => {
   const handleGoPost = () => {
     navigate(`/uploadpost`);
   };
+
+  // const handleAuthNavigate = () => {
+  //   setIsAuth(!isAuth);
+  // }
 
   // 유저의 등록된 게시물 Card/AlbumType 보기유형 선택함수
   const postTypeSelect = () => {
@@ -81,7 +103,7 @@ const UserProfile = () => {
   };
   // 유저의 등록된 게시물이 비어있는 경우 나타내는 함수
   const emptyPost = () => {
-    if (pageAccount === user.accountname) {
+    if (pageAccountName === user.accountname) {
       return (
         <S.EmptyContainer>
           <p>반갑습니다 :-)</p>
@@ -116,11 +138,11 @@ const UserProfile = () => {
         ) : (
           <Loading />
         )}
-        <ProductWrapp pageAccount={pageAccount} />
+        <ProductWrapp pageAccount={pageAccountName} />
         <MenuBar list={list} onListToggle={onListToggle} />
         {userPostArr.length ? postTypeSelect() : emptyPost()}
       </S.MainWrap>
-      <TabMenu />
+      <TabMenu isAuth={isAuth} setIsAuth={setIsAuth} />
     </S.Container>
   );
 };
