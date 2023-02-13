@@ -1,14 +1,17 @@
 import { useLocation, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { UserContext } from '../../context/userContext';
 import * as S from './StyledProfileInfo';
 import UserProfileBtnWrap from './UserProfileBtnWrapp';
 import MyProfileBtnWrap from './MyProfileBtnWrapp';
 
-const ProfileInfo = ({ userProfile, authAccountName }) => {
+const ProfileInfo = ({ authAccountName }) => {
   const location = useLocation();
   const pageAccount = location.pathname.split('/')[2];
-  const [followerCnt, setFollowerCnt] = useState(userProfile.followerCount);
-  const [followingCnt, setFolloingCnt] = useState(userProfile.followingCount);
+  const { profile } = useContext(UserContext);
+  const [followerCnt, setFollowerCnt] = useState(profile.followerCount);
+  const [followingCnt, setFolloingCnt] = useState(profile.followingCount);
+
   return (
     <S.Container>
       <S.ProfileInfoWrapper>
@@ -19,7 +22,7 @@ const ProfileInfo = ({ userProfile, authAccountName }) => {
             <span>followers</span>
           </Link>
         </S.NumberWrapper>
-        <S.ProfileImg src={userProfile.image} alt='프로필 이미지' />
+        <S.ProfileImg src={profile.image} alt='프로필 이미지' />
         <S.NumberWrapper>
           <Link to='followinglist'>
             <span>{followingCnt}</span>
@@ -28,15 +31,14 @@ const ProfileInfo = ({ userProfile, authAccountName }) => {
         </S.NumberWrapper>
       </S.ProfileInfoWrapper>
       <S.UserWrapper>
-        <S.UserName>{userProfile.username}</S.UserName>
-        <S.UserId>{userProfile.accountname}</S.UserId>
-        <S.UserIntro>{userProfile.intro}</S.UserIntro>
+        <S.UserName>{profile.username}</S.UserName>
+        <S.UserId>{profile.accountname}</S.UserId>
+        <S.UserIntro>{profile.intro}</S.UserIntro>
       </S.UserWrapper>
       {pageAccount === authAccountName ? (
         <MyProfileBtnWrap />
       ) : (
         <UserProfileBtnWrap
-          userProfile={userProfile}
           setFollowerCount={setFollowerCnt}
           setFolloingCount={setFolloingCnt}
         />

@@ -2,12 +2,14 @@ import { useLocation } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import Button from './Button';
 import { AuthContext } from '../../../context/context';
+import { UserContext } from '../../../context/userContext';
 
-const FollowButton = ({ userProfile, setFolloingCount, setFollowerCount }) => {
+const FollowButton = ({ setFolloingCount, setFollowerCount }) => {
   const location = useLocation();
-  const [isFollow, setIsFollow] = useState(userProfile.isfollow);
-  const pageAccount = location.pathname.split('/')[2];
   const { user } = useContext(AuthContext);
+  const { profile } = useContext(UserContext);
+  const [isFollow, setIsFollow] = useState(profile.isfollow);
+  const pageAccount = location.pathname.split('/')[2];
   const BASE_URL = 'https://mandarin.api.weniv.co.kr';
 
   const handelIsFollow = () => {

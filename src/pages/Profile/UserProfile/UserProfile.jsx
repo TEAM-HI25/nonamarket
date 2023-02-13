@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/context';
+import { UserContext } from '../../../context/userContext';
 import profileAPI from '../../../api/profileAPI';
 import postAPI from '../../../api/postAPI';
 import Nav from '../../../components/Nav/Nav';
@@ -16,6 +17,7 @@ import * as S from './StyledUserProfile';
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
+  const { dispatch } = useContext(UserContext);
   const navigate = useNavigate();
   const authAccountName = user.accountname;
   const [userProfile, setUserProfile] = useState(null);
@@ -30,6 +32,8 @@ const UserProfile = () => {
       const getUserProfileInfo = async () => {
         const data = await profileAPI.getUserInfo(user.token, pageAccount);
         setUserProfile(data.profile);
+        const UserData = { ...data.profile };
+        dispatch({ type: 'UserProfile', payload: UserData });
       };
       getUserProfileInfo();
     }
