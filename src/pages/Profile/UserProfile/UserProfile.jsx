@@ -26,14 +26,12 @@ const UserProfile = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [userPostArr, setUserPostArr] = useState([]);
   const [userProfile, setUserProfile] = useState(null);
-  // const [userAlbumPostArr, setUserAlbumPostArr] = useState([]);
 
   const authAccountName = user.accountname;
   const pageAccountName = location.pathname.split('/')[2];
 
+  // user의 profile data 를 불러오는 useEffect hook
   useEffect(() => {
-    console.log(isAuth);
-
     if (!userProfile || pageAccountName === authAccountName) {
       const getUserProfileInfo = async () => {
         if (isAuth) {
@@ -42,7 +40,6 @@ const UserProfile = () => {
             authAccountName,
           );
           setUserProfile(authData.profile);
-          console.log(authData);
           const UserData = { ...authData.profile };
           dispatch({ type: 'UserProfile', payload: UserData });
         } else {
@@ -51,7 +48,6 @@ const UserProfile = () => {
             pageAccountName,
           );
           setUserProfile(pageUserData.profile);
-          console.log(pageUserData);
           const UserData = { ...pageUserData.profile };
           dispatch({ type: 'UserProfile', payload: UserData });
         }
@@ -60,13 +56,12 @@ const UserProfile = () => {
     }
   }, [isAuth]);
 
+  // post data 를 불러오는 useEffect hook
   useEffect(() => {
     if (!userPostArr.length) {
       const getMyPost = async () => {
         const data = await postAPI.getMyPost(user.token, pageAccountName);
         setUserPostArr(data.post);
-        // const newdata = data.post.filter((post) => post.image !== '');
-        // setUserAlbumPostArr(newdata);
       };
       getMyPost();
     }
@@ -79,10 +74,6 @@ const UserProfile = () => {
   const handleGoPost = () => {
     navigate(`/uploadpost`);
   };
-
-  // const handleAuthNavigate = () => {
-  //   setIsAuth(!isAuth);
-  // }
 
   // 유저의 등록된 게시물 Card/AlbumType 보기유형 선택함수
   const postTypeSelect = () => {
@@ -106,6 +97,7 @@ const UserProfile = () => {
       );
     }
   };
+
   // 유저의 등록된 게시물이 비어있는 경우 나타내는 함수
   const emptyPost = () => {
     if (pageAccountName === user.accountname) {

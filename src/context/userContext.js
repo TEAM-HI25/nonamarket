@@ -10,18 +10,12 @@ const Reducer = (state, action) => {
       return state;
   }
 };
-// loginInitialState Object
+// InitialState Object
 const initialState = { profile: {} };
 
 const UserContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(Reducer, initialState);
-  const value = useMemo(
-    () => ({
-      ...state,
-      dispatch,
-    }),
-    [state],
-  );
+  const value = useMemo(() => ({ ...state, dispatch }), [state]);
 
   return (
     // 전역공간에 지정해둬서 다른 애들이 쓸수있게

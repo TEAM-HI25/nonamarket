@@ -17,7 +17,6 @@ const TabMenu = ({ isAuth, setIsAuth }) => {
   const authAccountName = user.accountname;
 
   const handleAuthNavigate = () => {
-    // console.log(isAuth);
     setIsAuth(!isAuth);
   };
 
