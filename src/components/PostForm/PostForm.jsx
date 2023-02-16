@@ -99,8 +99,6 @@ const PostForm = ({ editing }) => {
     }
   }, []);
 
-  console.log(postid);
-
   return (
     <S.AllWrapper>
       <Nav
