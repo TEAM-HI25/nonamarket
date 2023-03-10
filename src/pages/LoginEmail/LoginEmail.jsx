@@ -21,6 +21,7 @@ const LoginEmail = () => {
       setPassword(event.target.value);
     }
   };
+
   // 정규표현식 일치 여부에 따라 버튼색이 바뀌는 함수
   const handleCheckValid = () => {
     return regex.EMAIL_CHECK.test(email) && password.length > 5
@@ -28,9 +29,8 @@ const LoginEmail = () => {
       : setIsValid(false);
   };
 
-  // 로컬스토리지에 토큰 저장
   const handleSubmit = async (event) => {
-    event.preventDefault(); // 새로고침 방지
+    event.preventDefault();
     const data = await userAPI.getLogin(email, password);
     if (data.message === '이메일 또는 비밀번호가 일치하지 않습니다.') {
       setMessage('이메일 또는 비밀번호가 일치하지 않습니다.');
@@ -71,8 +71,6 @@ const LoginEmail = () => {
           />
           <div>{message}</div>
           <S.LoginBtn name='로그인' disabled={!isValid} />
-          {/* disabled 가 true 일때 버튼이 비활성화 , false 일때 활성화  defalut는 false */}
-          {/* 유효성 검사에서 true를 반환, disalbed에서 (!유효성검사결과) 활성화 === false */}
         </form>
         <S.LoginLink to='/joinemail'>이메일로 회원가입</S.LoginLink>
       </S.MainWrapper>
