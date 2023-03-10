@@ -7,8 +7,6 @@ import { AuthContext } from '../../context/context';
 const Splash = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  console.log(user.token);
-  console.log(user.token && user.accountname);
   useEffect(() => {
     setTimeout(() => {
       if (user.token == null) {
