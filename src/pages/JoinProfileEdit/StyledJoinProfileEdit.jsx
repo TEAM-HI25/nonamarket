@@ -4,7 +4,7 @@ import { AllWrappCss } from '../../styles/Globalstyled';
 
 export const JoinPfWrap = styled.section`
   ${AllWrappCss};
-  background-color: #fff; /* 임시적용 삭제예정 */
+  background-color: #fff;
 `;
 
 export const JoinPfTitle = styled.h1`
