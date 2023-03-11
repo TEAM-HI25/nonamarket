@@ -1,7 +1,9 @@
+import BASE_URL from '../utils/baseUrl';
+
 const commnetAPI = {
   async deleteComment(token, postId, commentid) {
     const response = await fetch(
-      `https://mandarin.api.weniv.co.kr/post/${postId}/comments/${commentid}`,
+      `${BASE_URL}/post/${postId}/comments/${commentid}`,
       {
         method: 'DELETE',
         headers: {
@@ -16,7 +18,7 @@ const commnetAPI = {
 
   async reportComment(token, postId, commentid) {
     const response = await fetch(
-      `https://mandarin.api.weniv.co.kr/post/${postId}/comments/${commentid}/report`,
+      `${BASE_URL}/post/${postId}/comments/${commentid}/report`,
       {
         method: 'POST',
         headers: {
