@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import commnetAPI from '../../../api/commentAPI';
+import commentAPI from '../../../api/commentAPI';
 import postAPI from '../../../api/postAPI';
 import productAPI from '../../../api/productAPI';
 import { AuthContext } from '../../../context/context';
@@ -50,7 +50,7 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       reportPost();
     } else if (name === '댓글삭제') {
       const deleteComment = async () => {
-        const data = await commnetAPI.deleteComment(
+        const data = await commentAPI.deleteComment(
           user.token,
           postId,
           comment.id,
@@ -63,7 +63,7 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       deleteComment();
     } else if (name === '댓글신고') {
       const reportComment = async () => {
-        const data = await commnetAPI.reportComment(
+        const data = await commentAPI.reportComment(
           user.token,
           postId,
           comment.id,

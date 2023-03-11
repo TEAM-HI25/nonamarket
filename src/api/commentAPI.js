@@ -1,6 +1,6 @@
 import BASE_URL from '../utils/baseUrl';
 
-const commnetAPI = {
+const commentAPI = {
   async deleteComment(token, postId, commentid) {
     const response = await fetch(
       `${BASE_URL}/post/${postId}/comments/${commentid}`,
@@ -32,4 +32,4 @@ const commnetAPI = {
   },
 };
 
-export default commnetAPI;
+export default commentAPI;
