@@ -80,7 +80,6 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
         const data = await productAPI.deleteProduct(user.token, productId);
         if (parseInt(data.status, 10) === 200) {
           CloseInnerModal();
-          // 페이지 새로고침돼서 삭제된 상품목록 페이지 보여주기
           window.location.reload();
         }
       };
