@@ -91,7 +91,7 @@ pw : 123456
 ## 1) 개발기간 : 2022.12.09 ~ 2023.01.05
 
 ## 2) 기술
-- FrontEnd : React, React-router, Hooks, Styled-components (수정하기)
+- FrontEnd : React, React-router, Styled-components
 - BackEnd : 제공된 API 사용
 
 ## 3) 협업 도구
@@ -248,7 +248,7 @@ input 태그를 사용하여 유저가 파일을 선택할 수 있게 하였다.
  ┣ 📂assets
  ┃ ┣ 📂font
  ┃ ┗ 📂images
- ┣ 📂components    
+ ┣ 📂components
  ┃ ┣ 📂Comment
  ┃ ┣ 📂CommentInput
  ┃ ┣ 📂common           // 공통으로 사용되는 컴포넌트 폴더
@@ -265,9 +265,10 @@ input 태그를 사용하여 유저가 파일을 선택할 수 있게 하였다.
  ┃ ┣ 📂Loading
  ┃ ┣ 📂MenuBar
  ┃ ┣ 📂Nav
+ ┃ ┣ 📂PostForm
+ ┃ ┣ 📂ProductForm
  ┃ ┣ 📂ProfileInfo
  ┃ ┗ 📂UserListItem
- ┃ ┃ ┗ 📂UserFollow
  ┣ 📂context         // 로그인 한 사용자 정보를 담기 위한 context 파일 관리 폴더
  ┣ 📂hooks
  ┣ 📂pages
@@ -275,6 +276,7 @@ input 태그를 사용하여 유저가 파일을 선택할 수 있게 하였다.
  ┃ ┣ 📂ChatList
  ┃ ┣ 📂ChatRoom
  ┃ ┣ 📂EditPost
+ ┃ ┣ 📂EditProduct
  ┃ ┣ 📂Follow
  ┃ ┣ 📂HomeFeed
  ┃ ┣ 📂JoinEmail
@@ -285,13 +287,12 @@ input 태그를 사용하여 유저가 파일을 선택할 수 있게 하였다.
  ┃ ┣ 📂NotFound
  ┃ ┣ 📂PostDetail
  ┃ ┣ 📂Profile
- ┃ ┃ ┗ 📂UserProfile
  ┃ ┣ 📂SearchUser
  ┃ ┣ 📂Splash
- ┃ ┣ 📂UpdateProduct
  ┃ ┗ 📂UploadPost
  ┣ 📂Router
  ┣ 📂styles
+ ┣ 📂utils
  ┣ 📜App.jsx
  ┣ 📜index.css
  ┗ 📜index.jsx
