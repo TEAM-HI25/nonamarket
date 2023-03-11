@@ -58,6 +58,7 @@ export const PostContents = styled.div`
   font-size: 1.4rem;
   line-height: 1.8rem;
   /* gap: 16px; */
+  word-break: break-all;
   cursor: pointer;
 
   p {
