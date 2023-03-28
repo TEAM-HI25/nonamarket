@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import commentAPI from '../../api/commentAPI';
 import { AuthContext } from '../../context/context';
 import ProfileImg from '../common/ProfileImg/ProfileImg';
 import * as S from './StyledCommentInput';
@@ -8,7 +9,6 @@ const CommentInput = ({ postid, handleGetComment, setCommentsData }) => {
   const [text, setText] = useState('');
   const [profileImg, setProfileImg] = useState('');
   const [isActive, setIsActive] = useState(false);
-  const BASE_URL = 'https://mandarin.api.weniv.co.kr';
 
   // 댓글 input value 받아오기
   const handleChange = (e) => {
@@ -26,20 +26,11 @@ const CommentInput = ({ postid, handleGetComment, setCommentsData }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${BASE_URL}/post/${postid}/comments`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({
-          comment: {
-            content: `${text}`,
-          },
-        }),
-      });
-      const data = await response.json();
-      setCommentsData((prev) => [{ ...data.comment }, ...prev]);
+      commentAPI
+        .uploadComment(user.token, postid, text)
+        .then((data) =>
+          setCommentsData((prev) => [{ ...data.comment }, ...prev]),
+        );
       setText('');
       handleGetComment();
     } catch (error) {
