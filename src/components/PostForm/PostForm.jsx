@@ -15,7 +15,6 @@ const PostForm = ({ editing }) => {
   const [contentText, setContentText] = useState('');
   const navigate = useNavigate();
 
-  // 유저 프로필 이미지 받아오기
   useEffect(() => {
     try {
       postAPI
@@ -26,12 +25,10 @@ const PostForm = ({ editing }) => {
     }
   });
 
-  // textarea 상태
   const handleContentText = (e) => {
     setContentText(e.target.value);
   };
 
-  // 이미지 추가 & 이미지 데이터를 서버에 업로드
   const handleChangeFile = async (e) => {
     const imgObject = e.target.files[0];
 
@@ -43,7 +40,6 @@ const PostForm = ({ editing }) => {
       return;
     }
 
-    // 이미지 서버에 업로드
     const data = await postAPI.postUploadImgs(imgObject);
     if (data.message === '이미지 파일만 업로드 가능합니다.') {
       // eslint-disable-next-line no-alert
@@ -54,7 +50,6 @@ const PostForm = ({ editing }) => {
     }
   };
 
-  // 게시글 생성 (글+이미지 서버에 보내기)
   const handleUpload = async () => {
     if (!contentText && imgSrc.length === 0) {
       // eslint-disable-next-line no-alert
@@ -69,7 +64,6 @@ const PostForm = ({ editing }) => {
         console.log(error);
       }
     } else {
-      // editing이 true이면 수정된 게시글을 서버로 전송
       try {
         postAPI.editPost(user.token, postid, contentText, imgSrc);
         navigate(`/profile/${user.accountname}`);
@@ -79,12 +73,10 @@ const PostForm = ({ editing }) => {
     }
   };
 
-  // 이미지 삭제
   const handelDeleteImg = (idx) => {
     setImgSrc(imgSrc.filter((_, index) => index !== idx));
   };
 
-  // editing이 true이면 기존 post 데이터 받아오기
   useEffect(() => {
     if (editing) {
       const setPost = async () => {
