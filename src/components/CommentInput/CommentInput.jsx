@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import commentAPI from '../../api/commentAPI';
+import postAPI from '../../api/postAPI';
 import { AuthContext } from '../../context/context';
 import ProfileImg from '../common/ProfileImg/ProfileImg';
 import * as S from './StyledCommentInput';
@@ -10,18 +11,15 @@ const CommentInput = ({ postid, handleGetComment, setCommentsData }) => {
   const [profileImg, setProfileImg] = useState('');
   const [isActive, setIsActive] = useState(false);
 
-  // 댓글 input value 받아오기
   const handleChange = (e) => {
     setText(e.target.value);
   };
 
-  // 게시 버튼 활성화
   const handleBtnActive = () => {
     setIsActive(text.length > 0);
   };
 
-  // API - 댓글 POST
-  // 리팩토링시 api폴더로 옮기기
+  // upload Comment
   const handleComment = async (e) => {
     e.preventDefault();
 
@@ -38,22 +36,13 @@ const CommentInput = ({ postid, handleGetComment, setCommentsData }) => {
     }
   };
 
-  // API - 유저 프로필 이미지 받아오기
-  // 리팩토링시 api폴더로 옮기기
+  // getUserProfile
   useEffect(() => {
     const getUserProfile = async () => {
-      const url = `${BASE_URL}/profile/${user.accountname}`;
-
       try {
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-            'Content-type': 'application/json',
-          },
-        });
-        const data = await response.json();
-        setProfileImg(data.profile.image);
+        postAPI
+          .getUserProfile(user.token, user.accountname)
+          .then((data) => setProfileImg(data.profile.image));
       } catch (error) {
         console.error(error);
       }
