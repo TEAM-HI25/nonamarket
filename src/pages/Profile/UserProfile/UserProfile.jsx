@@ -32,40 +32,26 @@ const UserProfile = () => {
 
   // user의 profile data 를 불러오는 useEffect hook
   useEffect(() => {
-    if (!userProfile || pageAccountName === authAccountName) {
-      const getUserProfileInfo = async () => {
-        if (isAuth) {
-          const authData = await profileAPI.getUserInfo(
-            user.token,
-            authAccountName,
-          );
-          setUserProfile(authData.profile);
-          const UserData = { ...authData.profile };
-          dispatch({ type: 'UserProfile', payload: UserData });
-        } else {
-          const pageUserData = await profileAPI.getUserInfo(
-            user.token,
-            pageAccountName,
-          );
-          setUserProfile(pageUserData.profile);
-          const UserData = { ...pageUserData.profile };
-          dispatch({ type: 'UserProfile', payload: UserData });
-        }
-      };
-      getUserProfileInfo();
-    }
-  }, [isAuth]);
+    const getUserProfileInfo = async () => {
+      const authData = await profileAPI.getUserInfo(
+        user.token,
+        pageAccountName,
+      );
+      setUserProfile(authData.profile);
+      const UserData = { ...authData.profile };
+      dispatch({ type: 'UserProfile', payload: UserData });
+    };
+    getUserProfileInfo();
+  }, [isAuth, pageAccountName]);
 
   // post data 를 불러오는 useEffect hook
   useEffect(() => {
-    if (!userPostArr.length) {
-      const getMyPost = async () => {
-        const data = await postAPI.getMyPost(user.token, pageAccountName);
-        setUserPostArr(data.post);
-      };
-      getMyPost();
-    }
-  }, []);
+    const getMyPost = async () => {
+      const data = await postAPI.getMyPost(user.token, pageAccountName);
+      setUserPostArr(data.post);
+    };
+    getMyPost();
+  }, [isAuth, pageAccountName]);
 
   const onListToggle = () => {
     setListType(!listType);

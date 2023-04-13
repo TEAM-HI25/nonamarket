@@ -4,10 +4,10 @@ import Button from './Button';
 import { AuthContext } from '../../../context/context';
 import { UserContext } from '../../../context/userContext';
 
-const FollowButton = ({ setFolloingCount, setFollowerCount }) => {
+const FollowButton = () => {
   const location = useLocation();
   const { user } = useContext(AuthContext);
-  const { profile } = useContext(UserContext);
+  const { profile, dispatch } = useContext(UserContext);
   const [isFollow, setIsFollow] = useState(profile.isfollow);
   const pageAccount = location.pathname.split('/')[2];
   const BASE_URL = 'https://mandarin.api.weniv.co.kr';
@@ -25,8 +25,12 @@ const FollowButton = ({ setFolloingCount, setFollowerCount }) => {
         });
         const data = await response.json();
         setIsFollow(data.profile.isfollow);
-        setFolloingCount(data.profile.followingCount);
-        setFollowerCount(data.profile.followerCount);
+        const FollowCount = { ...data.profile };
+        console.log(FollowCount.followerCount);
+        dispatch({
+          type: 'followerCount',
+          payload: FollowCount.followerCount,
+        });
       };
       followingPost();
     } else if (isFollow === true) {
@@ -41,8 +45,12 @@ const FollowButton = ({ setFolloingCount, setFollowerCount }) => {
         });
         const data = await response.json();
         setIsFollow(data.profile.isfollow);
-        setFolloingCount(data.profile.followingCount);
-        setFollowerCount(data.profile.followerCount);
+        const FollowCount = { ...data.profile };
+        console.log(FollowCount.followerCount);
+        dispatch({
+          type: 'followerCount',
+          payload: FollowCount.followerCount,
+        });
       };
       unfollowingPost();
     }

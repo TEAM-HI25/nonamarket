@@ -6,10 +6,16 @@ const Reducer = (state, action) => {
   switch (action.type) {
     case 'UserProfile':
       return { ...state, profile: action.payload };
+    case 'followerCount':
+      return {
+        ...state,
+        profile: { ...state.profile, followerCount: action.payload },
+      };
     default:
       return state;
   }
 };
+
 // InitialState Object
 const initialState = { profile: {} };
 

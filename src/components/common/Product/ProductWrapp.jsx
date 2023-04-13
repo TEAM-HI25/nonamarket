@@ -9,14 +9,14 @@ const ProductWrapp = ({ pageAccount }) => {
   const { user } = useContext(AuthContext);
 
   // 판매중인 상품페이지에 상품 불러오기
-  // 화면에 첫 렌더링될때만 서버통신 실행
+  // pageAccount 가 변경될 때, 리렌더링 됨.
   useEffect(() => {
     const setProductFeed = async () => {
       const data = await productAPI.loadProductFeed(user.token, pageAccount);
       setProductList(data.product);
     };
     setProductFeed();
-  }, []);
+  }, [pageAccount]);
 
   return productList.length > 0 ? (
     <ProductSection>
