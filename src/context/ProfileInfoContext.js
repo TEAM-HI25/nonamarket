@@ -2,6 +2,7 @@ import { createContext, useReducer, useMemo } from 'react';
 
 // 컨텍스트 공간 생성
 const ProfileDataContext = createContext();
+
 const ProfileDataReducer = (state, action) => {
   switch (action.type) {
     case 'USERINFO_DATA':
