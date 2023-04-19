@@ -24,5 +24,4 @@ export const CommentWrapper = styled.div`
   align-items: center;
   padding: 20px 16px;
   border-top: 0.5px solid #dbdbdb;
-  /* height: 236px; */
 `;

@@ -10,11 +10,10 @@ import * as S from './StyledPostDetail';
 
 const PostDetail = () => {
   const { user } = useContext(AuthContext);
+  const { postid } = useParams();
   const [postData, setPostData] = useState();
   const [commentsData, setCommentsData] = useState([]);
-  const { postid } = useParams();
 
-  // 댓글 업데이트
   const handleGetComment = async () => {
     try {
       const data = await postAPI.getComment(user.token, postid);
@@ -24,7 +23,6 @@ const PostDetail = () => {
     }
   };
 
-  // 게시글 정보 가져오기
   useEffect(() => {
     const getPostCard = async () => {
       try {

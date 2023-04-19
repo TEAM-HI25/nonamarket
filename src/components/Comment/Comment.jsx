@@ -41,7 +41,7 @@ const Comment = ({ comment, postid }) => {
 
   return (
     <S.CommentListWrapper>
-      <S.CommentListContainer>
+      <ul>
         <li key={comment.id}>
           <S.CommentUserInfo>
             <ProfileImg
@@ -59,7 +59,7 @@ const Comment = ({ comment, postid }) => {
           </S.CommentUserInfo>
           <S.CommentContent>{comment.content}</S.CommentContent>
         </li>
-      </S.CommentListContainer>
+      </ul>
       {/* eslint-disable-next-line no-nested-ternary */}
       {!isShowModal ? null : comment.author.accountname === user.accountname ? (
         <Modal CloseModal={handleCloseModal}>
