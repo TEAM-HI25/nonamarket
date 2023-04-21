@@ -1,4 +1,7 @@
 import { useContext } from 'react';
+import commentAPI from '../../../api/commentAPI';
+import postAPI from '../../../api/postAPI';
+import productAPI from '../../../api/productAPI';
 import { AuthContext } from '../../../context/context';
 import {
   InnerModalContainer,
@@ -24,56 +27,34 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       window.location = '/';
     } else if (name === '게시글삭제') {
       const deletePost = async () => {
-        const response = await fetch(
-          `https://mandarin.api.weniv.co.kr/post/${postId}`,
-          {
-            method: 'DELETE',
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-              'Content-type': 'application/json',
-            },
-          },
-        );
-        const data = await response.json();
+        const data = await postAPI.deletePost(user.token, postId);
         if (data.status === '200') {
           CloseInnerModal();
           window.location.reload();
+        } else {
+          console.log(data);
         }
       };
       deletePost();
     } else if (name === '게시글신고') {
       const reportPost = async () => {
-        const response = await fetch(
-          `https://mandarin.api.weniv.co.kr/post/${postId}/report`,
-          {
-            method: 'POST',
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-              'Content-type': 'application/json',
-            },
-          },
-        );
-        const data = await response.json();
+        const data = await postAPI.reportPost(user.token, postId);
         if (data.report) {
           // eslint-disable-next-line no-alert
           alert('신고되었습니다.');
           CloseInnerModal();
+        } else {
+          console.log(data);
         }
       };
       reportPost();
     } else if (name === '댓글삭제') {
       const deleteComment = async () => {
-        const response = await fetch(
-          `https://mandarin.api.weniv.co.kr/post/${postId}/comments/${comment.id}`,
-          {
-            method: 'DELETE',
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-              'Content-type': 'application/json',
-            },
-          },
+        const data = await commentAPI.deleteComment(
+          user.token,
+          postId,
+          comment.id,
         );
-        const data = await response.json();
         if (data.status === '200') {
           CloseInnerModal();
           window.location.reload();
@@ -82,17 +63,11 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       deleteComment();
     } else if (name === '댓글신고') {
       const reportComment = async () => {
-        const response = await fetch(
-          `https://mandarin.api.weniv.co.kr/post/${postId}/comments/${comment.id}/report`,
-          {
-            method: 'POST',
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-              'Content-type': 'application/json',
-            },
-          },
+        const data = await commentAPI.reportComment(
+          user.token,
+          postId,
+          comment.id,
         );
-        const data = await response.json();
         if (data.report) {
           // eslint-disable-next-line no-alert
           alert('신고되었습니다.');
@@ -102,21 +77,9 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       reportComment();
     } else if (name === '상품삭제') {
       const handleDeleteProduct = async () => {
-        const response = await fetch(
-          `https://mandarin.api.weniv.co.kr/product/${productId}`,
-          {
-            method: 'DELETE',
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-              'Content-type': 'application/json',
-            },
-          },
-        );
-        const data = await response.json();
-        console.log(data);
+        const data = await productAPI.deleteProduct(user.token, productId);
         if (parseInt(data.status, 10) === 200) {
           CloseInnerModal();
-          // 페이지 새로고침돼서 삭제된 상품목록 페이지 보여주기
           window.location.reload();
         }
       };

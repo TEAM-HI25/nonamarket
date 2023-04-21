@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import { Link } from 'react-router-dom';
 
 export const ContentsWrapper = styled.section`
   position: relative;
@@ -30,15 +29,6 @@ export const UserInfo = styled.div`
   position: relative;
   display: flex;
   justify-content: space-between;
-  /* button {
-    position: absolute;
-    width: 18px;
-    top: 0;
-    right: 0;
-    img {
-      width: 100%;
-    }
-  } */
 `;
 
 export const UserName = styled.h2`
@@ -57,7 +47,7 @@ export const UserAccount = styled.p`
 export const PostContents = styled.div`
   font-size: 1.4rem;
   line-height: 1.8rem;
-  /* gap: 16px; */
+  word-break: break-all;
   cursor: pointer;
 
   p {

@@ -5,7 +5,6 @@ import { AllWrappCss } from '../../styles/Globalstyled';
 export const JoinEmailWrapper = styled.section`
   ${AllWrappCss};
   background-color: #fff;
-  /* 임시 */
 `;
 
 export const JoinEmailTitle = styled.h1`

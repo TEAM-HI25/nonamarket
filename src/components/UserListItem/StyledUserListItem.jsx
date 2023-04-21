@@ -24,6 +24,12 @@ export const UserprofileImg = styled.img`
   object-fit: cover;
 `;
 
+export const UserBox = styled.div`
+  width: 238px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
 export const UserName = styled.span`
   font-size: 1.4rem;
   font-weight: 500;

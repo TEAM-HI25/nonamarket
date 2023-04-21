@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const CommentListWrapper = styled.section`
   width: 355px;
 `;
-export const CommentListContainer = styled.ul``;
 
 export const CommentUserInfo = styled.div`
   display: flex;

@@ -25,7 +25,7 @@ export const PostCardWrap = styled.div`
   }
 `;
 
-export const ProfilePostAlbumWrap = styled.ul`
+export const PostAlbumWrap = styled.ul`
   max-width: 390px;
   padding: 16px;
   display: grid;

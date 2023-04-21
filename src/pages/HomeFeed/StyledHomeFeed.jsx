@@ -39,7 +39,6 @@ export const StyledHomeFeedOff = styled.section`
   }
 `;
 
-// 추가해야할 스타일 컴포넌트
 export const AllWrapp = styled.section`
   ${AllWrappCss};
 `;

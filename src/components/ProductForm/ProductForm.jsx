@@ -1,21 +1,23 @@
 import { useState, useContext, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../context/context';
-import Nav from '../../components/Nav/Nav';
-import LabelInput from '../../components/common/LabelInput/LabelInput';
-import FetchApi from '../../api';
-import * as S from '../AddProduct/StyledAddProduct';
+import Nav from '../Nav/Nav';
+import LabelInput from '../common/LabelInput/LabelInput';
+import productAPI from '../../api/productAPI';
+import imageAPI from '../../api/imageAPI';
+import regex from '../../utils/regex';
+import * as S from './StyledProductForm';
 
-const UpdateProduct = () => {
+const ProductForm = ({ editing }) => {
   // input 상태관리
-  const [productImg, setproductImg] = useState('');
+  const [productImg, setProductImg] = useState('');
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [saleLink, setSaleLink] = useState('');
 
   const { user } = useContext(AuthContext);
-  const { productid } = useParams();
   const navigate = useNavigate();
+  const { productid } = useParams();
 
   // 모든 값 valid check, 서버 전송 가능 상태시 버튼 true
   const [isValid, setIsValid] = useState({
@@ -32,7 +34,7 @@ const UpdateProduct = () => {
     isValid.productPrice &&
     isValid.saleLink;
 
-  // 숫자 1000단위 콤마 함수
+  // 숫자 1000의 단위로 변경하는 콤마 함수
 
   const priceFormat = (str) => {
     const comma = (num) => {
@@ -45,29 +47,29 @@ const UpdateProduct = () => {
     };
     return comma(uncomma(str));
   };
+
   // 1. input창에 보이기
   const handleData = (event) => {
-    if (event.target.id === 'productname') {
+    if (event.target.id === 'productName') {
       setProductName(event.target.value);
-    } else if (event.target.id === 'productprice') {
+    } else if (event.target.id === 'productPrice') {
       setProductPrice(priceFormat(event.target.value));
-    } else if (event.target.id === 'salelink') {
+    } else if (event.target.id === 'saleLink') {
       setSaleLink(event.target.value);
     }
   };
+
   // 이미지 주소 받아오기
   const handleGetImg = async (event) => {
-    const data = await FetchApi.uploadImg(event);
-    setproductImg(data);
+    const data = await imageAPI.uploadImg(event);
+    setProductImg(data);
     console.log(productImg);
     setIsValid({ ...isValid, productImg: true });
   };
 
   // 2-1) 상품명 유효성 검사
-
-  const PRODUCT_NAME_CHECK = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|0-9]{2,15}$/;
   const handleCheckName = () => {
-    if (PRODUCT_NAME_CHECK.test(productName)) {
+    if (regex.PRODUCT_NAME_CHECK.test(productName)) {
       setIsValid({ ...isValid, productName: true });
     } else {
       setIsValid({ ...isValid, productName: false });
@@ -75,10 +77,8 @@ const UpdateProduct = () => {
   };
 
   // 2-2) 가격 유효성 검사
-
-  const PRODUCT_PRICE_CHECK = /^[0-9\\,]*$/;
   const handleCheckPrice = () => {
-    if (PRODUCT_PRICE_CHECK.test(productPrice) && productPrice.length !== 0) {
+    if (regex.PRODUCT_PRICE_CHECK.test(productPrice)) {
       setIsValid({ ...isValid, productPrice: true });
     } else {
       setIsValid({ ...isValid, productPrice: false });
@@ -86,50 +86,42 @@ const UpdateProduct = () => {
   };
 
   // 2-3) url 유효성 검사
-  const SALE_LINK_CHECK =
-    /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!]))?/;
-
   const handleCheckSaleLink = () => {
-    if (SALE_LINK_CHECK.test(saleLink)) {
+    if (regex.SALE_LINK_CHECK.test(saleLink)) {
       setIsValid({ ...isValid, saleLink: true });
     } else {
       setIsValid({ ...isValid, saleLink: false });
     }
   };
 
-  // 기존 상품 데이터 불러오기
+  // 게시글을 수정할 시 기존에 등록된 상품 데이터 가져오기
   useEffect(() => {
-    const getOriginalProduct = async () => {
-      const response = await fetch(
-        `https://mandarin.api.weniv.co.kr/product/detail/${productid}`,
-        {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-            'Content-type': 'application/json',
-          },
-        },
-      );
-      const data = await response.json();
-      console.log(data);
-      setproductImg(data.product.itemImage);
-      setProductName(data.product.itemName);
-      setProductPrice(priceFormat(data.product.price));
-      setSaleLink(data.product.link);
-      setIsValid({
-        ...isValid,
-        productImg: true,
-        productName: true,
-        productPrice: true,
-        saleLink: true,
-      });
-    };
-    getOriginalProduct();
-  }, []);
+    if (editing) {
+      const setProductFeed = async () => {
+        const data = await productAPI.getOriginalProductInfo(
+          user.token,
+          productid,
+        );
+        setProductImg(data.product.itemImage);
+        setProductName(data.product.itemName);
+        setProductPrice(priceFormat(data.product.price));
+        setSaleLink(data.product.link);
+        setIsValid({
+          ...isValid,
+          productImg: true,
+          productName: true,
+          productPrice: true,
+          saleLink: true,
+        });
+      };
+      setProductFeed();
+    }
+  }, [productid]);
 
+  // editing 이 true 면 상품 수정, false 면 상품 등록
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    const updateData = {
+    event.preventDefault(); // submit 제출 막기(새로고침막기)
+    const Data = {
       product: {
         itemName: `${productName}`,
         price: parseInt(productPrice.replace(',', ''), 10), // 서버 전송 가능 형태로 가공
@@ -137,21 +129,19 @@ const UpdateProduct = () => {
         itemImage: `${productImg}`,
       },
     };
-    const response = await fetch(
-      `https://mandarin.api.weniv.co.kr/product/${productid}`,
-      {
-        method: 'PUT',
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(updateData),
-      },
-    );
-    const data = await response.json();
-    console.log(data);
-    navigate(`/profile/${user.accountname}`);
-    return data;
+    if (editing) {
+      const UpdatedData = await productAPI.reviseProductInfo(
+        user.token,
+        productid,
+        Data,
+      );
+      navigate(`/profile/${user.accountname}`);
+      return UpdatedData;
+    } else {
+      const originalData = await productAPI.registerProduct(Data, user.token);
+      navigate(`/profile/${user.accountname}`);
+      return originalData;
+    }
   };
 
   return (
@@ -173,8 +163,8 @@ const UpdateProduct = () => {
           </S.ProductLoadWrapp>
           <LabelInput
             type='text'
-            label='상품명'
-            forid='productname'
+            label='노나먹을 식재료명'
+            forid='productName'
             state={productName}
             placeholder='2~15자 이내여야 합니다.'
             onChange={handleData}
@@ -183,7 +173,7 @@ const UpdateProduct = () => {
           <LabelInput
             type='text'
             label='가격'
-            forid='productprice'
+            forid='productPrice'
             state={productPrice}
             placeholder='숫자만 입력 가능합니다.'
             onChange={handleData}
@@ -192,7 +182,7 @@ const UpdateProduct = () => {
           <LabelInput
             type='text'
             label='판매 링크'
-            forid='salelink'
+            forid='saleLink'
             state={saleLink}
             placeholder='URL을 입력해 주세요'
             onChange={handleData}
@@ -204,4 +194,4 @@ const UpdateProduct = () => {
   );
 };
 
-export default UpdateProduct;
+export default ProductForm;

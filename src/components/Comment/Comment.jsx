@@ -40,11 +40,8 @@ const Comment = ({ comment, postid }) => {
   };
 
   return (
-    // {commentsData &&
-    //   commentsData.map((comment) => {
-    //     return (
     <S.CommentListWrapper>
-      <S.CommentListContainer>
+      <ul>
         <li key={comment.id}>
           <S.CommentUserInfo>
             <ProfileImg
@@ -62,7 +59,7 @@ const Comment = ({ comment, postid }) => {
           </S.CommentUserInfo>
           <S.CommentContent>{comment.content}</S.CommentContent>
         </li>
-      </S.CommentListContainer>
+      </ul>
       {/* eslint-disable-next-line no-nested-ternary */}
       {!isShowModal ? null : comment.author.accountname === user.accountname ? (
         <Modal CloseModal={handleCloseModal}>
@@ -91,16 +88,6 @@ const Comment = ({ comment, postid }) => {
           comment={comment}
         />
       )}
-
-      {/* {isOpenModal && (
-                <CommentModal
-                  onClick={handleCloseModal}
-                  setIsOpenModal={setIsOpenModal}
-                  comment={comment}
-                  postid={postid}
-                  handleDelete={handleDelete}
-                />
-              )} */}
     </S.CommentListWrapper>
   );
 };

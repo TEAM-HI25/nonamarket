@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../context/context';
-import FetchApi from '../../../api';
+import productAPI from '../../../api/productAPI';
 import ProductSection from './StyledProductWrapp';
 import Product from './Product';
 
@@ -9,14 +9,14 @@ const ProductWrapp = ({ pageAccount }) => {
   const { user } = useContext(AuthContext);
 
   // 판매중인 상품페이지에 상품 불러오기
-  // 화면에 첫 렌더링될때만 서버통신 실행
+  // PageAccount가 변경될 때 렌더링될 수 있도록 서버통신
   useEffect(() => {
     const setProductFeed = async () => {
-      const data = await FetchApi.loadProductFeed(user.token, pageAccount);
+      const data = await productAPI.loadProductFeed(user.token, pageAccount);
       setProductList(data.product);
     };
     setProductFeed();
-  }, []);
+  }, [pageAccount]);
 
   return productList.length > 0 ? (
     <ProductSection>

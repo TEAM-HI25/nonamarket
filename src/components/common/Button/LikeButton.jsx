@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../../context/context';
+import likeAPI from '../../../api/likeAPI';
 import HeartOff from '../../../assets/images/icon-heart.svg';
 import HeartOn from '../../../assets/images/heart.svg';
 
@@ -11,35 +12,14 @@ const LikeButton = ({ heartCount, hearted, postId }) => {
   const handleLikeChange = () => {
     if (isLike === false) {
       const getHeart = async () => {
-        const response = await fetch(
-          `https://mandarin.api.weniv.co.kr/post/${postId}/heart`,
-          {
-            method: 'POST',
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-              'Content-type': 'application/json',
-            },
-          },
-        );
-        const data = await response.json();
+        const data = await likeAPI.getHeart(user.token, postId);
         setIsLike(data.post.hearted);
         setLikeCount(data.post.heartCount);
       };
-      // 리팩토링 시 postId, user.token를 인자로 전달. 25~26번째 줄 코드 함수 밖으로 빼기
       getHeart();
     } else if (isLike === true) {
       const cancelHeart = async () => {
-        const response = await fetch(
-          `https://mandarin.api.weniv.co.kr/post/${postId}/unheart`,
-          {
-            method: 'DELETE',
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-              'Content-type': 'application/json',
-            },
-          },
-        );
-        const data = await response.json();
+        const data = await likeAPI.cancelHeart(user.token, postId);
         setIsLike(data.post.hearted);
         setLikeCount(data.post.heartCount);
       };
