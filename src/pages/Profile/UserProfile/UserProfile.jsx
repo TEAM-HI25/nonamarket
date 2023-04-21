@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/context';
+import { ProfileDataContext } from '../../../context/ProfileInfoContext';
 import profileAPI from '../../../api/profileAPI';
 import postAPI from '../../../api/postAPI';
 import Nav from '../../../components/Nav/Nav';
@@ -16,36 +17,37 @@ import * as S from './StyledUserProfile';
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
+  const { dispatch } = useContext(ProfileDataContext);
   const navigate = useNavigate();
-  const authAccountName = user.accountname;
+  const location = useLocation();
+
   const [userProfile, setUserProfile] = useState(null);
   const [userPostArr, setUserPostArr] = useState([]);
   const [userAlbumPostArr, setUserAlbumPostArr] = useState([]);
   const [list, setList] = useState(true);
-  const location = useLocation();
+
+  const authAccountName = user.accountname;
   const pageAccount = location.pathname.split('/')[2];
 
   useEffect(() => {
-    if (!userProfile) {
-      const getUserProfileInfo = async () => {
-        const data = await profileAPI.getUserInfo(user.token, pageAccount);
-        setUserProfile(data.profile);
-      };
-      getUserProfileInfo();
-    }
-  }, [userProfile]);
+    const getUserProfileInfo = async () => {
+      const data = await profileAPI.getUserInfo(user.token, pageAccount);
+      setUserProfile(data.profile);
+      const ProfileData = { ...data.profile };
+      dispatch({ type: 'USERINFO_DATA', payload: ProfileData });
+    };
+    getUserProfileInfo();
+  }, [pageAccount]);
 
   useEffect(() => {
-    if (!userPostArr.length) {
-      const getMyPost = async () => {
-        const data = await postAPI.getMyPost(user.token, pageAccount);
-        setUserPostArr(data.post);
-        const newdata = data.post.filter((post) => post.image !== '');
-        setUserAlbumPostArr(newdata);
-      };
-      getMyPost();
-    }
-  }, []);
+    const getMyPost = async () => {
+      const data = await postAPI.getMyPost(user.token, pageAccount);
+      setUserPostArr(data.post);
+      const newdata = data.post.filter((post) => post.image !== '');
+      setUserAlbumPostArr(newdata);
+    };
+    getMyPost();
+  }, [pageAccount]);
 
   const onListToggle = () => {
     setList(!list);
@@ -105,10 +107,7 @@ const UserProfile = () => {
       <Nav type='home' />
       <S.MainWrap>
         {userProfile ? (
-          <ProfileInfo
-            userProfile={userProfile}
-            authAccountName={authAccountName}
-          />
+          <ProfileInfo authAccountName={authAccountName} />
         ) : (
           <Loading />
         )}
