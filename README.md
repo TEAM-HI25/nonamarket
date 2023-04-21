@@ -212,7 +212,7 @@
 - 타유저 또는 로그인 유저 '프로필' 페이지 이동시 pageAccount 데이터가 변경되는 것을 활용하여, UserProfile 컴포넌트에서 fetch code를 useEffect hook 내부에 작성하고, **의존성 배열에 pageAccount(현재 화면에 보여지고 있는 유저의 Accountname)를 추가 하였음.** AccountName에 맞는 데이터를 리랜더링 할 수 있도록 수정하면서 프로필 페이지 이동시 리랜더링이 정상적으로 동작하게 되었음.
 - UserProfile 컴포넌트에서 fetch 코드를 통해 가져온 서버 데이터를 **전역 데이터**로 관리할 수 있도록 **useContext + useReducer + useMemo hook**을 활용 하였음.
 - UserProfile 컴포넌트에서 fetch 코드 내부에 서버데이터를 받아옴과 동시에 **dispatch**를 사용하여 전역 데이터 저장소인 ProfileInfoContext에 저장시켜 전역에 사용할 수 있도록 코드를 수정하였음.
-- useContext + useReducer + dispatch 를 활용해 UserProfile에 몰려 있던 **state 변화 의존도를 분산 시킬 수 있었음.**
+- useContext + useReducer + dispatch 를 활용해 UserProfile에 몰려 있던 **state 변화 의존도를 분산 시킬 수 있었음.** <br>
   [관련 PR](https://github.com/TEAM-HI25/nonamarket/pull/247)
   <br/><br/>
 
