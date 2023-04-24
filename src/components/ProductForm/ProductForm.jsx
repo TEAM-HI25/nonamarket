@@ -98,10 +98,7 @@ const ProductForm = ({ editing }) => {
   useEffect(() => {
     if (editing) {
       const setProductFeed = async () => {
-        const data = await productAPI.getOriginalProductInfo(
-          user.token,
-          productid,
-        );
+        const data = await productAPI.getOriginalProductInfo(productid);
         setProductImg(data.product.itemImage);
         setProductName(data.product.itemName);
         setProductPrice(priceFormat(data.product.price));
@@ -129,16 +126,13 @@ const ProductForm = ({ editing }) => {
         itemImage: `${productImg}`,
       },
     };
+    console.log(Data);
     if (editing) {
-      const UpdatedData = await productAPI.reviseProductInfo(
-        user.token,
-        productid,
-        Data,
-      );
+      const UpdatedData = await productAPI.reviseProductInfo(productid, Data);
       navigate(`/profile/${user.accountname}`);
       return UpdatedData;
     } else {
-      const originalData = await productAPI.registerProduct(Data, user.token);
+      const originalData = await productAPI.registerProduct(Data);
       navigate(`/profile/${user.accountname}`);
       return originalData;
     }

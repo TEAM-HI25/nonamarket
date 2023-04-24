@@ -77,7 +77,7 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       reportComment();
     } else if (name === '상품삭제') {
       const handleDeleteProduct = async () => {
-        const data = await productAPI.deleteProduct(user.token, productId);
+        const data = await productAPI.deleteProduct(productId);
         if (parseInt(data.status, 10) === 200) {
           CloseInnerModal();
           window.location.reload();
