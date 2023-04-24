@@ -92,7 +92,6 @@ const ModifyProfile = () => {
       img,
       Token,
     );
-    console.log(ModifyData);
     const changeAccount = {
       token: Token,
       accountname: ModifyData.user.accountname,

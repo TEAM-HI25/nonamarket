@@ -30,11 +30,11 @@ const UserProfile = () => {
   const pageAccount = location.pathname.split('/')[2];
 
   const getUserProfileInfo = async () => {
-    const data = await profileAPI.getUserInfo(user.token, pageAccount);
+    // const data = await profileAPI.getUserInfo(user.token, pageAccount);
+    const data = await profileAPI.getUserInfo(pageAccount);
     setUserProfile(data.profile);
     const ProfileData = { ...data.profile };
     dispatch({ type: 'USERINFO_DATA', payload: ProfileData });
-    console.log(1);
   };
 
   const getMyPost = async () => {
@@ -42,7 +42,6 @@ const UserProfile = () => {
     setUserPostArr(data.post);
     const newdata = data.post.filter((post) => post.image !== '');
     setUserAlbumPostArr(newdata);
-    console.log(2);
   };
   useEffect(() => {
     getUserProfileInfo();

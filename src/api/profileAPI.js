@@ -1,49 +1,24 @@
+// import axios from 'axios';
+import { instance } from '../axios/axios';
 import BASE_URL from '../utils/baseUrl';
 
 const profileAPI = {
   // UserProfile 데이터
-  async getUserInfo(token, accountname) {
-    const response = await fetch(`${BASE_URL}/profile/${accountname}`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
+  async getUserInfo(accountname) {
+    const response = await instance.get(`/profile/${accountname}`);
+    return response.data;
   },
 
   // FollweList 데이터
-  async getFollowerList(token, accountName) {
-    const response = await fetch(
-      `${BASE_URL}/profile/${accountName}/follower`,
-      {
-        method: `GET`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-type': 'application/json',
-        },
-      },
-    );
-    const data = await response.json();
-    return data;
+  async getFollowerList(accountName) {
+    const response = await instance.get(`/profile/${accountName}/follower`);
+    return response.data;
   },
 
   // FollowingList 데이터
   async getFollowingdata(token, accountName) {
-    const response = await fetch(
-      `${BASE_URL}/profile/${accountName}/following`,
-      {
-        method: `GET`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-type': 'application/json',
-        },
-      },
-    );
-    const data = await response.json();
-    return data;
+    const response = await instance(`/profile/${accountName}/following`);
+    return response.data;
   },
 
   async putModifyData(username, accountname, intro, image, Token) {
