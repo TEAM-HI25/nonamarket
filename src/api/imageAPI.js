@@ -5,7 +5,6 @@ const imageAPI = {
   async uploadImg(e) {
     const imageFile = e.target.files[0];
     const formData = new FormData();
-    console.log(formData);
     formData.append('image', imageFile);
 
     const response = await imgInstance.post(`/image/uploadfile`, formData);

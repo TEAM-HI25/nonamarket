@@ -7,8 +7,8 @@ import MyProfileBtnWrap from './MyProfileBtnWrapp';
 
 const ProfileInfo = ({ authAccountName }) => {
   const location = useLocation();
-  const { profile } = useContext(ProfileDataContext);
   const pageAccount = location.pathname.split('/')[2];
+  const { profile } = useContext(ProfileDataContext);
 
   return (
     <S.Container>

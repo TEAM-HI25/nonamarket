@@ -27,7 +27,7 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       window.location = '/';
     } else if (name === '게시글삭제') {
       const deletePost = async () => {
-        const data = await postAPI.deletePost(user.token, postId);
+        const data = await postAPI.deletePost(postId);
         if (data.status === '200') {
           CloseInnerModal();
           window.location.reload();
@@ -38,7 +38,7 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       deletePost();
     } else if (name === '게시글신고') {
       const reportPost = async () => {
-        const data = await postAPI.reportPost(user.token, postId);
+        const data = await postAPI.reportPost(postId);
         if (data.report) {
           // eslint-disable-next-line no-alert
           alert('신고되었습니다.');

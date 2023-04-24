@@ -1,65 +1,25 @@
 import imageCompression from 'browser-image-compression';
-import BASE_URL from '../utils/baseUrl';
+import { instance } from '../axios/axios';
 
 const postAPI = {
-  async loadFeed(token) {
-    const response = await fetch(`${BASE_URL}/post/feed`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
+  async loadFeed() {
+    const response = await instance.get(`/post/feed`);
+    return response.data;
   },
 
-  async getMyPost(token, pageAccount) {
-    const response = await fetch(`${BASE_URL}/post/${pageAccount}/userpost`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
+  async getMyPost(pageAccount) {
+    const response = await instance.get(`/post/${pageAccount}/userpost`);
+    return response.data;
   },
 
-  async deletePost(token, postId) {
-    const response = await fetch(`${BASE_URL}/post/${postId}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
+  async deletePost(postId) {
+    const response = await instance.delete(`/post/${postId}`);
+    return response.data;
   },
 
-  async reportPost(token, postId) {
-    const response = await fetch(`${BASE_URL}/post/${postId}/report`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
-  },
-
-  async getUserProfile(token, accountname) {
-    const response = await fetch(`${BASE_URL}/profile/${accountname}`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
+  async reportPost(postId) {
+    const response = await instance.post(`/post/${postId}/report`);
+    return response.data;
   },
 
   async postUploadImgs(file) {
@@ -76,85 +36,44 @@ const postAPI = {
     const formData = new FormData();
     formData.append('image', newFile);
 
-    const response = await fetch(`${BASE_URL}/image/uploadfiles`, {
-      method: 'POST',
-      body: formData,
-    });
-
-    const data = await response.json();
-    return data;
+    const response = await instance.post(`/image/uploadfiles`, formData);
+    return response.data;
   },
 
-  async createPost(token, contentText, img) {
-    const response = await fetch(`${BASE_URL}/post`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
+  async createPost(contentText, img) {
+    const response = await instance.post(`/post`, {
+      post: {
+        content: contentText,
+        image: img.join(', '),
       },
-      body: JSON.stringify({
-        post: {
-          content: contentText,
-          image: img.join(', '),
-        },
-      }),
     });
-    const data = await response.json();
-    return data;
+    return response.data;
   },
 
-  async editPost(token, postid, contentText, img) {
-    const response = await fetch(`${BASE_URL}/post/${postid}`, {
-      method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
+  async editPost(postid, contentText, img) {
+    const response = await instance.put(`/post/${postid}`, {
+      post: {
+        content: `${contentText}`,
+        image: img.join(','),
       },
-      body: JSON.stringify({
-        post: {
-          content: `${contentText}`,
-          image: img.join(','),
-        },
-      }),
     });
-    const data = await response.json();
-    return data;
+    return response.data;
   },
 
-  async getPost(token, postid) {
-    const response = await fetch(`${BASE_URL}/post/${postid}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    const postContent = data.post;
+  async getPost(postid) {
+    const response = await instance.get(`/post/${postid}`);
+    const postContent = response.data.post;
     return postContent;
   },
 
-  async getComment(token, postid) {
-    const response = await fetch(`${BASE_URL}/post/${postid}/comments`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
+  async getComment(postid) {
+    const response = await instance.get(`/post/${postid}/comments`);
+    return response.data;
   },
 
-  async getUserPost(token, postid) {
-    const response = await fetch(`${BASE_URL}/post/${postid}`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
+  async getUserPost(postid) {
+    const response = await instance.get(`/post/${postid}`);
+    return response.data;
   },
 };
 

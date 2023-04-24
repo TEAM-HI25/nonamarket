@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../context/context';
+import profileAPI from '../../api/profileAPI';
 import postAPI from '../../api/postAPI';
 import Nav from '../Nav/Nav';
 import ProfileImg from '../common/ProfileImg/ProfileImg';
@@ -17,8 +18,8 @@ const PostForm = ({ editing }) => {
 
   useEffect(() => {
     try {
-      postAPI
-        .getUserProfile(user.token, user.accountname)
+      profileAPI
+        .getUserInfo(user.accountname)
         .then((data) => setProfileImg(data.profile.image));
     } catch (error) {
       console.log(error);
@@ -58,14 +59,14 @@ const PostForm = ({ editing }) => {
 
     if (!editing) {
       try {
-        postAPI.createPost(user.token, contentText, imgSrc);
+        postAPI.createPost(contentText, imgSrc);
         navigate(`/profile/${user.accountname}`);
       } catch (error) {
         console.log(error);
       }
     } else {
       try {
-        postAPI.editPost(user.token, postid, contentText, imgSrc);
+        postAPI.editPost(postid, contentText, imgSrc);
         navigate(`/profile/${user.accountname}`);
       } catch (error) {
         console.log(error);
@@ -80,7 +81,7 @@ const PostForm = ({ editing }) => {
   useEffect(() => {
     if (editing) {
       const setPost = async () => {
-        const data = await postAPI.getPost(user.token, postid);
+        const data = await postAPI.getPost(postid);
         setContentText(data.content);
 
         if (data.image) {
