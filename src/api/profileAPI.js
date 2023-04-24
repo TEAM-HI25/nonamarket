@@ -1,27 +1,26 @@
-// import axios from 'axios';
 import { instance } from '../axios/axios';
-import BASE_URL from '../utils/baseUrl';
 
 const profileAPI = {
-  // UserProfile 데이터
+  // UserProfile 데이터 서버통신 함수
   async getUserInfo(accountname) {
     const response = await instance.get(`/profile/${accountname}`);
     return response.data;
   },
 
-  // FollweList 데이터
+  // FollweList 데이터 서버통신 함수
   async getFollowerList(accountName) {
     const response = await instance.get(`/profile/${accountName}/follower`);
     return response.data;
   },
 
-  // FollowingList 데이터
-  async getFollowingdata(token, accountName) {
+  // FollowingList 데이터 서버통신 함수
+  async getFollowingdata(accountName) {
     const response = await instance(`/profile/${accountName}/following`);
     return response.data;
   },
 
-  async putModifyData(username, accountname, intro, image, Token) {
+  // ModifyPrifle 데이터 서버통신 함수
+  async putModifyData(username, accountname, intro, image) {
     const userData = {
       user: {
         username,
@@ -30,16 +29,9 @@ const profileAPI = {
         image,
       },
     };
-    const response = await fetch(`${BASE_URL}/user`, {
-      method: 'PUT',
-      body: JSON.stringify(userData),
-      headers: {
-        Authorization: `Bearer ${Token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
+    const response = await instance.put(`/user`, userData);
+    console.log(response);
+    return response.data;
   },
 };
 export default profileAPI;

@@ -6,6 +6,11 @@ export const instance = axios.create({
   headers: { 'Context-type': 'application/json' },
 });
 
+export const imgInstance = axios.create({
+  baseURL: BASE_URL,
+  headers: { 'Context-type': 'multipart/form-data' },
+});
+
 instance.interceptors.request.use((config) => {
   if (!config.headers.Authorization) {
     /* eslint-disable-next-line no-param-reassign */
