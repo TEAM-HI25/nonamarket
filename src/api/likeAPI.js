@@ -1,28 +1,14 @@
-import BASE_URL from '../utils/baseUrl';
+import { instance } from '../axios/axios';
 
 const likeAPI = {
-  async getHeart(token, postId) {
-    const response = await fetch(`${BASE_URL}/post/${postId}/heart`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
+  async getHeart(postId) {
+    const response = await instance.post(`/post/${postId}/heart`);
+    return response.data;
   },
 
-  async cancelHeart(token, postId) {
-    const response = await fetch(`${BASE_URL}/post/${postId}/unheart`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
+  async cancelHeart(postId) {
+    const response = await instance.delete(`/post/${postId}/unheart`);
+    return response.data;
   },
 };
 

@@ -30,7 +30,6 @@ const profileAPI = {
       },
     };
     const response = await instance.put(`/user`, userData);
-    console.log(response);
     return response.data;
   },
 };
