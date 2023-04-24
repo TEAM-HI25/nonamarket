@@ -29,23 +29,23 @@ const UserProfile = () => {
   const authAccountName = user.accountname;
   const pageAccount = location.pathname.split('/')[2];
 
-  useEffect(() => {
-    const getUserProfileInfo = async () => {
-      const data = await profileAPI.getUserInfo(user.token, pageAccount);
-      setUserProfile(data.profile);
-      const ProfileData = { ...data.profile };
-      dispatch({ type: 'USERINFO_DATA', payload: ProfileData });
-    };
-    getUserProfileInfo();
-  }, [pageAccount]);
+  const getUserProfileInfo = async () => {
+    const data = await profileAPI.getUserInfo(user.token, pageAccount);
+    setUserProfile(data.profile);
+    const ProfileData = { ...data.profile };
+    dispatch({ type: 'USERINFO_DATA', payload: ProfileData });
+    console.log(1);
+  };
 
+  const getMyPost = async () => {
+    const data = await postAPI.getMyPost(user.token, pageAccount);
+    setUserPostArr(data.post);
+    const newdata = data.post.filter((post) => post.image !== '');
+    setUserAlbumPostArr(newdata);
+    console.log(2);
+  };
   useEffect(() => {
-    const getMyPost = async () => {
-      const data = await postAPI.getMyPost(user.token, pageAccount);
-      setUserPostArr(data.post);
-      const newdata = data.post.filter((post) => post.image !== '');
-      setUserAlbumPostArr(newdata);
-    };
+    getUserProfileInfo();
     getMyPost();
   }, [pageAccount]);
 
