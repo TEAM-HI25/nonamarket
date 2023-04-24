@@ -30,7 +30,6 @@ const UserProfile = () => {
   const pageAccount = location.pathname.split('/')[2];
 
   const getUserProfileInfo = async () => {
-    // const data = await profileAPI.getUserInfo(user.token, pageAccount);
     const data = await profileAPI.getUserInfo(pageAccount);
     setUserProfile(data.profile);
     const ProfileData = { ...data.profile };

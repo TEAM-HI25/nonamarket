@@ -1,18 +1,15 @@
 import BASE_URL from '../utils/baseUrl';
+import { imgInstance } from '../axios/axios';
 
 const imageAPI = {
   async uploadImg(e) {
     const imageFile = e.target.files[0];
     const formData = new FormData();
+    console.log(formData);
     formData.append('image', imageFile);
 
-    const response = await fetch(`${BASE_URL}/image/uploadfile`, {
-      method: 'POST',
-      body: formData,
-    });
-
-    const data = await response.json();
-    const imageSrc = `${BASE_URL}/${data.filename}`;
+    const response = await imgInstance.post(`/image/uploadfile`, formData);
+    const imageSrc = `${BASE_URL}/${response.data.filename}`;
     return imageSrc;
   },
 };
