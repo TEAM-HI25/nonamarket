@@ -26,7 +26,7 @@ const CommentInput = ({ postid, handleGetComment, setCommentsData }) => {
 
     try {
       commentAPI
-        .uploadComment(user.token, postid, text)
+        .uploadComment(postid, text)
         .then((data) =>
           setCommentsData((prev) => [{ ...data.comment }, ...prev]),
         );

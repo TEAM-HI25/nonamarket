@@ -1,51 +1,25 @@
-import BASE_URL from '../utils/baseUrl';
+import { instance } from '../axios/axios';
 
 const commentAPI = {
-  async uploadComment(token, postId, text) {
-    const response = await fetch(`${BASE_URL}/post/${postId}/comments`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        comment: {
-          content: `${text}`,
-        },
-      }),
+  async uploadComment(postId, text) {
+    const response = await instance.post(`/post/${postId}/comments`, {
+      comment: { content: `${text}` },
     });
-    const data = await response.json();
-    return data;
+    return response.data;
   },
 
-  async deleteComment(token, postId, commentid) {
-    const response = await fetch(
-      `${BASE_URL}/post/${postId}/comments/${commentid}`,
-      {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-type': 'application/json',
-        },
-      },
+  async deleteComment(postId, commentid) {
+    const response = await instance.delete(
+      `/post/${postId}/comments/${commentid}`,
     );
-    const data = await response.json();
-    return data;
+    return response.data;
   },
 
-  async reportComment(token, postId, commentid) {
-    const response = await fetch(
-      `${BASE_URL}/post/${postId}/comments/${commentid}/report`,
-      {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-type': 'application/json',
-        },
-      },
+  async reportComment(postId, commentid) {
+    const response = await instance.post(
+      `/post/${postId}/comments/${commentid}/report`,
     );
-    const data = await response.json();
-    return data;
+    return response.data;
   },
 };
 

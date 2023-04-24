@@ -50,11 +50,7 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       reportPost();
     } else if (name === '댓글삭제') {
       const deleteComment = async () => {
-        const data = await commentAPI.deleteComment(
-          user.token,
-          postId,
-          comment.id,
-        );
+        const data = await commentAPI.deleteComment(postId, comment.id);
         if (data.status === '200') {
           CloseInnerModal();
           window.location.reload();
