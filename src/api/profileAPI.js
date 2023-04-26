@@ -1,52 +1,26 @@
-import BASE_URL from '../utils/baseUrl';
+import { instance } from '../axios/axios';
 
 const profileAPI = {
-  // UserProfile 데이터
-  async getUserInfo(token, accountname) {
-    const response = await fetch(`${BASE_URL}/profile/${accountname}`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
+  // UserProfile 데이터 서버통신 함수
+  async getUserInfo(accountname) {
+    const response = await instance.get(`/profile/${accountname}`);
+    return response.data;
   },
 
-  // FollweList 데이터
-  async getFollowerList(token, accountName) {
-    const response = await fetch(
-      `${BASE_URL}/profile/${accountName}/follower`,
-      {
-        method: `GET`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-type': 'application/json',
-        },
-      },
-    );
-    const data = await response.json();
-    return data;
+  // FollweList 데이터 서버통신 함수
+  async getFollowerList(accountName) {
+    const response = await instance.get(`/profile/${accountName}/follower`);
+    return response.data;
   },
 
-  // FollowingList 데이터
-  async getFollowingdata(token, accountName) {
-    const response = await fetch(
-      `${BASE_URL}/profile/${accountName}/following`,
-      {
-        method: `GET`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-type': 'application/json',
-        },
-      },
-    );
-    const data = await response.json();
-    return data;
+  // FollowingList 데이터 서버통신 함수
+  async getFollowingdata(accountName) {
+    const response = await instance(`/profile/${accountName}/following`);
+    return response.data;
   },
 
-  async putModifyData(username, accountname, intro, image, Token) {
+  // ModifyPrifle 데이터 서버통신 함수
+  async putModifyData(username, accountname, intro, image) {
     const userData = {
       user: {
         username,
@@ -55,16 +29,8 @@ const profileAPI = {
         image,
       },
     };
-    const response = await fetch(`${BASE_URL}/user`, {
-      method: 'PUT',
-      body: JSON.stringify(userData),
-      headers: {
-        Authorization: `Bearer ${Token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
+    const response = await instance.put(`/user`, userData);
+    return response.data;
   },
 };
 export default profileAPI;

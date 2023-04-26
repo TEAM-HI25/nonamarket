@@ -1,19 +1,18 @@
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../context/context';
+import { useEffect, useState } from 'react';
 import productAPI from '../../../api/productAPI';
 import ProductSection from './StyledProductWrapp';
 import Product from './Product';
 
 const ProductWrapp = ({ pageAccount }) => {
   const [productList, setProductList] = useState([]);
-  const { user } = useContext(AuthContext);
 
   // 판매중인 상품페이지에 상품 불러오기
   // PageAccount가 변경될 때 렌더링될 수 있도록 서버통신
   useEffect(() => {
     const setProductFeed = async () => {
-      const data = await productAPI.loadProductFeed(user.token, pageAccount);
+      const data = await productAPI.loadProductFeed(pageAccount);
       setProductList(data.product);
+      console.log(data);
     };
     setProductFeed();
   }, [pageAccount]);

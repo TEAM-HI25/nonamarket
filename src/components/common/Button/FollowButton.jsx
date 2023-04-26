@@ -1,6 +1,5 @@
 import { useLocation } from 'react-router-dom';
 import { useState, useContext, useEffect } from 'react';
-import { AuthContext } from '../../../context/context';
 import { ProfileDataContext } from '../../../context/ProfileInfoContext';
 import Button from './Button';
 import followAPI from '../../../api/followAPI';
@@ -8,7 +7,6 @@ import followAPI from '../../../api/followAPI';
 const FollowButton = () => {
   const location = useLocation();
   const pageAccount = location.pathname.split('/')[2];
-  const { user } = useContext(AuthContext);
   const { profile, dispatch } = useContext(ProfileDataContext);
   const [isFollow, setIsFollow] = useState(profile.isfollow);
 
@@ -18,7 +16,7 @@ const FollowButton = () => {
 
   const handelIsFollow = async () => {
     if (isFollow === false) {
-      const data = await followAPI.followingPost(user.token, pageAccount);
+      const data = await followAPI.followingPost(pageAccount);
       setIsFollow(data.profile.isfollow);
       const FollowData = { ...data.profile };
       dispatch({
@@ -26,7 +24,7 @@ const FollowButton = () => {
         payload: FollowData.followerCount,
       });
     } else if (isFollow === true) {
-      const data = await followAPI.unfollowingPost(user.token, pageAccount);
+      const data = await followAPI.unfollowingPost(pageAccount);
       const FollowData = { ...data.profile };
       setIsFollow(data.profile.isfollow);
       dispatch({

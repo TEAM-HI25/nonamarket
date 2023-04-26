@@ -1,4 +1,4 @@
-import BASE_URL from '../utils/baseUrl';
+import { instance } from '../axios/axios';
 
 const userAPI = {
   async getSignUp(username, email, password, accountname, intro, image) {
@@ -12,77 +12,41 @@ const userAPI = {
         image,
       },
     };
-
-    const response = await fetch(`${BASE_URL}/user`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    });
-
-    const data = await response.json();
-    return data;
+    const response = await instance.post(`/user`, userData);
+    return response.data;
   },
 
   async getLogin(email, password) {
-    const response = await fetch(`${BASE_URL}/user/login`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
+    const response = await instance.post(`/user/login`, {
+      user: {
+        email,
+        password,
       },
-      body: JSON.stringify({
-        user: {
-          email,
-          password,
-        },
-      }),
     });
-    const data = await response.json();
-    return data;
+    return response.data;
   },
 
   async checkEmailValid(email) {
-    const response = await fetch(`${BASE_URL}/user/emailvalid`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
+    const response = await instance.post(`/user/emailvalid`, {
+      user: {
+        email,
       },
-      body: JSON.stringify({
-        user: {
-          email,
-        },
-      }),
     });
-    const data = await response.json();
-    return data;
+    return response.data;
   },
 
   async checkAccountValid(accountname) {
-    const response = await fetch(`${BASE_URL}/user/accountnamevalid`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
+    const response = await instance.post(`/user/accountnamevalid`, {
+      user: {
+        accountname,
       },
-      body: JSON.stringify({
-        user: {
-          accountname,
-        },
-      }),
     });
-    const data = await response.json();
-    return data;
+    return response.data;
   },
 
-  async getMyinfo(token) {
-    const response = await fetch(`${BASE_URL}/user/myinfo`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const data = await response.json();
-    return data;
+  async getMyinfo() {
+    const response = await instance.get(`/user/myinfo`);
+    return response.data;
   },
 };
 

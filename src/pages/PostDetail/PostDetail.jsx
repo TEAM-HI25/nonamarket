@@ -1,22 +1,20 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import postAPI from '../../api/postAPI';
 import Comment from '../../components/Comment/Comment';
 import CommentInput from '../../components/CommentInput/CommentInput';
 import PostCard from '../../components/common/PostCard/PostCard';
 import Nav from '../../components/Nav/Nav';
-import { AuthContext } from '../../context/context';
 import * as S from './StyledPostDetail';
 
 const PostDetail = () => {
-  const { user } = useContext(AuthContext);
   const { postid } = useParams();
   const [postData, setPostData] = useState();
   const [commentsData, setCommentsData] = useState([]);
 
   const handleGetComment = async () => {
     try {
-      const data = await postAPI.getComment(user.token, postid);
+      const data = await postAPI.getComment(postid);
       setCommentsData(data.comments);
     } catch (error) {
       console.log(error);
@@ -26,7 +24,7 @@ const PostDetail = () => {
   useEffect(() => {
     const getPostCard = async () => {
       try {
-        const data = await postAPI.getUserPost(user.token, postid);
+        const data = await postAPI.getUserPost(postid);
         setPostData(data.post);
       } catch (error) {
         console.log(error);

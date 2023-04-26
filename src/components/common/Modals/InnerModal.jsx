@@ -27,7 +27,7 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       window.location = '/';
     } else if (name === '게시글삭제') {
       const deletePost = async () => {
-        const data = await postAPI.deletePost(user.token, postId);
+        const data = await postAPI.deletePost(postId);
         if (data.status === '200') {
           CloseInnerModal();
           window.location.reload();
@@ -38,7 +38,7 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       deletePost();
     } else if (name === '게시글신고') {
       const reportPost = async () => {
-        const data = await postAPI.reportPost(user.token, postId);
+        const data = await postAPI.reportPost(postId);
         if (data.report) {
           // eslint-disable-next-line no-alert
           alert('신고되었습니다.');
@@ -50,11 +50,7 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       reportPost();
     } else if (name === '댓글삭제') {
       const deleteComment = async () => {
-        const data = await commentAPI.deleteComment(
-          user.token,
-          postId,
-          comment.id,
-        );
+        const data = await commentAPI.deleteComment(postId, comment.id);
         if (data.status === '200') {
           CloseInnerModal();
           window.location.reload();
@@ -77,7 +73,7 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
       reportComment();
     } else if (name === '상품삭제') {
       const handleDeleteProduct = async () => {
-        const data = await productAPI.deleteProduct(user.token, productId);
+        const data = await productAPI.deleteProduct(productId);
         if (parseInt(data.status, 10) === 200) {
           CloseInnerModal();
           window.location.reload();

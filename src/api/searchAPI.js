@@ -1,19 +1,9 @@
-import BASE_URL from '../utils/baseUrl';
+import { instance } from '../axios/axios';
 
 const searchAPI = {
-  async searchUser(keyword, token) {
-    const response = await fetch(
-      `${BASE_URL}/user/searchuser/?keyword=${keyword}`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-type': 'application/json',
-        },
-      },
-    );
-    const data = await response.json();
-    return data;
+  async searchUser(keyword) {
+    const response = await instance.get(`/user/searchuser/?keyword=${keyword}`);
+    return response.data;
   },
 };
 

@@ -1,31 +1,14 @@
-import BASE_URL from '../utils/baseUrl';
+import { instance } from '../axios/axios';
 
 const followAPI = {
-  async followingPost(token, pageAccount) {
-    const response = await fetch(`${BASE_URL}/profile/${pageAccount}/follow`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    return data;
+  async followingPost(pageAccount) {
+    const response = await instance.post(`/profile/${pageAccount}/follow`);
+    return response.data;
   },
 
-  async unfollowingPost(token, pageAccount) {
-    const response = await fetch(
-      `${BASE_URL}/profile/${pageAccount}/unfollow`,
-      {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-type': 'application/json',
-        },
-      },
-    );
-    const data = await response.json();
-    return data;
+  async unfollowingPost(pageAccount) {
+    const response = await instance.delete(`/profile/${pageAccount}/unfollow`);
+    return response.data;
   },
 };
 

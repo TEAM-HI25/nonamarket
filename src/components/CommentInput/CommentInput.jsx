@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import commentAPI from '../../api/commentAPI';
-import postAPI from '../../api/postAPI';
+// import postAPI from '../../api/postAPI';
+import profileAPI from '../../api/profileAPI';
 import { AuthContext } from '../../context/context';
 import ProfileImg from '../common/ProfileImg/ProfileImg';
 import * as S from './StyledCommentInput';
@@ -25,7 +26,7 @@ const CommentInput = ({ postid, handleGetComment, setCommentsData }) => {
 
     try {
       commentAPI
-        .uploadComment(user.token, postid, text)
+        .uploadComment(postid, text)
         .then((data) =>
           setCommentsData((prev) => [{ ...data.comment }, ...prev]),
         );
@@ -40,8 +41,8 @@ const CommentInput = ({ postid, handleGetComment, setCommentsData }) => {
   useEffect(() => {
     const getUserProfile = async () => {
       try {
-        postAPI
-          .getUserProfile(user.token, user.accountname)
+        profileAPI
+          .getUserInfo(user.accountname)
           .then((data) => setProfileImg(data.profile.image));
       } catch (error) {
         console.error(error);
