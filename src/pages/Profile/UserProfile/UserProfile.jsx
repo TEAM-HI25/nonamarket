@@ -1,7 +1,8 @@
+import { useDispatch } from 'react-redux';
 import { useContext, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/context';
-import { ProfileDataContext } from '../../../context/ProfileInfoContext';
+import { userInfoData } from '../../../redux/module/ProfileData';
 import profileAPI from '../../../api/profileAPI';
 import postAPI from '../../../api/postAPI';
 import Nav from '../../../components/Nav/Nav';
@@ -17,7 +18,7 @@ import * as S from './StyledUserProfile';
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
-  const { dispatch } = useContext(ProfileDataContext);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -33,7 +34,7 @@ const UserProfile = () => {
     const data = await profileAPI.getUserInfo(pageAccount);
     const ProfileData = { ...data.profile };
     setUserProfile(data.profile);
-    dispatch({ type: 'USERINFO_DATA', payload: ProfileData });
+    dispatch(userInfoData(ProfileData));
   };
 
   const getMyPost = async () => {
@@ -75,6 +76,7 @@ const UserProfile = () => {
       );
     }
   };
+
   // 유저의 등록된 게시물이 비어있는 경우 나타내는 함수
   const emptyPost = () => {
     if (pageAccount === user.accountname) {
