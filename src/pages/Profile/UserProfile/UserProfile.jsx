@@ -17,6 +17,7 @@ import Loading from '../../../components/Loading/Loading';
 import * as S from './StyledUserProfile';
 
 const UserProfile = () => {
+  console.log(1);
   const { user } = useContext(AuthContext);
   const dispatch = useDispatch();
   const navigate = useNavigate();
