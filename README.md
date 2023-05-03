@@ -1,6 +1,6 @@
 # 1인 가구를 위한 공유 냉장고 노나먹자 🍴
 
-- 🔗[배포URL](https://nonamarket.vercel.app/login)
+- 🔗[배포URL](https://nonamarket-jzqw.vercel.app/login)
 - 🔒서비스 이용을 위한 계정<br/>  
   id : nonamukza@nona.com <br/>
   pw : 123456
