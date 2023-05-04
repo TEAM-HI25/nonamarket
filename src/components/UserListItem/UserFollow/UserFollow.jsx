@@ -39,6 +39,7 @@ const UserFollow = ({ data }) => {
       unfollowingPost();
     }
   };
+  // API 서버 변경으로 인한 임시 image 데이터 처리
   let imageData = data.image;
   if (imageData.includes('mandarin.api')) {
     imageData = imageData.replace('mandarin.api', 'api.mandarin');

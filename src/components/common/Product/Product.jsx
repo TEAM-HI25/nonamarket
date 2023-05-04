@@ -24,6 +24,12 @@ const Product = ({ product }) => {
     handleCloseInnerModal,
   ] = useModal();
 
+  // API 서버 변경으로 인한 임시 image 데이터 처리
+  let itemImg = product.itemImage;
+  if (itemImg.includes('mandarin.api')) {
+    itemImg = itemImg.replace('mandarin.api', 'api.mandarin');
+  }
+
   return (
     <div>
       <S.ProductBtn
@@ -36,7 +42,7 @@ const Product = ({ product }) => {
           }
         }}
       >
-        <S.ProductImg src={product.itemImage} alt='업로드된상품이미지' />
+        <S.ProductImg src={itemImg} alt='업로드된상품이미지' />
         <S.ProductName>{product.itemName}</S.ProductName>
         {replacePrice === '1' ? (
           <S.ProductPrice>무료 나눔</S.ProductPrice>
