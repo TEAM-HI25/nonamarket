@@ -65,6 +65,7 @@ const SearchUser = () => {
     const renderData = [...pieceUserData];
     renderData.push(...userData.slice(index - 15, index));
     setPieceUserData(renderData);
+    console.log(renderData);
   }, [userData, index]);
 
   return (
