@@ -1,17 +1,18 @@
-import { useContext, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MainLogoWrapper, LogoImg } from './StyledSplash';
 import mainLogo from '../../assets/images/main-logo.svg';
-import { AuthContext } from '../../context/context';
 
 const Splash = () => {
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const LoginData = useSelector((state) => state.Login.user);
+
   useEffect(() => {
     setTimeout(() => {
-      if (user.token == null) {
+      if (LoginData.token == null) {
         navigate('/login');
-      } else if (user.token !== null) {
+      } else if (LoginData.token !== null) {
         navigate('/homefeed');
       }
     }, 1200);

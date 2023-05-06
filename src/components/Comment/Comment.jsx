@@ -1,5 +1,4 @@
-import { useContext } from 'react';
-import { AuthContext } from '../../context/context';
+import { useSelector } from 'react-redux';
 import verticalIcon from '../../assets/images/icon-more-vertical.svg';
 import useModal from '../../hooks/useModal';
 import Modal from '../common/Modals/Modal';
@@ -9,7 +8,8 @@ import ProfileImg from '../common/ProfileImg/ProfileImg';
 import * as S from './StyledComment';
 
 const Comment = ({ comment, postid }) => {
-  const { user } = useContext(AuthContext);
+  const LoginData = useSelector((state) => state.Login.user);
+  console.log(LoginData.accountname);
   const [
     isShowModal,
     isShowInnerModal,
@@ -61,7 +61,8 @@ const Comment = ({ comment, postid }) => {
         </li>
       </ul>
       {/* eslint-disable-next-line no-nested-ternary */}
-      {!isShowModal ? null : comment.author.accountname === user.accountname ? (
+      {!isShowModal ? null : comment.author.accountname ===
+        LoginData.accountname ? (
         <Modal CloseModal={handleCloseModal}>
           <ModalBtn name='삭제' onClick={handleShowInnerModal} />
         </Modal>
@@ -73,7 +74,7 @@ const Comment = ({ comment, postid }) => {
 
       {/* eslint-disable-next-line no-nested-ternary */}
       {!isShowInnerModal ? null : comment.author.accountname ===
-        user.accountname ? (
+        LoginData.accountname ? (
         <InnerModal
           name='댓글삭제'
           CloseInnerModal={handleCloseInnerModal}

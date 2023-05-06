@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AuthContext } from '../../context/context';
 import profileAPI from '../../api/profileAPI';
 import postAPI from '../../api/postAPI';
 import Nav from '../Nav/Nav';
@@ -9,7 +9,7 @@ import * as S from './StyledPostForm';
 import BASE_URL from '../../utils/baseUrl';
 
 const PostForm = ({ editing }) => {
-  const { user } = useContext(AuthContext);
+  const LoginData = useSelector((state) => state.Login.user);
   const { postid } = useParams();
   const [profileImg, setProfileImg] = useState('');
   const [imgSrc, setImgSrc] = useState([]);
@@ -19,7 +19,7 @@ const PostForm = ({ editing }) => {
   useEffect(() => {
     try {
       profileAPI
-        .getUserInfo(user.accountname)
+        .getUserInfo(LoginData.accountname)
         .then((data) => setProfileImg(data.profile.image));
     } catch (error) {
       console.log(error);
@@ -60,14 +60,14 @@ const PostForm = ({ editing }) => {
     if (!editing) {
       try {
         postAPI.createPost(contentText, imgSrc);
-        navigate(`/profile/${user.accountname}`);
+        navigate(`/profile/${LoginData.accountname}`);
       } catch (error) {
         console.log(error);
       }
     } else {
       try {
         postAPI.editPost(postid, contentText, imgSrc);
-        navigate(`/profile/${user.accountname}`);
+        navigate(`/profile/${LoginData.accountname}`);
       } catch (error) {
         console.log(error);
       }

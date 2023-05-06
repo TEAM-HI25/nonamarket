@@ -1,6 +1,5 @@
+import { useSelector } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { ProfileDataContext } from '../../context/ProfileInfoContext';
 import * as S from './StyledProfileInfo';
 import UserProfileBtnWrap from './UserProfileBtnWrapp';
 import MyProfileBtnWrap from './MyProfileBtnWrapp';
@@ -8,7 +7,10 @@ import MyProfileBtnWrap from './MyProfileBtnWrapp';
 const ProfileInfo = ({ authAccountName }) => {
   const location = useLocation();
   const pageAccount = location.pathname.split('/')[2];
-  const { profile } = useContext(ProfileDataContext);
+  const ProfileData = useSelector((state) => state.Profile.profile);
+
+  const { followerCount, image, followingCount, username, accountname, intro } =
+    ProfileData;
 
   return (
     <S.Container>
@@ -16,22 +18,22 @@ const ProfileInfo = ({ authAccountName }) => {
         <h2 className='hidden'>프로필 정보</h2>
         <S.NumberWrapper>
           <Link to='followerlist'>
-            <span>{profile.followerCount}</span>
+            <span>{followerCount}</span>
             <span>followers</span>
           </Link>
         </S.NumberWrapper>
-        <S.ProfileImg src={profile.image} alt='프로필 이미지' />
+        <S.ProfileImg src={image} alt='프로필 이미지' />
         <S.NumberWrapper>
           <Link to='followinglist'>
-            <span>{profile.followingCount}</span>
+            <span>{followingCount}</span>
             <span>followings</span>
           </Link>
         </S.NumberWrapper>
       </S.ProfileInfoWrapper>
       <S.UserWrapper>
-        <S.UserName>{profile.username}</S.UserName>
-        <S.UserId>{profile.accountname}</S.UserId>
-        <S.UserIntro>{profile.intro}</S.UserIntro>
+        <S.UserName>{username}</S.UserName>
+        <S.UserId>{accountname}</S.UserId>
+        <S.UserIntro>{intro}</S.UserIntro>
       </S.UserWrapper>
       {pageAccount === authAccountName ? (
         <MyProfileBtnWrap />

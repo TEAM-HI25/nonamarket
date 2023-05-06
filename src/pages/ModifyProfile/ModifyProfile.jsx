@@ -1,6 +1,7 @@
-import { useState, useContext, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/context';
+import { LoginAccess } from '../../redux/module/LoginData';
 import userAPI from '../../api/userAPI';
 import imageAPI from '../../api/imageAPI';
 import profileAPI from '../../api/profileAPI';
@@ -14,7 +15,7 @@ const ModifyProfile = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState('');
   const [img, setImg] = useState(
-    'https://mandarin.api.weniv.co.kr/1671553289850.png',
+    'https://api.mandarin.weniv.co.kr/1671553289850.png',
   );
   const [userAccountName, setUserAccountName] = useState('');
   const [userIntro, setUserIntro] = useState('');
@@ -22,8 +23,9 @@ const ModifyProfile = () => {
   const [accountMsg, setAccountMsg] = useState('');
   const [isValidName, setIsValidName] = useState(false);
   const [isValidAccount, setIsValidAccount] = useState(false);
-  const { user, dispatch } = useContext(AuthContext);
-  const Token = user.token;
+  const dispatch = useDispatch();
+  const LoginData = useSelector((state) => state.Login.user);
+  const Token = LoginData.token;
 
   // 서버에 저장된 기존 프로필 데이터 받아오기
   useEffect(() => {
@@ -97,7 +99,7 @@ const ModifyProfile = () => {
       accountname: ModifyData.user.accountname,
     };
     localStorage.setItem('accountname', ModifyData.user.accountname);
-    dispatch({ type: 'login', payload: changeAccount });
+    dispatch(LoginAccess(changeAccount));
     navigate(`/profile/${ModifyData.user.accountname}`);
   };
 
