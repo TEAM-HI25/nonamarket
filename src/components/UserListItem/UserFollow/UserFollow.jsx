@@ -20,7 +20,6 @@ const UserFollow = ({ data }) => {
           },
         });
         const followData = await response.json();
-        console.log(followData);
         setIsFollow(followData.profile.isfollow);
       };
       followingPost();
@@ -41,10 +40,14 @@ const UserFollow = ({ data }) => {
       unfollowingPost();
     }
   };
+  let imageData = data.image;
+  if (imageData.includes('mandarin.api')) {
+    imageData = imageData.replace('mandarin.api', 'api.mandarin');
+  }
   return (
     <S.UserFollowContainer>
       <div>
-        <img src={data.image} alt='프로필이미지' />
+        <img src={imageData} alt='프로필이미지' />
       </div>
       <div>
         <strong>{data.username}</strong>
