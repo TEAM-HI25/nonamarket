@@ -50,7 +50,7 @@ const PostCard = ({ data }) => {
   let profileImg = author.image;
   let postImg = image;
   if (profileImg.includes('mandarin.api') && postImg) {
-    profileImg = image.replace('mandarin.api', 'api.mandarin');
+    profileImg = author.image.replace('mandarin.api', 'api.mandarin');
     postImg = image.replace('mandarin.api', 'api.mandarin');
   }
   const handleImgError = (e) => {
