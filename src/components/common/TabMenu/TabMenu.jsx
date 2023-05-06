@@ -1,6 +1,5 @@
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { AuthContext } from '../../../context/context';
 import iconHome from '../../../assets/images/icon-home.svg';
 import activeIconHome from '../../../assets/images/icon-home-fill.svg';
 import iconMessageCircle from '../../../assets/images/icon-message-circle.svg';
@@ -12,9 +11,8 @@ import * as S from './StyledTabMenu';
 
 const TabMenu = () => {
   const location = useLocation();
-
-  const { user } = useContext(AuthContext);
-  const authAccountName = user.accountname;
+  const LoginData = useSelector((state) => state.Login.user);
+  const authAccountName = LoginData.accountname;
 
   return (
     <S.MenuWrapper>

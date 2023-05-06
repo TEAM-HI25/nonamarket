@@ -1,13 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import commentAPI from '../../api/commentAPI';
-// import postAPI from '../../api/postAPI';
 import profileAPI from '../../api/profileAPI';
-import { AuthContext } from '../../context/context';
 import ProfileImg from '../common/ProfileImg/ProfileImg';
 import * as S from './StyledCommentInput';
 
 const CommentInput = ({ postid, handleGetComment, setCommentsData }) => {
-  const { user } = useContext(AuthContext);
+  const LoginData = useSelector((state) => state.Login.user);
   const [text, setText] = useState('');
   const [profileImg, setProfileImg] = useState('');
   const [isActive, setIsActive] = useState(false);
@@ -42,7 +41,7 @@ const CommentInput = ({ postid, handleGetComment, setCommentsData }) => {
     const getUserProfile = async () => {
       try {
         profileAPI
-          .getUserInfo(user.accountname)
+          .getUserInfo(LoginData.accountname)
           .then((data) => setProfileImg(data.profile.image));
       } catch (error) {
         console.error(error);

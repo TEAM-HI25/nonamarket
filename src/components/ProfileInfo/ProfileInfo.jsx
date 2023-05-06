@@ -7,7 +7,7 @@ import MyProfileBtnWrap from './MyProfileBtnWrapp';
 const ProfileInfo = ({ authAccountName }) => {
   const location = useLocation();
   const pageAccount = location.pathname.split('/')[2];
-  const ProfileData = useSelector((state) => state.profile);
+  const ProfileData = useSelector((state) => state.Profile.profile);
 
   const { followerCount, image, followingCount, username, accountname, intro } =
     ProfileData;

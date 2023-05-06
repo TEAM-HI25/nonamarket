@@ -1,7 +1,6 @@
-import { useDispatch } from 'react-redux';
-import { useContext, useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../context/context';
 import { userInfoData } from '../../../redux/module/ProfileData';
 import profileAPI from '../../../api/profileAPI';
 import postAPI from '../../../api/postAPI';
@@ -17,8 +16,7 @@ import Loading from '../../../components/Loading/Loading';
 import * as S from './StyledUserProfile';
 
 const UserProfile = () => {
-  console.log(1);
-  const { user } = useContext(AuthContext);
+  const LoginData = useSelector((state) => state.Login.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,7 +26,7 @@ const UserProfile = () => {
   const [userAlbumPostArr, setUserAlbumPostArr] = useState([]);
   const [list, setList] = useState(true);
 
-  const authAccountName = user.accountname;
+  const authAccountName = LoginData.accountname;
   const pageAccount = location.pathname.split('/')[2];
 
   const getUserProfileInfo = async () => {
@@ -80,7 +78,7 @@ const UserProfile = () => {
 
   // 유저의 등록된 게시물이 비어있는 경우 나타내는 함수
   const emptyPost = () => {
-    if (pageAccount === user.accountname) {
+    if (pageAccount === LoginData.accountname) {
       return (
         <S.EmptyContainer>
           <p>반갑습니다 :-)</p>

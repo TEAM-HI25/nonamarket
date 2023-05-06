@@ -1,6 +1,5 @@
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../context/context';
 import useModal from '../../../hooks/useModal';
 import Modal from '../Modals/Modal';
 import ModalBtn from '../Modals/ModalBtn';
@@ -9,7 +8,7 @@ import * as S from './StyledProduct';
 
 const Product = ({ product }) => {
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const LoginData = useSelector((state) => state.Login.user);
   const replacePrice = product.price
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -29,7 +28,7 @@ const Product = ({ product }) => {
       <S.ProductBtn
         type='button'
         onClick={() => {
-          if (product.author.accountname === user.accountname) {
+          if (product.author.accountname === LoginData.accountname) {
             handleShowModal();
           } else {
             window.open(product.link);

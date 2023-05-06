@@ -1,6 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { AuthContext } from '../../context/context';
 import profileAPI from '../../api/profileAPI';
 import UserFollow from '../../components/UserListItem/UserFollow/UserFollow';
 import TabMenu from '../../components/common/TabMenu/TabMenu';
@@ -8,14 +7,13 @@ import Nav from '../../components/Nav/Nav';
 import * as S from './StyledFollowerList';
 
 const FollowingList = () => {
-  const { user } = useContext(AuthContext);
   const { accountName } = useParams();
   const [followingList, setFollowingList] = useState([]);
 
   useEffect(() => {
     if (!followingList.length) {
       const getFollowerdata = async () => {
-        const data = await profileAPI.getFollowingdata(user.token, accountName);
+        const data = await profileAPI.getFollowingdata(accountName);
         setFollowingList(data);
       };
       getFollowerdata();

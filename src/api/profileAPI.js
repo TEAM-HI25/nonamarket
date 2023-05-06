@@ -15,7 +15,7 @@ const profileAPI = {
 
   // FollowingList 데이터 서버통신 함수
   async getFollowingdata(accountName) {
-    const response = await instance(`/profile/${accountName}/following`);
+    const response = await instance.get(`/profile/${accountName}/following`);
     return response.data;
   },
 

@@ -1,6 +1,5 @@
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../context/context';
 import MessageCircleIcon from '../../../assets/images/icon-message-circle-mini.svg';
 import verticalMenuIcon from '../../../assets/images/icon-more-vertical.svg';
 import LikeButton from '../Button/LikeButton';
@@ -30,8 +29,7 @@ const PostCard = ({ data }) => {
     handleShowInnerModal,
     handleCloseInnerModal,
   ] = useModal();
-
-  const { user } = useContext(AuthContext);
+  const LoginData = useSelector((state) => state.Login.user);
   const navigate = useNavigate();
 
   const handleGoPostEdit = () => {
@@ -92,7 +90,7 @@ const PostCard = ({ data }) => {
       </S.ContentsWrapper>
 
       {/* eslint-disable-next-line no-nested-ternary */}
-      {!isShowModal ? null : author.accountname === user.accountname ? (
+      {!isShowModal ? null : author.accountname === LoginData.accountname ? (
         <Modal CloseModal={handleCloseModal}>
           <ModalBtn name='삭제' onClick={handleShowInnerModal} />
           <ModalBtn name='수정' onClick={handleGoPostEdit} />
@@ -103,7 +101,8 @@ const PostCard = ({ data }) => {
         </Modal>
       )}
       {/* eslint-disable-next-line no-nested-ternary */}
-      {!isShowInnerModal ? null : author.accountname === user.accountname ? (
+      {!isShowInnerModal ? null : author.accountname ===
+        LoginData.accountname ? (
         <InnerModal
           name='게시글삭제'
           CloseInnerModal={handleCloseInnerModal}

@@ -1,12 +1,13 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { LoginAccess } from '../../redux/module/LoginData';
 import ImageInput from '../../components/common/ImageInput/ImageInput';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
 import imageAPI from '../../api/imageAPI';
 import userAPI from '../../api/userAPI';
 import regex from '../../utils/regex';
 import BASE_URL from '../../utils/baseUrl';
-import { AuthContext } from '../../context/context';
 import * as S from './StyledJoinProfileEdit';
 
 const JoinProfileEdit = ({ email, password }) => {
@@ -19,7 +20,7 @@ const JoinProfileEdit = ({ email, password }) => {
   const [isValidName, setIsValidName] = useState(false);
   const [isValidAccount, setIsValidAccount] = useState(false);
   const navigate = useNavigate();
-  const { dispatch } = useContext(AuthContext);
+  const dispatch = useDispatch();
 
   // 영문,숫자,특수문자만 사용가능한 정규표현식
   const handleGetImg = async (event) => {
@@ -85,7 +86,7 @@ const JoinProfileEdit = ({ email, password }) => {
       accountname: data.user.accountname,
     };
 
-    dispatch({ type: 'login', payload: loginData });
+    dispatch(LoginAccess(loginData));
     navigate('/homefeed');
   };
 

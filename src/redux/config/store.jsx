@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
-import { ProfileReducer } from '../module/ProfileData';
+import rootReducer from '../module/rootReducer';
 
-export const store = createStore(ProfileReducer);
+export const store = createStore(rootReducer);
 
 export default store;

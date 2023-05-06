@@ -12,7 +12,6 @@ const ProductWrapp = ({ pageAccount }) => {
     const setProductFeed = async () => {
       const data = await productAPI.loadProductFeed(pageAccount);
       setProductList(data.product);
-      console.log(data);
     };
     setProductFeed();
   }, [pageAccount]);

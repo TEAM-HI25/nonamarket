@@ -1,15 +1,16 @@
-import { useState, useContext } from 'react';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LoginAccess } from '../../redux/module/LoginData';
 import LabelInput from '../../components/common/LabelInput/LabelInput';
 import userAPI from '../../api/userAPI';
 import regex from '../../utils/regex';
-import { AuthContext } from '../../context/context';
 import * as S from './StyledLoginEmail';
 
 const LoginEmail = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { dispatch } = useContext(AuthContext);
   const [isValid, setIsValid] = useState(false); // 유효성검사 state
   const [message, setMessage] = useState(''); // 에러메세지 state
   const navigate = useNavigate();
@@ -43,7 +44,8 @@ const LoginEmail = () => {
         accountname: data.user.accountname,
       };
 
-      dispatch({ type: 'login', payload: loginData });
+      dispatch(LoginAccess(loginData));
+      console.log(loginData);
       navigate('/homefeed');
     }
   };

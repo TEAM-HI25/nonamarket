@@ -1,8 +1,7 @@
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import commentAPI from '../../../api/commentAPI';
 import postAPI from '../../../api/postAPI';
 import productAPI from '../../../api/productAPI';
-import { AuthContext } from '../../../context/context';
 import {
   InnerModalContainer,
   InnerModalWrap,
@@ -10,7 +9,7 @@ import {
 } from './StyledInnerModal';
 
 const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
-  const { user } = useContext(AuthContext);
+  const LoginData = useSelector((state) => state.Login.user);
 
   const ment = {
     로그아웃: ['로그아웃 하시겠어요?', '로그아웃'],
@@ -60,7 +59,7 @@ const InnerModal = ({ name, CloseInnerModal, postId, productId, comment }) => {
     } else if (name === '댓글신고') {
       const reportComment = async () => {
         const data = await commentAPI.reportComment(
-          user.token,
+          LoginData.token,
           postId,
           comment.id,
         );

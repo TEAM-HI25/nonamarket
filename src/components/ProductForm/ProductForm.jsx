@@ -1,6 +1,6 @@
-import { useState, useContext, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AuthContext } from '../../context/context';
 import Nav from '../Nav/Nav';
 import LabelInput from '../common/LabelInput/LabelInput';
 import productAPI from '../../api/productAPI';
@@ -15,7 +15,7 @@ const ProductForm = ({ editing }) => {
   const [productPrice, setProductPrice] = useState('');
   const [saleLink, setSaleLink] = useState('');
 
-  const { user } = useContext(AuthContext);
+  const LoginData = useSelector((state) => state.Login.user);
   const navigate = useNavigate();
   const { productid } = useParams();
 
@@ -129,11 +129,11 @@ const ProductForm = ({ editing }) => {
     console.log(Data);
     if (editing) {
       const UpdatedData = await productAPI.reviseProductInfo(productid, Data);
-      navigate(`/profile/${user.accountname}`);
+      navigate(`/profile/${LoginData.accountname}`);
       return UpdatedData;
     } else {
       const originalData = await productAPI.registerProduct(Data);
-      navigate(`/profile/${user.accountname}`);
+      navigate(`/profile/${LoginData.accountname}`);
       return originalData;
     }
   };

@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../context/context';
+import { useSelector } from 'react-redux';
 import Login from '../pages/Login/Login';
 import Splash from '../pages/Splash/Splash';
 import LoginEmail from '../pages/LoginEmail/LoginEmail';
@@ -21,12 +20,12 @@ import NotFound from '../pages/NotFound/NotFound';
 import EditPost from '../pages/EditPost/EditPost';
 
 const Router = () => {
-  const { user } = useContext(AuthContext);
+  const LoginData = useSelector((state) => state.Login.user);
 
   return (
     <BrowserRouter>
       <Routes>
-        {user.token && user.accountname ? (
+        {LoginData.token && LoginData.accountname ? (
           <Route>
             <Route path='/' element={<Splash />} />
             <Route path='/login' element={<Login />} />
