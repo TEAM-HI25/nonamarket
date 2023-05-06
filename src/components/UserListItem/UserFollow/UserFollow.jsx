@@ -1,12 +1,12 @@
 import { useState, useContext } from 'react';
+import { AuthContext } from '../../../context/context';
+import BASE_URL from '../../../utils/baseUrl';
 import Button from '../../common/Button/Button';
 import * as S from './StyledUserFollow';
-import { AuthContext } from '../../../context/context';
 
 const UserFollow = ({ data }) => {
   const [isFollow, setIsFollow] = useState(data.isfollow);
   const { user } = useContext(AuthContext);
-  const BASE_URL = 'https://mandarin.api.weniv.co.kr';
 
   const handelIsFollow = () => {
     if (isFollow === false) {
@@ -39,10 +39,15 @@ const UserFollow = ({ data }) => {
       unfollowingPost();
     }
   };
+  // API 서버 변경으로 인한 임시 image 데이터 처리
+  let imageData = data.image;
+  if (imageData.includes('mandarin.api')) {
+    imageData = imageData.replace('mandarin.api', 'api.mandarin');
+  }
   return (
     <S.UserFollowContainer>
       <div>
-        <img src={data.image} alt='프로필이미지' />
+        <img src={imageData} alt='프로필이미지' />
       </div>
       <div>
         <strong>{data.username}</strong>

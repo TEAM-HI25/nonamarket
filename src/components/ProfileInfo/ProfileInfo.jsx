@@ -10,6 +10,11 @@ const ProfileInfo = ({ authAccountName }) => {
   const { profile } = useContext(ProfileDataContext);
   const pageAccount = location.pathname.split('/')[2];
 
+  // API 서버 변경으로 인한 임시 image 데이터 처리
+  let profileImg = profile.image;
+  if (profileImg.includes('mandarin.api')) {
+    profileImg = profileImg.replace('mandarin.api', 'api.mandarin');
+  }
   return (
     <S.Container>
       <S.ProfileInfoWrapper>
@@ -20,7 +25,7 @@ const ProfileInfo = ({ authAccountName }) => {
             <span>followers</span>
           </Link>
         </S.NumberWrapper>
-        <S.ProfileImg src={profile.image} alt='프로필 이미지' />
+        <S.ProfileImg src={profileImg} alt='프로필 이미지' />
         <S.NumberWrapper>
           <Link to='followinglist'>
             <span>{profile.followingCount}</span>
