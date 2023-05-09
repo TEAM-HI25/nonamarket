@@ -12,11 +12,12 @@ export const imgInstance = axios.create({
 });
 
 instance.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
   if (!config.headers.Authorization) {
     /* eslint-disable-next-line no-param-reassign */
     config.headers = {
       ...config.headers,
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${token}`,
     };
   }
   return config;
