@@ -1,45 +1,58 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import { userInfoData } from '../../redux/module/ProfileData';
 import * as S from './StyledProfileInfo';
 import UserProfileBtnWrap from './UserProfileBtnWrapp';
 import MyProfileBtnWrap from './MyProfileBtnWrapp';
+import profileAPI from '../../api/profileAPI';
+import Loading from '../Loading/Loading';
 
 const ProfileInfo = ({ authAccountName }) => {
+  const [userProfile, setUserProfile] = useState({});
+
   const location = useLocation();
   const pageAccount = location.pathname.split('/')[2];
-  const ProfileData = useSelector((state) => state.Profile.profile);
 
-  const { followerCount, image, followingCount, username, accountname, intro } =
-    ProfileData;
+  const dispatch = useDispatch();
+  const FollowerData = useSelector((state) => state.Profile.profile);
 
-  // API 서버 변경으로 인한 임시 image 데이터 처리
-  let profileImg = image;
-  if (profileImg.includes('mandarin.api')) {
-    profileImg = profileImg.replace('mandarin.api', 'api.mandarin');
-  }
+  // const { followerCount, image, followingCount, username, accountname, intro } =
+  //   ProfileData;
 
-  return (
+  const getTestProfile = async () => {
+    const data = await profileAPI.getUserInfo(pageAccount);
+    setUserProfile(data.profile);
+    const ProfileData = { ...data.profile };
+    dispatch(userInfoData(ProfileData));
+  };
+
+  useEffect(() => {
+    getTestProfile();
+  }, [pageAccount]);
+
+  return userProfile ? (
     <S.Container>
       <S.ProfileInfoWrapper>
         <h2 className='hidden'>프로필 정보</h2>
         <S.NumberWrapper>
           <Link to='followerlist'>
-            <span>{followerCount}</span>
+            <span>{FollowerData.followerCount}</span>
             <span>followers</span>
           </Link>
         </S.NumberWrapper>
-        <S.ProfileImg src={profileImg} alt='프로필 이미지' />
+        <S.ProfileImg src={userProfile.image} alt='프로필 이미지' />
         <S.NumberWrapper>
           <Link to='followinglist'>
-            <span>{followingCount}</span>
+            <span>{userProfile.followingCount}</span>
             <span>followings</span>
           </Link>
         </S.NumberWrapper>
       </S.ProfileInfoWrapper>
       <S.UserWrapper>
-        <S.UserName>{username}</S.UserName>
-        <S.UserId>{accountname}</S.UserId>
-        <S.UserIntro>{intro}</S.UserIntro>
+        <S.UserName>{userProfile.username}</S.UserName>
+        <S.UserId>{userProfile.accountname}</S.UserId>
+        <S.UserIntro>{userProfile.intro}</S.UserIntro>
       </S.UserWrapper>
       {pageAccount === authAccountName ? (
         <MyProfileBtnWrap />
@@ -47,6 +60,8 @@ const ProfileInfo = ({ authAccountName }) => {
         <UserProfileBtnWrap />
       )}
     </S.Container>
+  ) : (
+    <Loading />
   );
 };
 
