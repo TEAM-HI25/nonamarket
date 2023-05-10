@@ -76,7 +76,7 @@ const PostCard = ({ data }) => {
         </S.UserInfo>
         <S.PostContents onClick={handleGoDetailPage}>
           <p>{content}</p>
-          <S.PostImgLink>
+          <S.PostImgLink onError={handleImgError}>
             {postImg &&
               postImg
                 .split(',')
