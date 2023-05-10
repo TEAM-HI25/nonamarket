@@ -7,14 +7,14 @@ const profileAPI = {
     return response.data;
   },
 
-  // FollweList 데이터 서버통신 함수
+  // FollwerList 데이터 서버통신 함수
   async getFollowerList(accountName) {
     const response = await instance.get(`/profile/${accountName}/follower`);
     return response.data;
   },
 
   // FollowingList 데이터 서버통신 함수
-  async getFollowingdata(accountName) {
+  async getFollowingData(accountName) {
     const response = await instance.get(`/profile/${accountName}/following`);
     return response.data;
   },
