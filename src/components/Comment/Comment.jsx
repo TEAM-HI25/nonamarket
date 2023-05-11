@@ -9,7 +9,6 @@ import * as S from './StyledComment';
 
 const Comment = ({ comment, postid }) => {
   const LoginData = useSelector((state) => state.Login.user);
-  console.log(LoginData.accountname);
   const [
     isShowModal,
     isShowInnerModal,
@@ -38,6 +37,14 @@ const Comment = ({ comment, postid }) => {
     }
     return `${Math.floor(gap / 2592000)}달 전`;
   };
+  // API 서버 변경으로 인한 임시 image 데이터 처리
+  let profileImg = comment.author.image;
+  if (profileImg.includes('mandarin.api')) {
+    profileImg = comment.author.image.replace('mandarin.api', 'api.mandarin');
+  }
+  const handleImgError = (e) => {
+    e.target.src = ProfileImg;
+  };
 
   return (
     <S.CommentListWrapper>
@@ -46,8 +53,9 @@ const Comment = ({ comment, postid }) => {
           <S.CommentUserInfo>
             <ProfileImg
               size='36px'
-              src={comment.author.image}
+              src={profileImg}
               alt='프로필이미지'
+              onError={handleImgError}
             />
             <S.UserInfo>
               <strong>{comment.author.username}</strong>

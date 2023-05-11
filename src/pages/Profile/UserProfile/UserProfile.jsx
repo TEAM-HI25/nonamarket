@@ -1,8 +1,6 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { userInfoData } from '../../../redux/module/ProfileData';
-import profileAPI from '../../../api/profileAPI';
 import postAPI from '../../../api/postAPI';
 import Nav from '../../../components/Nav/Nav';
 import ProductWrapp from '../../../components/common/Product/ProductWrapp';
@@ -12,38 +10,27 @@ import MenuBar from '../../../components/MenuBar/MenuBar';
 import PostCard from '../../../components/common/PostCard/PostCard';
 import PostAlbum from '../../../components/common/PostAlbum/PostAlbum';
 import Button from '../../../components/common/Button/Button';
-import Loading from '../../../components/Loading/Loading';
 import * as S from './StyledUserProfile';
 
 const UserProfile = () => {
   const LoginData = useSelector((state) => state.Login.user);
-  const dispatch = useDispatch();
+  const authAccountName = LoginData.accountname;
+
   const navigate = useNavigate();
   const location = useLocation();
+  const pageAccount = location.pathname.split('/')[2];
 
-  const [userProfile, setUserProfile] = useState(null);
   const [userPostArr, setUserPostArr] = useState([]);
   const [userAlbumPostArr, setUserAlbumPostArr] = useState([]);
   const [list, setList] = useState(true);
 
-  const authAccountName = LoginData.accountname;
-  const pageAccount = location.pathname.split('/')[2];
-
-  const getUserProfileInfo = async () => {
-    const data = await profileAPI.getUserInfo(pageAccount);
-    const ProfileData = { ...data.profile };
-    setUserProfile(data.profile);
-    dispatch(userInfoData(ProfileData));
-  };
-
-  const getMyPost = async () => {
-    const data = await postAPI.getMyPost(pageAccount);
-    const newdata = data.post.filter((post) => post.image !== '');
-    setUserPostArr(data.post);
-    setUserAlbumPostArr(newdata);
-  };
   useEffect(() => {
-    getUserProfileInfo();
+    const getMyPost = async () => {
+      const data = await postAPI.getMyPost(pageAccount);
+      const newdata = data.post.filter((post) => post.image !== '');
+      setUserPostArr(data.post);
+      setUserAlbumPostArr(newdata);
+    };
     getMyPost();
   }, [pageAccount]);
 
@@ -78,7 +65,7 @@ const UserProfile = () => {
 
   // 유저의 등록된 게시물이 비어있는 경우 나타내는 함수
   const emptyPost = () => {
-    if (pageAccount === LoginData.accountname) {
+    if (pageAccount === authAccountName) {
       return (
         <S.EmptyContainer>
           <p>반갑습니다 :-)</p>
@@ -105,11 +92,7 @@ const UserProfile = () => {
     <S.Container>
       <Nav type='home' />
       <S.MainWrap>
-        {userProfile ? (
-          <ProfileInfo authAccountName={authAccountName} />
-        ) : (
-          <Loading />
-        )}
+        <ProfileInfo authAccountName={authAccountName} />
         <ProductWrapp pageAccount={pageAccount} />
         <MenuBar list={list} onListToggle={onListToggle} />
         {userPostArr.length ? postTypeSelect() : emptyPost()}

@@ -9,11 +9,12 @@ import * as S from './StyledFollowerList';
 const FollowingList = () => {
   const { accountName } = useParams();
   const [followingList, setFollowingList] = useState([]);
+  console.log(followingList);
 
   useEffect(() => {
     if (!followingList.length) {
       const getFollowerdata = async () => {
-        const data = await profileAPI.getFollowingdata(accountName);
+        const data = await profileAPI.getFollowingData(accountName);
         setFollowingList(data);
       };
       getFollowerdata();
