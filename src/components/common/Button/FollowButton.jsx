@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { followCount } from '../../../redux/module/ProfileData';
+import { followCount } from '../../../redux/module/ProfileDataSlice';
 import Button from './Button';
 import followAPI from '../../../api/followAPI';
 
