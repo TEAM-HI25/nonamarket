@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { userInfoData } from '../../redux/module/ProfileData';
+import { userInfoData } from '../../redux/module/ProfileDataSlice';
 import * as S from './StyledProfileInfo';
 import UserProfileBtnWrap from './UserProfileBtnWrapp';
 import MyProfileBtnWrap from './MyProfileBtnWrapp';

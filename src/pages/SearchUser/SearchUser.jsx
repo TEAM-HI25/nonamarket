@@ -32,8 +32,8 @@ const SearchUser = () => {
     threshold: 0.5,
   };
 
-  // 유저 데이터 받아오기
-  useEffect(() => {
+  // 키워드가 있을때 api통신을 보내는 함수
+  const onSearch = () => {
     if (keyword) {
       const getUserData = async () => {
         const data = await searchAPI.searchUser(keyword);
@@ -43,6 +43,17 @@ const SearchUser = () => {
       };
       getUserData();
     }
+  };
+
+  // 디바운스, 유저 데이터 받아오기
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      onSearch();
+    }, 400);
+
+    return () => {
+      clearTimeout(debounce);
+    };
   }, [keyword]);
 
   // 무한스크롤을 위한 옵저버 생성
