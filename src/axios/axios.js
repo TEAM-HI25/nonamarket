@@ -11,16 +11,28 @@ export const imgInstance = axios.create({
   headers: { 'Context-type': 'multipart/form-data' },
 });
 
-instance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (!config.headers.Authorization) {
-    /* eslint-disable-next-line no-param-reassign */
-    config.headers = {
-      ...config.headers,
-      Authorization: `Bearer ${token}`,
-    };
-  }
-  return config;
-});
+instance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (!config.headers.Authorization) {
+      const modifiedConfig = {
+        ...config,
+        headers: {
+          ...config.headers,
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      return modifiedConfig;
+    }
+    return config;
+  },
+  (error) => {
+    if (error) {
+      console.log(error.message);
+      return Promise.reject(error);
+    }
+    return Promise.reject(error);
+  },
+);
 
 export default { instance, imgInstance };
