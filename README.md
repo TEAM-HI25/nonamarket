@@ -348,4 +348,4 @@
 ##  Fetch 코드 -> Axios 코드 변경
 |                                                               수정전 : Fetch 코드                                                                   |                                                               수정 후 : Axios 코드                                                                   |
 | :------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://github.com/TEAM-HI25/nonamarket/assets/89332492/d97ca642-e69c-453b-95c4-cfd40058cbb6" width="800" height="900"/> | <img src="https://user-images.githubusercontent.com/107895498/210339846-8b1fe0e2-dbca-43bd-a6e9-046506c7b9aa.gif" width="350" height="540"/> |
+|<img src="https://github.com/TEAM-HI25/nonamarket/assets/89332492/60938d64-9522-47ad-b231-059c5d1dd8ad" width="800" height="1100"> | <img src="https://github.com/TEAM-HI25/nonamarket/assets/89332492/d97ca642-e69c-453b-95c4-cfd40058cbb6" width="800" height="900"/> |
