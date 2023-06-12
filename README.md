@@ -359,7 +359,7 @@
 
 ## ✏️ Redux & ReduxTolkit 상태관리 라이브러리 적용 <br />
 
-[Redux PR 바로가기](https://github.com/Yang-zzz/nonamarket_Refact/pull/2) | [RTK PR 바로가기](https://github.com/Yang-zzz/nonamarket_Refact/pull/1)
+[Redux PR 바로가기](https://github.com/Yang-zzz/nonamarket_Refact/pull/2) | [RTK PR 바로가기](https://github.com/Yang-zzz/nonamarket_Refact/pull/5)
 
 ### Redux
   🧐 적용사유
@@ -381,9 +381,11 @@
   - Redux 상태관리를 적용했을 때, action생성 함수, Reducer, RootReducer 등 부수적으로 생성해야 하는 코드가 많아 간소화시킬 수 있는 라이브러리인 ReduxTolkit 적용이 필요하다고 판단하였음.
 
   🧐 적용과정 및 후기
-  - ReduxTolkit 은 Redux를 좀 더 간편하게 사용할 수 있도록 구조화 되어 있기 때문에 로직에 큰 변화는 없었으나, 전체적으로 경량화되고 쉽게 사용할 수 있는 구조였음. 또한 Redux 사용에 필요한 부수적인 상용구가 많았으나 덜어낸 느낌을 받을 수 있었음.
+  - ReduxTolkit 은 Redux를 좀 더 간편하게 사용할 수 있도록 구조화 되어 있기 때문에 store를 구독하거나 전역에 저장된 데이터를 사용하는 방법은 똑같다.
+  - 차이점은 전체적으로 경량화되고 쉽게 사용할 수 있는 구조로 Redux 사용에 필요한 부수적인 상용구가 많았으나 덜어낸 느낌을 받을 수 있었음.
+  - action 함수 생성과 Reducer함수를 별도의 로직없이 하나의 createSlice 함수를 통해 생성할 수 있었음.
   - 리액트의 불변성을 지키기 위해 얕은복사후 식별자에 분해, 할당하여 사용하는 번거로움이 있었으나 Reduxtolkit 자체에 immer가 자동 적용되어 속도감 있는 작업을 진행할 수 있었음.
   
-  |                                                        수정 전 : Redux를 적용한 Store                                                        |                                                        수정 후 : ReduxTolkit 로직                                                        |
+  |                                                        수정 전 : Redux를 적용한 Reducder + action 함수                                                     |                                                        수정 후 : ReduxTolkit slice 로직                                                        |
 | :--------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------: |
-| <img width="600" height="300" alt="image" src="https://github.com/TEAM-HI25/nonamarket/assets/89332492/ee835cd3-4d53-4b84-aba3-e6ff5c7a9c2f">| <img width="600" alt="image" src="https://github.com/TEAM-HI25/nonamarket/assets/89332492/3f84dbab-3fca-4265-9ad8-fc0db4031c96"> |
+| <img width="569" alt="image" src="https://github.com/TEAM-HI25/nonamarket/assets/89332492/531b53f9-239c-4968-bea6-8198deaeb550"> | <img width="600" alt="image" src="https://github.com/TEAM-HI25/nonamarket/assets/89332492/3f84dbab-3fca-4265-9ad8-fc0db4031c96"> |
