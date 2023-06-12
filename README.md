@@ -217,7 +217,6 @@
 - UserProfile 컴포넌트에서 fetch 코드를 통해 가져온 서버 데이터를 **전역 데이터**로 관리할 수 있도록 **useContext + useReducer + useMemo hook**을 활용 하였음.
 - UserProfile 컴포넌트에서 fetch 코드 내부에 서버데이터를 받아옴과 동시에 **dispatch**를 사용하여 전역 데이터 저장소인 ProfileInfoContext에 저장시켜 전역에 사용할 수 있도록 코드를 수정하였음.
 - useContext + useReducer + dispatch 를 활용해 UserProfile에 몰려 있던 **state 변화 의존도를 분산 시킬 수 있었음.** <br>
-  [관련 PR](https://github.com/TEAM-HI25/nonamarket/pull/247)
   <br/><br/>
 
 ## 2) 방현영👧
@@ -360,7 +359,7 @@
 
 ## ✏️ Redux & ReduxTolkit 상태관리 라이브러리 적용 <br />
 
-[Redux PR 바로가기](https://github.com/Yang-zzz/nonamarket_Refact/pull/1) | [RTK PR 바로가기](https://github.com/Yang-zzz/nonamarket_Refact/pull/1)
+[Redux PR 바로가기](https://github.com/Yang-zzz/nonamarket_Refact/pull/2) | [RTK PR 바로가기](https://github.com/Yang-zzz/nonamarket_Refact/pull/1)
 
 ### Redux
   🧐 적용사유
@@ -372,8 +371,19 @@
   - type에 따른 Action 생성 함수 로직을 구현하고, 해당 Action에 따라 Reducer 함수가 state를 반환하여 전역에서 상태를 관리할 수 있는 환경이 조성되었음.
   - 다소 복잡한 로직을 구성하고 추가되는 상용구가 있었지만, combineReducer를 통해 하나의 store에서 필요로 하는 State를 불러올 수 있어 불필요한 레더링을 방지하고 코드의 가독성이 좋아짐을 확인하였음.
   - props driling 또한 해결할 수 있었으며, 컴포넌트 간의 복잡한 관계를 경량화 시키기에는 적합한 라이브러리라고 판단하였음.
-  - 단점:
 
 |                                                        수정 전 : ContextAPI + useReducer를 적용 한 provider 함수                                                        |                                                        수정 후 : Redux를 적용한 Provider 로직                                                        |
 | :--------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------: |
-| <img width="600" height="300" alt="image" src="https://github.com/TEAM-HI25/nonamarket/assets/89332492/ee835cd3-4d53-4b84-aba3-e6ff5c7a9c2f">| <img src="" width="600" height="300"/> |
+| <img width="600" height="300" alt="image" src="https://github.com/TEAM-HI25/nonamarket/assets/89332492/ee835cd3-4d53-4b84-aba3-e6ff5c7a9c2f">| <img src="https://github.com/Yang-zzz/nonamarket_Refact/assets/89332492/746bb0b7-bf33-4b59-aaea-b214ff6b1e3a" width="600" height="300"/> |
+
+### ReduxTolkit
+  🧐 적용사유
+  - Redux 상태관리를 적용했을 때, action생성 함수, Reducer, RootReducer 등 부수적으로 생성해야 하는 코드가 많아 간소화시킬 수 있는 라이브러리인 ReduxTolkit 적용이 필요하다고 판단하였음.
+
+  🧐 적용과정 및 후기
+  - ReduxTolkit 은 Redux를 좀 더 간편하게 사용할 수 있도록 구조화 되어 있기 때문에 로직에 큰 변화는 없었으나, 전체적으로 경량화되고 쉽게 사용할 수 있는 구조였음. 또한 Redux 사용에 필요한 부수적인 상용구가 많았으나 덜어낸 느낌을 받을 수 있었음.
+  - 리액트의 불변성을 지키기 위해 얕은복사후 식별자에 분해, 할당하여 사용하는 번거로움이 있었으나 Reduxtolkit 자체에 immer가 자동 적용되어 속도감 있는 작업을 진행할 수 있었음.
+  
+  |                                                        수정 전 : Redux를 적용한 Store                                                        |                                                        수정 후 : ReduxTolkit 로직                                                        |
+| :--------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------: |
+| <img width="600" height="300" alt="image" src="https://github.com/TEAM-HI25/nonamarket/assets/89332492/ee835cd3-4d53-4b84-aba3-e6ff5c7a9c2f">| <img width="600" alt="image" src="https://github.com/TEAM-HI25/nonamarket/assets/89332492/3f84dbab-3fca-4265-9ad8-fc0db4031c96"> |
