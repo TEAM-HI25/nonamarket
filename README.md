@@ -1,11 +1,11 @@
 # 1인 가구를 위한 공유 냉장고 노나먹자 - Refactoring 🍴
 
-## [🔥Refactoring 항목으로 이동하기](#11-진행한-refactoring-내용)
+# [🔥🔥🔥Refactoring 항목으로 바로 이동하기🔥🔥🔥](#11-진행한-refactoring-내용)
 
 <br/>
 
 - 🔗[배포URL](https://nonamarket.vercel.app/login)
-- 🔒서비스 이용을 위한 계정<br/>  
+- 🔒서비스 이용을 위한 계정  
   id : nonamukza@nona.com <br/>
   pw : 123456
   <br/>
@@ -27,6 +27,7 @@
 8. [트러블슈팅](#trouble)
 9. [폴더 구조](#tree)
 10. [프로젝트 소감](#review)
+11. [Refactoring](#refactoring)
 
 </div>
 </details>
@@ -343,7 +344,7 @@
 - 프로젝트 시작할 당시에는 모든 것이 낯설었던 것 같습니다. 리액트를 공부한 이후로 만들게된 첫 협업 프로젝트이기도 했고 깃에 대한 경험도 부족했기 때문에 이런 저런 생각이나 걱정도 많았습니다. 하지만 걱정했던 것과는 달리 직접 부딪혀보니 어느순간 개발에 재미를 느끼고 있는 제 모습을 발견할 수 있었습니다. 로직을 짜고, 머리를 맞대고 같이 에러를 해결하기도 하고, 서로의 코드를 리뷰하는 그런 과정 속에서 때로는 지치도 하고 때로는 벅차오르는 순간도 있었습니다. 이런 순간 순간들이 모여서 리액트, 깃 뿐만 아니라 협업에 대한 자신감을 얻을 수 있었고, 개발에 재미도 느끼며 조금은 성장하는 계기가 되었던 것 같습니다. 무사히 프로젝트를 마무리하게 되어 뿌듯하고, 각자의 자리에서 최선을 다해준 팀원들에게 감사하다고 전하고 싶습니다! 💗
   <br /><br />
 
-# 11. 진행한 Refactoring 내용
+# 11. <sapn id="refactoring">진행한 Refactoring 내용</span>
 
 ## ✏️ Fetch 코드 -> Axios 코드 변경 [관련 PR 바로가기](https://github.com/Yang-zzz/nonamarket_Refact/pull/1)
 
@@ -389,3 +390,21 @@
   |                                                        수정 전 : Redux를 적용한 Reducder + action 함수                                                     |                                                        수정 후 : ReduxTolkit slice 로직                                                        |
 | :--------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------: |
 | <img width="569" alt="image" src="https://github.com/TEAM-HI25/nonamarket/assets/89332492/531b53f9-239c-4968-bea6-8198deaeb550"> | <img width="600" alt="image" src="https://github.com/TEAM-HI25/nonamarket/assets/89332492/3f84dbab-3fca-4265-9ad8-fc0db4031c96"> |
+
+## ✏️ Search User Page Debouncing 적용 <br />
+
+[관련 PR 바로가기](https://github.com/Yang-zzz/nonamarket_Refact/pull/5)
+  🧐 적용사유
+  - Search User Page에서 유저 검색 시 불필요한 서버통신이 발생하였음. 이를 해결하고자 Debouncing 기법 적용
+
+  🧐 적용과정 및 후기
+  - 유저검색 input 창에 타이핑 될 때마다, 서버와 통신하여 불필요한 소스가 발생하였고 이를 해결하고자 useEffect hook 의 라이프 사이클과 setTime() & clearTime() 함수를 활용하였음.
+  - setTime() 내부에 입력시간 이후에 유저가 검색될 수 있도록 서버통신 코드를 작성하였음.
+  - useEffect hook 에 mount 되는 시점에는 서버통신 코드가 작성된 setTime(), unmount 되는 시점에는 clearTime()를 동작하여 clear 되도록 작성하였음.
+  - 서버통신을 최소화하여 불필요한 리소스를 방지하는 좋은 경험이 되었음.
+  
+  |                                                        수정 전 : 기법 적용 전                                                     
+  :--------------------------------------------------------------------------------------------------------------------------------:
+  | <img width="1684" alt="image" src="https://github.com/Yang-zzz/nonamarket_Refact/assets/89332492/729ce3d0-f45e-4682-ae15-c14100d74925"> |
+  |                                                        수정 후 : 기법 적용 후                                                        |:--------------------------------------------------------------------------------------------------------------------------------:
+  |<img width="1500" alt="image" src="https://github.com/Yang-zzz/nonamarket_Refact/assets/89332492/17789970-8773-46a5-897d-27706a51a036">|
